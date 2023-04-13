@@ -21,7 +21,7 @@ public class Wall {
     /**
      * Matrix of tiles on the wall creating the pattern
      */
-    private Tile[] pattern;
+    private Tile[][] pattern;
 
     /**
      * Placing a tile on the wall

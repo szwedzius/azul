@@ -29,7 +29,7 @@ public class Factory {
     /**
      * Method that removes the tiles of chosen colour
      * from the factory
-     * @param colour
+     * @param colour chosen colour
      */
     public void remove(Colour colour) {
         // TODO implement here
@@ -46,7 +46,7 @@ public class Factory {
 
     /**
      * Adding tiles to the factory at the beggining of next tour
-     * @param tiles
+     * @param tiles added tiles
      */
     public void addTiles(Tile[] tiles) {
         // TODO implement here

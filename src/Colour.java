@@ -1,6 +1,6 @@
 
 /**
- * 
+ * The Colour enum determines the type of tile
  */
 public enum Colour {
     BLACK,

@@ -69,7 +69,7 @@ public class Game {
 
     /**
      * Method for getting the number of players
-     * @return number of players
+     * @return Number of players
      */
     public int getNumberOfPlayers() {
         // TODO implement here

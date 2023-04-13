@@ -19,7 +19,7 @@ public class Tile {
 
     /**
      * Standard getter method for the 'colourr' field
-     * @return tile's colour
+     * @return Tile's colour
      */
     public Colour getColour() {
         // TODO implement here

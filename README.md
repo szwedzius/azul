@@ -2,8 +2,8 @@ The following repository contains initial classes and their methods for a game A
 UML diagrams, presentation and project documentation are also present.
 
 This stage's authors are:
-    Alexander Belazerski
-    Stanisław Ciszkiewicz
-    Stanisław Doliński
-    Michał Kozłowski
-    Jan Sakowski - project leader
+Alexander Belazerski
+Stanisław Ciszkiewicz
+Stanisław Doliński
+Michał Kozłowski
+Jan Sakowski - project leader

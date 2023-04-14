@@ -7,3 +7,5 @@ Stanisław Ciszkiewicz
 Stanisław Doliński
 Michał Kozłowski
 Jan Sakowski - project leader
+
+Link to latex documentation: https://www.overleaf.com/7589349448kghdmbmssgtc

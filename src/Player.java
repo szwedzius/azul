@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 /**
@@ -6,47 +5,27 @@ import java.util.*;
  * and implements player's decisions.
  */
 public class Player {
+    /*Nickname of the player*/
+    private String name;
+    /*Points gathered by the player*/
+    private int points;
+    /*Wall containing the progress of the player*/
+    private Wall wall;
+    /*Pattern lines filled by the player*/
+    private PatternLines pattern;
+    /*Indicator of possesion of First Player Tile*/
+    private boolean first;
+    /*List containing the current state of player's floor line*/
+    private ArrayList<Tile> floor;
+    /*List containing tiles that are about to be thrown away after each round*/
+    private ArrayList<Tile> rejectedTiles;
 
     /**
      * Default constructor
      */
-    public Player() {
+    public Player(String name) {
+        this.name = name;
     }
-
-    /**
-     * Nickname of the player
-     */
-    private String name;
-
-    /**
-     * Points gathered by the player
-     */
-    private int points;
-
-    /**
-     * Wall containing the progress of the player
-     */
-    private Wall wall;
-
-    /**
-     * Pattern lines filled by the player
-     */
-    private PatternLines pattern;
-
-    /**
-     * Indicator of possesion of First Player Tile
-     */
-    private boolean first;
-
-    /**
-     * List containing the current state of player's floor line
-     */
-    private ArrayList<Tile> floor;
-
-    /**
-     * List containing tiles that are about to be thrown away after each round
-     */
-    private ArrayList<Tile> rejectedTiles;
 
     /**
      * Method for getting the number of points of the player

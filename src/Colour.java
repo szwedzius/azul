@@ -1,4 +1,3 @@
-
 /**
  * The Colour enum determines the type of tile
  */

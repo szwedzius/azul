@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 /**
@@ -6,13 +5,6 @@ import java.util.*;
  * and operates on their objects
  */
 public class Game {
-
-    /**
-     * Default constructor
-     */
-    public Game() {
-    }
-
     /**
      * Number of players playing
      */
@@ -34,6 +26,12 @@ public class Game {
      * Player class instances - each player is represented by one
      */
     private Player[] playersTables; //TODO init. with size 'players'
+
+    /**
+     * Default constructor
+     */
+    public Game() {
+    }
 
     /**
      * Checking whether the conditions for ending the game are met

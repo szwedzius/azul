@@ -1,4 +1,3 @@
-
 import java.net.Socket;
 import java.util.*;
 
@@ -6,18 +5,17 @@ import java.util.*;
  * Class responsible for creating a game client
  */
 public class Client {
+    /**
+     * Socket on which the client communicates
+     * with the server
+     */
+    private Socket clientSocket;
 
     /**
      * Default constructor
      */
     public Client() {
     }
-
-    /**
-     * Socket on which the client communicates
-     * with the server
-     */
-    private Socket clientSocket;
 
     /**
      * Method to send data to the server

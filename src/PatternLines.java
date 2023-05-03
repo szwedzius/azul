@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 /**
@@ -6,36 +5,16 @@ import java.util.*;
  * are being filled by the player
  */
 public class PatternLines {
+    /**
+     * Rows of pattern lines
+     */
+    private Tile rows[][];
 
     /**
      * Default constructor
      */
     public PatternLines() {
     }
-    /**
-     * The first row of pattern lines
-     */
-    private Tile row1[];
-
-    /**
-     * The second row of pattern lines
-     */
-    private Tile row2[];
-
-    /**
-     * The third row of pattern lines
-     */
-    private Tile row3[];
-
-    /**
-     * The fourth row of pattern lines
-     */
-    private Tile row4[];
-
-    /**
-     * The fifth row of pattern lines
-     */
-    private Tile row5[];
 
     /**
      * Adding given amount of tiles of certain colour to given row of pattern lines

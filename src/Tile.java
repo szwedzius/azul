@@ -1,11 +1,9 @@
-
 import java.util.*;
 
 /**
  * Class representing the tile
  */
 public class Tile {
-
     /**
      * Default constructor
      */

@@ -1,4 +1,3 @@
-
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
@@ -7,13 +6,6 @@ import java.util.*;
  * Class responsible for creating a server
  */
 public class Server {
-
-    /**
-     * Default constructor
-     */
-    public Server() {
-    }
-
     /**
      * Socket, on which the server will be operating and listening
      * for new connection requests
@@ -25,6 +17,12 @@ public class Server {
      * client will go through
      */
     private Socket clientSocket;
+
+    /**
+     * Default constructor
+     */
+    public Server() {
+    }
 
     /**
      * Method for sending out data to the clients

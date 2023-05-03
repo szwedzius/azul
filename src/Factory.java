@@ -1,4 +1,3 @@
-
 import java.util.*;
 /**
  * Class representing the factory, with its
@@ -7,15 +6,15 @@ import java.util.*;
 public class Factory {
 
     /**
+     * The tiles that the factory contains
+     */
+    private Tile[] contents; // TODO as suggested by UML, initialize with size 4
+
+    /**
      * Default constructor
      */
     public Factory() {
     }
-
-    /**
-     * The tiles that the factory contains
-     */
-    private Tile[] contents; // TODO as suggested by UML, initialize with size 4
 
     /**
      * Standard isEmpty() method

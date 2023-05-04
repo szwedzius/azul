@@ -7,7 +7,8 @@ public class Tile {
     /**
      * Default constructor
      */
-    public Tile() {
+    public Tile(Colour colour) {
+        this.colour = colour;
     }
 
     /**
@@ -20,8 +21,7 @@ public class Tile {
      * @return Tile's colour
      */
     public Colour getColour() {
-        // TODO implement here
-        return null;
+        return colour;
     }
 
 }

@@ -6,7 +6,7 @@ import java.util.*;
  */
 public class Player {
     /*Nickname of the player*/
-    private String name;
+    private final String name;
     /*Points gathered by the player*/
     private int points;
     /*Wall containing the progress of the player*/
@@ -32,8 +32,7 @@ public class Player {
      * @return Number of points of the player
      */
     public int getPoints() {
-        // TODO implement here
-        return 0;
+        return points;
     }
 
     /**
@@ -42,21 +41,21 @@ public class Player {
      * @param points Given points
      */
     public void sumPoints(int points) {
-        // TODO implement here
+        this.points += points;
     }
 
     /**
      * Method setting the indicator first
      */
     public void setFirst() {
-        // TODO implement here
+        first = true;
     }
 
     /**
      * Method for clearing the floor line
      */
     public void clearFloor() {
-        // TODO implement here
+        floor.clear();
     }
 
     /**
@@ -64,17 +63,18 @@ public class Player {
      * @param tile Rejected tile
      */
     public void rejectTile(Tile tile) {
-        // TODO implement here
+        rejectedTiles.add(tile);
     }
-
     /**
      * Method that rejects unused tiles and erases them
      * by passing to the box
      * @return List of rejected tiles
      */
     public ArrayList<Tile> clearRejectedTiles() {
-        // TODO implement here
-        return null;
+        ArrayList<Tile> temp;
+        temp = rejectedTiles;
+        rejectedTiles.clear();
+        return temp;
     }
 
 }

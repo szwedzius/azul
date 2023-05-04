@@ -8,7 +8,7 @@ public class PatternLines {
     /**
      * Rows of pattern lines
      */
-    private Tile rows[][];
+    private final Tile[][] rows = new Tile[5][5];
 
     /**
      * Default constructor
@@ -32,8 +32,15 @@ public class PatternLines {
      * @return Result of the evaluation
      */
     private boolean isRowFull(int row) {
-        // TODO implement here
-        return false;
+        return switch (row) {
+            case 0 -> rows[row][0] != null;
+            case 1 -> (rows[row][0] != null && rows[row][1] != null);
+            case 2 -> (rows[row][0] != null && rows[row][1] != null && rows[row][2] != null);
+            case 3 -> (rows[row][0] != null && rows[row][1] != null && rows[row][2] != null && rows[row][3] != null);
+            case 4 ->
+                    (rows[row][0] != null && rows[row][1] != null && rows[row][2] != null && rows[row][3] != null && rows[row][4] != null);
+            default -> throw new IllegalArgumentException("The specified row does not exist");
+        };
     }
 
     /**
@@ -42,8 +49,15 @@ public class PatternLines {
      * @return Result of the evaluation
      */
     public boolean isRowEmpty(int row) {
-        // TODO implement here
-        return false;
+        return switch (row) {
+            case 0 -> rows[row][0] == null;
+            case 1 -> (rows[row][0] == null && rows[row][1] == null);
+            case 2 -> (rows[row][0] == null && rows[row][1] == null && rows[row][2] == null);
+            case 3 -> (rows[row][0] == null && rows[row][1] == null && rows[row][2] == null && rows[row][3] == null);
+            case 4 ->
+                    (rows[row][0] == null && rows[row][1] == null && rows[row][2] == null && rows[row][3] == null && rows[row][4] == null);
+            default -> throw new IllegalArgumentException("The specified row does not exist");
+        };
     }
 
     /**
@@ -51,7 +65,12 @@ public class PatternLines {
      * @param row given row
      */
     public void clearRow(int row) {
-        // TODO implement here
+        if (row < 5 && row >= 0){
+            for (int i = 0; i <= row; i++){
+                rows[row][i] = null;
+            }
+        }
+        else
+            throw new IllegalArgumentException("The specified row does not exist");
     }
-
 }

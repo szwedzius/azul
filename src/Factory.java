@@ -1,4 +1,3 @@
-import java.util.*;
 /**
  * Class representing the factory, with its
  * storage and methods
@@ -28,9 +27,9 @@ public class Factory {
     /**
      * Method that removes the tiles of chosen colour
      * from the factory
-     * @param colour chosen colour
+     * @param tile chosen colour
      */
-    public void remove(Colour colour) {
+    public void remove(Tile tile) {
         // TODO implement here
     }
 

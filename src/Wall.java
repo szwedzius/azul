@@ -1,5 +1,3 @@
-import java.util.*;
-
 /**
  * Class representing the wall with the pattern present
  * on each player's board
@@ -24,11 +22,11 @@ public class Wall {
 
     /**
      * Placing a tile on the wall
-     * @param colour colour of the tile
+     * @param tile colour of the tile
      * @param row row in which it will be put
      * @return Number of points scored for the tile's placement
      */
-    public int addTile(Colour colour, int row) {
+    public int addTile(Tile tile, int row) {
         // TODO implement here
         return 0;
     }
@@ -36,11 +34,11 @@ public class Wall {
     /**
      * Evaluation whether the given colour is already present
      * in the indicated row
-     * @param colour indicated colour
+     * @param tile indicated colour
      * @param row indicated row, to be checked
      * @return Result of the evaluation
      */
-    public boolean colourCheck(Colour colour, int row) {
+    public boolean colourCheck(Tile tile, int row) {
         // TODO implement here
         return false;
     }

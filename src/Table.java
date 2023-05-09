@@ -47,31 +47,31 @@ public class Table {
 
     /**
      * Taking the tiles of chosen colour from the center
-     * @param colour
+     * @param tile
      * @return The tiles taken
      */
-    public int getTilesFromCenter(Colour colour) {
+    public int getTilesFromCenter(Tile tile) {
         // TODO implement here
         return 0;
     }
 
     /**
      * Taking the tiles of chosen colour from the factory
-     * @param colour chosen colour
+     * @param tile chosen colour
      * @param factory the index of the factory int the 'factories' list
      * @return The tiles taken
      */
-    public int getTilesFromFactory(Colour colour, int factory) {
+    public int getTilesFromFactory(Tile tile, int factory) {
         // TODO implement here
         return 0;
     }
 
     /**
      * Evaluation whether tiles of the given colour are present in the center
-     * @param colour chosen colour
+     * @param tile chosen colour
      * @return Result of the evaluation
      */
-    public boolean isColourInCenter(Colour colour) {
+    public boolean isColourInCenter(Tile tile) {
         // TODO implement here
         return false;
     }
@@ -79,11 +79,11 @@ public class Table {
 
     /**
      * Evaluation whether tiles of the given colour are present in the factory
-     * @param colour chosen colour
+     * @param tile chosen colour
      * @param factory the index of the factory int the 'factories' list
      * @return Result of the evaluation
      */
-    public boolean isColourInFactory(Colour colour, int factory) {
+    public boolean isColourInFactory(Tile tile, int factory) {
         // TODO implement here
         return false;
     }

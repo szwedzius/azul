@@ -7,7 +7,8 @@ public class Wall {
     /**
      * Default constructor
      */
-    public Wall() {
+    public Wall(Tile[][] pattern){
+        this.pattern = pattern;
     }
 
     /**
@@ -18,7 +19,7 @@ public class Wall {
     /**
      * Matrix of tiles on the wall creating the pattern
      */
-    private Tile[][] pattern;
+    private final Tile[][] pattern;
 
     /**
      * Placing a tile on the wall
@@ -27,8 +28,54 @@ public class Wall {
      * @return Number of points scored for the tile's placement
      */
     public int addTile(Tile tile, int row) {
-        // TODO implement here
-        return 0;
+        int whereTileIsAdded = 0;
+        int isAdjacent = 0;
+        // adding tile
+        for (int i = 0; i < 5; i++){
+            if (pattern[row][i] == tile){
+                filled[row][i] = true;
+                whereTileIsAdded = i;
+                break;
+            }
+        }
+        return countFilledTiles(whereTileIsAdded, row);
+    }
+
+    private int countFilledTiles(int whereTileIsAdded, int row) {
+        int horizontalPoints = 0;
+        int verticalPoints = 0;
+
+        // checking horizontally
+        for (int i = whereTileIsAdded - 1; i >= 0; i--){
+            if (!filled[row][i])
+                break;
+            horizontalPoints++;
+        }
+
+        for (int i = whereTileIsAdded + 1; i < 5; i++){
+            if (!filled[row][i])
+                break;
+            horizontalPoints++;
+        }
+
+        // checking vertically
+        for (int i = whereTileIsAdded - 1; i >= 0; i--){
+            if (!filled[i][whereTileIsAdded])
+                break;
+            verticalPoints++;
+        }
+
+        for (int i = whereTileIsAdded + 1; i < 5; i++){
+            if (!filled[i][whereTileIsAdded])
+                break;
+            verticalPoints++;
+        }
+
+        // +1 because we skipped one tile
+        if (horizontalPoints + verticalPoints > 0)
+            return verticalPoints + horizontalPoints + 1;
+        else
+            return 1;
     }
 
     /**
@@ -39,7 +86,10 @@ public class Wall {
      * @return Result of the evaluation
      */
     public boolean colourCheck(Tile tile, int row) {
-        // TODO implement here
+        for (int i = 0; i < 5; i++){
+            if (pattern[row][i] == tile && filled[row][i])
+                return true;
+        }
         return false;
     }
 
@@ -47,9 +97,13 @@ public class Wall {
      * Evaluation whether the row is full
      * @return Result of the evaluation
      */
-    public boolean IsRowFull() {
-        // TODO implement here
+    public boolean IsRowFull(int row) {
+        if (row > 5 || row < 0)
+            throw new IllegalArgumentException("The specified row does not exist");
+        for (int i = 0; i < 5; i++){
+            if (!filled[row][i])
+                return false;
+        }
         return false;
     }
-
 }

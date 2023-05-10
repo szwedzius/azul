@@ -7,8 +7,7 @@ public class Wall {
     /**
      * Default constructor
      */
-    public Wall(Tile[][] pattern){
-        this.pattern = pattern;
+    public Wall(){
     }
 
     /**
@@ -19,7 +18,11 @@ public class Wall {
     /**
      * Matrix of tiles on the wall creating the pattern
      */
-    private final Tile[][] pattern;
+    private final Tile[][] pattern = {{Tile.BLUE, Tile.YELLOW, Tile.RED, Tile.BLACK, Tile.WHITE},
+                                     {Tile.WHITE, Tile.BLUE, Tile.YELLOW, Tile.RED, Tile.BLACK},
+                                     {Tile.BLACK, Tile.WHITE, Tile.BLUE, Tile.YELLOW, Tile.RED},
+                                     {Tile.RED, Tile.BLACK, Tile.WHITE, Tile.BLUE, Tile.YELLOW},
+                                     {Tile.YELLOW, Tile.RED, Tile.BLACK, Tile.WHITE, Tile.BLUE}};
 
     /**
      * Placing a tile on the wall

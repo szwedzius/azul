@@ -20,8 +20,11 @@ public class Factory {
      * @return Information whether it is empty
      */
     public boolean isEmpty() {
-        // TODO implement here
-        return false;
+        for (Tile tile : contents){
+            if (tile != null)
+                return false;
+        }
+        return true;
     }
 
     /**
@@ -30,7 +33,10 @@ public class Factory {
      * @param tile chosen colour
      */
     public void remove(Tile tile) {
-        // TODO implement here
+        for (int i = 0; i < 5; i++){
+            if (contents[i] == tile)
+                contents[i] = null;
+        }
     }
 
     /**
@@ -38,8 +44,7 @@ public class Factory {
      * @return Array of tiles contained in the factory
      */
     public Tile[] getContents() {
-        // TODO implement here
-        return null;
+        return contents;
     }
 
     /**
@@ -47,7 +52,7 @@ public class Factory {
      * @param tiles added tiles
      */
     public void addTiles(Tile[] tiles) {
-        // TODO implement here
+        System.arraycopy(tiles, 0, contents, 0, tiles.length);
     }
 
 }

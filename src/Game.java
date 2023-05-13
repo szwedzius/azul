@@ -8,29 +8,33 @@ public class Game {
     /**
      * Number of players playing
      */
-    private int players;
+    private final int players;
 
     /**
      * Game mode
      * 1 - singleplayer
      * 0 - multiplayer
      */
-    private int mode;
+    private final int mode;
 
     /**
      * Table - one instance per game
      */
-    private Table table;
+    private final Table table;
 
     /**
      * Player class instances - each player is represented by one
      */
-    private Player[] playersTables; //TODO init. with size 'players'
+    private final Player[] playersTables;
 
     /**
      * Default constructor
      */
-    public Game() {
+    public Game(int numberOfPlayers, int mode) {
+        playersTables = new Player[numberOfPlayers];
+        players = numberOfPlayers;
+        table = new Table(players);
+        this.mode = mode;
     }
 
     /**
@@ -70,8 +74,7 @@ public class Game {
      * @return Number of players
      */
     public int getNumberOfPlayers() {
-        // TODO implement here
-        return 0;
+        return players;
     }
 
     /**
@@ -79,8 +82,7 @@ public class Game {
      * @return Table of Player objects representing the players
      */
     public Player[] getPlayersTables() {
-        // TODO implement here
-        return null;
+        return playersTables;
     }
 
 }

@@ -25,6 +25,10 @@ public class Player {
      */
     public Player(String name) {
         this.name = name;
+        floor = new ArrayList<>();
+        rejectedTiles = new ArrayList<>();
+        pattern = new PatternLines();
+        wall = new Wall();
     }
 
     /**

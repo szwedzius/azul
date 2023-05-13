@@ -7,12 +7,13 @@ public class Factory {
     /**
      * The tiles that the factory contains
      */
-    private Tile[] contents; // TODO as suggested by UML, initialize with size 4
+    private final Tile[] contents;
 
     /**
      * Default constructor
      */
     public Factory() {
+        contents = new Tile[4];
     }
 
     /**
@@ -33,7 +34,7 @@ public class Factory {
      * @param tile chosen colour
      */
     public void remove(Tile tile) {
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < 4; i++){
             if (contents[i] == tile)
                 contents[i] = null;
         }
@@ -48,7 +49,7 @@ public class Factory {
     }
 
     /**
-     * Adding tiles to the factory at the beggining of next tour
+     * Adding tiles from the bag to the factory at the beginning of the next round of the game
      * @param tiles added tiles
      */
     public void addTiles(Tile[] tiles) {

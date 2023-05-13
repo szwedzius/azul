@@ -1,4 +1,3 @@
-import java.util.*;
 
 /**
  * The PatternLines class represents lines that
@@ -8,12 +7,14 @@ public class PatternLines {
     /**
      * Rows of pattern lines
      */
-    public final Tile[][] rows = new Tile[5][5];
-
+    public final Tile[] colours;
+    public final int[] amounts;
     /**
      * Default constructor
      */
     public PatternLines() {
+        colours = new Tile[5];
+        amounts = new int[]{0, 0, 0, 0, 0};
     }
 
     /**
@@ -25,10 +26,13 @@ public class PatternLines {
     public void addToRow(int row, Tile colour, int amount) {
         if (row > 5 || row < 0)
             throw new IllegalArgumentException("The specified row does not exist");
-        for (int i = 0; i <= row && amount != 0; i++){
-            rows[row][i] = colour;
-            amount--;
-        }
+        if (colours[row] != colour)
+            throw new IllegalArgumentException("Can't place two different colours in one row");
+        if (amount < 0 || (amount + amounts[row]) > (row + 1) )
+            throw new IllegalArgumentException("The amount of tiles can't be fewer than 0 or higher than the index of row we want to add tiles to");
+        if (colours[row] != colour && colours[row] != null)
+            throw new IllegalArgumentException("Wrong colour");
+        amounts[row] += amount;
     }
 
     /**
@@ -39,26 +43,18 @@ public class PatternLines {
     public boolean isRowFull(int row) {
         if (row > 5 || row < 0)
             throw new IllegalArgumentException("The specified row does not exist");
-        for (int i = 0; i <= row; i++){
-            if (rows[row][i] == null)
-                return false;
-        }
-        return true;
+        return amounts[row] == (row + 1);
     }
 
     /**
-     * Evaluation whether the given row is full
+     * Evaluation whether the given row is empty
      * @param row given row
      * @return Result of the evaluation
      */
     public boolean isRowEmpty(int row) {
         if (row > 5 || row < 0)
             throw new IllegalArgumentException("The specified row does not exist");
-        for (int i = 0; i <= row; i++){
-            if (rows[row][i] != null)
-                return false;
-        }
-        return true;
+        return amounts[row] == 0;
     }
 
     /**
@@ -68,7 +64,7 @@ public class PatternLines {
     public void clearRow(int row) {
         if (row > 5 || row < 0)
             throw new IllegalArgumentException("The specified row does not exist");
-        for (int i = 0; i <= row; i++)
-                rows[row][i] = null;
+        amounts[row] = 0;
+        colours[row] = null;
     }
 }

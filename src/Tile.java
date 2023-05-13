@@ -7,5 +7,5 @@ public enum Tile {
     WHITE,
     YELLOW,
     BLUE,
-    FIRSTPLAYERTILE
+    FIRSTTILE
 }

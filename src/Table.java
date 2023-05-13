@@ -16,13 +16,7 @@ public class Table {
     /**
      * ArrayList representing the tiles present in the center
      */
-    private ArrayList<Tile> center;
-
-    /**
-     * Default constructor
-     */
-    public Table() {
-    }
+    private final ArrayList<Tile> center;
 
     /**
      * List of factories
@@ -30,40 +24,72 @@ public class Table {
      * 3 players - 7 factories
      * 4 players - 9 factories
      */
-    private Factory[] factories;
+    private final Factory[] factories;
 
     /**
      * Number of factories
      */
-    private int factoryNo;
+    private final int factoryNo;
+
+    /**
+     * Default constructor
+     */
+    public Table(int numberOfPlayers) {
+        factoryNo = numberOfPlayers*2 + 1;
+        factories = new Factory[factoryNo];
+        center = new ArrayList<>();
+        center.add(Tile.FIRSTTILE);
+        bag = new ArrayList<>(100);
+        for (int i = 0; i < 20; i++) {
+            bag.add(Tile.WHITE);
+            bag.add(Tile.BLUE);
+            bag.add(Tile.BLACK);
+            bag.add(Tile.RED);
+            bag.add(Tile.YELLOW);
+        }
+
+        box = new ArrayList<>();
+        refillFactories();
+    }
 
     /**
      * @return Result of the evaluation whether the bag is empty
      */
     private boolean isBagEmpty() {
-        // TODO implement here
-        return false;
+        return bag.isEmpty();
     }
 
     /**
      * Taking the tiles of chosen colour from the center
-     * @param tile
+     * @param tile chosen colour
      * @return The tiles taken
      */
     public int getTilesFromCenter(Tile tile) {
-        // TODO implement here
-        return 0;
+        int temp = 0;
+        if (isPriorityTileInCenter())
+            center.remove(Tile.FIRSTTILE);
+        while (isColourInCenter(tile)) {
+            temp++;
+            center.remove(tile);
+        }
+        return temp;
     }
 
     /**
      * Taking the tiles of chosen colour from the factory
      * @param tile chosen colour
-     * @param factory the index of the factory int the 'factories' list
+     * @param factoryNumber the index of the factory int the 'factories' list
      * @return The tiles taken
      */
-    public int getTilesFromFactory(Tile tile, int factory) {
-        // TODO implement here
-        return 0;
+    public int getTilesFromFactory(Tile tile, int factoryNumber) {
+        int temp = 0;
+        while (isColourInFactory(tile, factoryNumber)) {
+            temp++;
+            factories[factoryNumber].remove(tile);
+        }
+        center.addAll(List.of(factories[factoryNumber].getContents()));
+        factories[factoryNumber] = new Factory();
+        return temp;
     }
 
     /**
@@ -72,8 +98,7 @@ public class Table {
      * @return Result of the evaluation
      */
     public boolean isColourInCenter(Tile tile) {
-        // TODO implement here
-        return false;
+        return center.contains(tile);
     }
 
 
@@ -84,31 +109,47 @@ public class Table {
      * @return Result of the evaluation
      */
     public boolean isColourInFactory(Tile tile, int factory) {
-        // TODO implement here
+        for (int i = 0; i < 4; i++) {
+            if(factories[factory].getContents()[i] == tile)
+                return true;
+        }
         return false;
     }
 
     /**
      * Transfer the tiles from the box to the bag when the bag is empty
      */
-    private void refillBag() {
-        // TODO implement here
+    private void refillBag() throws Exception {
+        if(isBagEmpty()) {
+            bag = box;
+            box = new ArrayList<>();
+        } else
+            throw new Exception("Can't refill bag until it is not empty");
     }
 
     /**
      * Transfer of tiles from the bag to the factories - at the beginning of each turn
      */
     public void refillFactories() {
-        // TODO implement here
-    }
-
-    /**
-     * Evaluation whether the priority tile has been drawn
-     * @return Result of the evaluation
-     */
-    public boolean priorityTileDrawn() {
-        // TODO implement here
-        return false;
+        Random rand = new Random();
+        for (int i = 0; i < factoryNo; i++){
+            int temp;
+            Tile tile1, tile2, tile3, tile4;
+            temp = rand.nextInt(bag.size());
+            tile1 = bag.get(temp);
+            bag.remove(temp);
+            temp = rand.nextInt(bag.size());
+            tile2 = bag.get(temp);
+            bag.remove(temp);
+            temp = rand.nextInt(bag.size());
+            tile3 = bag.get(temp);
+            bag.remove(temp);
+            temp = rand.nextInt(bag.size());
+            tile4 = bag.get(temp);
+            bag.remove(temp);
+            Tile[] factoryTiles = new Tile[]{tile1, tile2, tile3, tile4};
+            factories[i].addTiles(factoryTiles);
+        }
     }
 
     /**
@@ -116,24 +157,7 @@ public class Table {
      * @return Result of the evaluation
      */
     public boolean isPriorityTileInCenter() {
-        // TODO implement here
-        return false;
-    }
-
-    /**
-     * Transfer the tiles remaining in the factory to the center
-     * after the player has taken tiles from it
-     */
-    private void addToCenter() {
-        // TODO implement here
-    }
-
-    /**
-     * Transfer the tiles that didn't fit in the player's lines to the box
-     * @param tile tile to place in the box
-     */
-    public void addToBox(Tile tile) {
-        // TODO implement here
+        return center.contains(Tile.FIRSTTILE);
     }
 
 }

@@ -85,10 +85,6 @@ public class Game {
         return playersTables;
     }
 
-    public void applyMove(Move move) {
-        // TODO
-    }
-
     public void printFactory() {
         for (int i = 0; i < 2 * players + 1; i++) {
             Tile[] contents = table.factories[i].getContents();
@@ -219,7 +215,7 @@ public class Game {
     }
     public static void main(String[] args){
 
-        int numberOfPlayers = 1;
+        int numberOfPlayers = 2;
         int mode = 0;
         int counter = 36;
         boolean isEnd = true;

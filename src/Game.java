@@ -128,9 +128,34 @@ public class Game {
         System.out.println("Choose factory or center from which you want to take tiles");
         number = reader.nextInt() - 1;
 
+        System.out.println("Choose tile which you want to take from the factory");
+        String tiles = reader.next();
+
+        System.out.println("Choose where you want to add the tiles, 1-5 for pattern lines, 6 for floor");
+        whereToPlaceTiles = reader.nextInt() - 1;
+
+        tileToAdd = switch (tiles.toUpperCase()) {
+            case "BLACK" -> Tile.BLACK;
+            case "WHITE" -> Tile.WHITE;
+            case "BLUE" -> Tile.BLUE;
+            case "YELLOW" -> Tile.YELLOW;
+            case "RED" -> Tile.RED;
+            default -> null;
+        };
+
         while (!table.isColourInFactory(tileToAdd, number)) {
+            System.out.println("Chosen tile doesn't exist in this factory, please choose again");
+
+            System.out.println("Choose factory or center from which you want to take tiles");
+            number = reader.nextInt() - 1;
+
             System.out.println("Choose tile which you want to take from the factory");
-            String tiles = reader.next();
+            tiles = reader.next();
+
+            System.out.println("Choose where you want to add the tiles, 1-5 for pattern lines, 6 for floor");
+            whereToPlaceTiles = reader.nextInt() - 1;
+
+            tiles = reader.next();
             tileToAdd = switch (tiles.toUpperCase()) {
                 case "BLACK" -> Tile.BLACK;
                 case "WHITE" -> Tile.WHITE;
@@ -139,40 +164,38 @@ public class Game {
                 case "RED" -> Tile.RED;
                 default -> null;
             };
-
-
         }
 
 
-
-
-
-        System.out.println("Choose where you want to add the tiles, 1-5 for pattern lines, 6 for floor");
-        whereToPlaceTiles = reader.nextInt() - 1;
-
         if (whereToPlaceTiles == 5 && number != 2*getNumberOfPlayers() + 2) {
             for (int i =0; i < 4; i++) {
-                if (table.factories[number].getContents()[i] == tileToAdd) {
+                if (table.factories[number].getContents()[i] == tileToAdd)
                     playersTables[indexOfPlayer].floor.add(tileToAdd);
-                    table.factories[number].getContents()[i] = null;
-                } else {
+                else
                     table.center.add(table.factories[number].getContents()[i]);
+                table.factories[number].getContents()[i] = null;
+            }
+        } else if (whereToPlaceTiles == 5 && number == 2*getNumberOfPlayers() + 2){
+            if (table.isPriorityTileInCenter()){
+                playersTables[indexOfPlayer].setFirst();
+                playersTables[indexOfPlayer].floor.add(Tile.FIRSTTILE);
+                table.center.remove(Tile.FIRSTTILE);
+            }
+
+            for (int i = 0; i < table.center.size(); i++){
+                if (table.center.get(i) == tileToAdd){
+                    playersTables[indexOfPlayer].floor.add(tileToAdd);
+                    table.center.remove(i);
+                }
+            }
+        }else if (whereToPlaceTiles < 5 && number != 2*getNumberOfPlayers() + 2){
+            for (int i = 0; i < 4; i++){
+                if (table.factories[number].getContents()[i] == tileToAdd){
 
                 }
 
             }
 
-        } elseif () {
-
-        } else {
-
-
-
-            if (row < amount){
-                game.playersTables[0].pattern.addToRow(row, tileToAdd, row);
-                for (int i = 0; i < amount - row; i++)
-                    game.playersTables[0].floor.add(tileToAdd);
-            }
         }
 
 
@@ -246,7 +269,6 @@ public class Game {
 
                 // Getting tile from center and counting amount
                 while (game.table.center.contains(tileToAdd)){
-                    System.out.println("XD");
                     amount++;
                     game.table.center.remove(tileToAdd);
                 }

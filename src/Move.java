@@ -1,17 +1,17 @@
 public class Move {
-    String player;
+    int player;
     Tile tile;
     String fromWhere;
-    String toWhere;
+    int toWhere;
 
-    public Move(String player, Tile tile, String fromWhere, String toWhere) {
+    public Move(int player, Tile tile, String fromWhere, int toWhere) {
         this.player = player;
         this.tile = tile;
         this.fromWhere = fromWhere;
         this.toWhere = toWhere;
     }
 
-    public String getPlayer() {
+    public int getPlayer() {
         return player;
     }
 
@@ -23,15 +23,23 @@ public class Move {
         return fromWhere;
     }
 
-    public String getToWhere() {
+    public int getToWhere() {
         return toWhere;
     }
 
-    public static boolean isMoveValid(Game game, Move move) {
-        return false; // TODO
+    public static boolean isMoveValid(Game game, Move move) {;
+        return game.playersTables[move.getPlayer()].pattern.colours[move.getToWhere()] == move.getTile() &&
+                game.playersTables[move.getPlayer()].pattern.colours[move.getToWhere()] != null;
     }
 
-    public static boolean ifGoToFloor(Game game, Tile tile, String player) {
-        return false; // TODO
+    public static boolean ifGoToFloor(Game game, Tile tile, int player) {
+
+        for (int i = 0 ; i < 5; i++){
+            if (game.playersTables[player].pattern.colours[i] == tile ||
+                    game.playersTables[player].pattern.colours[i] == null){
+                return true;
+            }
+        }
+        return false;
     }
 }

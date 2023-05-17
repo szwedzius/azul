@@ -10,9 +10,9 @@ public class Player {
     /*Points gathered by the player*/
     private int points;
     /*Wall containing the progress of the player*/
-    private Wall wall;
+    public Wall wall;
     /*Pattern lines filled by the player*/
-    private PatternLines pattern;
+    public PatternLines pattern;
     /*Indicator of possesion of First Player Tile*/
     private boolean first;
     /*List containing the current state of player's floor line*/

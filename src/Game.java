@@ -8,24 +8,24 @@ public class Game {
     /**
      * Number of players playing
      */
-    private final int players;
+    public final int players;
 
     /**
      * Game mode
      * 1 - singleplayer
      * 0 - multiplayer
      */
-    private final int mode;
+    public final int mode;
 
     /**
      * Table - one instance per game
      */
-    private final Table table;
+    public final Table table;
 
     /**
      * Player class instances - each player is represented by one
      */
-    private final Player[] playersTables;
+    public final Player[] playersTables;
 
     /**
      * Default constructor
@@ -85,4 +85,7 @@ public class Game {
         return playersTables;
     }
 
+    public void applyMove(Move move) {
+        // TODO
+    }
 }

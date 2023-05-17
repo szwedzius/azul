@@ -37,9 +37,9 @@ public class Move {
         for (int i = 0 ; i < 5; i++){
             if (game.playersTables[player].pattern.colours[i] == tile ||
                     game.playersTables[player].pattern.colours[i] == null){
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }

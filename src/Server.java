@@ -2,11 +2,9 @@ import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.SynchronousQueue;
 
 // Server class
 class Server {
-    static int numberOfPlayers;
     static ArrayList<ClientHandler> clients;
 
     static ConcurrentLinkedQueue<String> data = new ConcurrentLinkedQueue<>();
@@ -71,8 +69,7 @@ class Server {
                 // get the inputstream of client
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-                out.println("Number: " + (clients.size()));
-                //System.out.println("Client:: " + in.readLine());
+                out.println("Number: " + (clients.size()-1));
 
                 String temp;
                 while((temp = in.readLine()) != null) {

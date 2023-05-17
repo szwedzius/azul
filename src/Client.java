@@ -1,6 +1,5 @@
 import java.io.*;
 import java.net.*;
-import java.util.*;
 
 // Client class
 class Client {
@@ -37,7 +36,7 @@ class Client {
             socket.close();
     }
     // driver code
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException {
         Client client = new Client("localhost", 12346);
         client.start();
         System.out.println("Server:: " + client.receiveData()); // number

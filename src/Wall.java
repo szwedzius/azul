@@ -130,4 +130,12 @@ public class Wall {
         }
         return true;
     }
+
+    public boolean containsTile(Tile tile, int row){
+        for (int i = 0; i < 5; i++){
+            if (filled[row][i] && pattern[row][i] == tile)
+                return true;
+        }
+        return false;
+    }
 }

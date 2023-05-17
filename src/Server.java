@@ -1,71 +1,119 @@
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.*;
+import java.io.*;
+import java.net.*;
+import java.util.ArrayList;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.SynchronousQueue;
 
-/**
- * Class responsible for creating a server
- */
-public class Server {
-    /**
-     * Socket, on which the server will be operating and listening
-     * for new connection requests
-     */
-    private ServerSocket serverSocket;
+// Server class
+class Server {
+    static int numberOfPlayers;
+    static ArrayList<ClientHandler> clients;
 
-    /**
-     * The socket, which the communication with the
-     * client will go through
-     */
-    private Socket clientSocket;
+    static ConcurrentLinkedQueue<String> data = new ConcurrentLinkedQueue<>();
+    static ClientHandler sender;
 
-    /**
-     * Default constructor
-     */
-    public Server() {
+    public static void main(String[] args)
+    {
+        AllSender send = new AllSender();
+        new Thread(send).start();
+
+        clients = new ArrayList<>();
+        ServerSocket server = null;
+
+        try {
+            server = new ServerSocket(12346);
+            server.setReuseAddress(true);
+
+            while (true) {
+                Socket client = server.accept();
+
+                System.out.println("New client connected: "
+                        + client.getInetAddress()
+                        .getHostAddress());
+
+                ClientHandler clientSock = new ClientHandler(client);
+                clients.add(clientSock);
+                new Thread(clientSock).start();
+
+                // USUWANIE NIEPODLACZONYCH KLIENTOW
+                clients.removeIf(clt -> clt.clientSocket.isClosed());
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (server != null) {
+                try {
+                    server.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
-    /**
-     * Method for sending out data to the clients
-     * Handled by the ClientHandler class
-     */
-    private void sendData() {
-        // TODO implement here
-    }
-
-    /**
-     * Method for receiving data from the clients
-     * Handled by the ClientHandler class
-     */
-    private void receiveData() {
-        // TODO implement here
-    }
-
-    /**
-     * Class for creating new clients and maintaining
-     * the connections with them (on separate threads)
-     */
-    public class ClientHandler extends Thread{
-
-        /**
-         * Default constructor
-         */
-        public ClientHandler() {
+    // ClientHandler class
+    private static class ClientHandler implements Runnable {
+        private final Socket clientSocket;
+        public PrintWriter out = null;
+        public BufferedReader in = null;
+        public ClientHandler(Socket socket) {
+            this.clientSocket = socket;
         }
 
-        /**
-         * Method for sending out data to the clients
-         */
-        private void sendData() {
-            // TODO implement here
-        }
+        public void run()
+        {
+            try {
+                // get the outputstream of client
+                out = new PrintWriter(clientSocket.getOutputStream(), true);
+                // get the inputstream of client
+                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-        /**
-         * Method for receiving data from the clients
-         */
-        private void receiveData() {
-            // TODO implement here
-        }
+                out.println("Number: " + (clients.size()));
+                //System.out.println("Client:: " + in.readLine());
 
+                String temp;
+                while((temp = in.readLine()) != null) {
+                    data.add(temp);
+                    sender = this;
+                }
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (out != null) {
+                    out.close();
+                }
+                if (in != null) {
+                    try {
+                        in.close();
+                        clientSocket.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 
+    private static class AllSender implements Runnable {
+        @Override
+        public void run() {
+            while(true) {
+                if(data.peek()!=null)
+                    System.out.print(data.peek());
+                if (!data.isEmpty()) {
+                    for (ClientHandler clt : clients) {
+                        if(clt != sender) {
+                            clt.out.println(data.peek());
+                        }
+                    }
+                    data.poll();
+                    sender = null;
+                }
+            }
+        }
+    }
 }

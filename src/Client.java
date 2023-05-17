@@ -1,34 +1,48 @@
-import java.net.Socket;
+import java.io.*;
+import java.net.*;
 import java.util.*;
 
-/**
- * Class responsible for creating a game client
- */
-public class Client {
-    /**
-     * Socket on which the client communicates
-     * with the server
-     */
-    private Socket clientSocket;
+// Client class
+class Client {
 
-    /**
-     * Default constructor
-     */
-    public Client() {
+    String address;
+    int port;
+    PrintWriter out;
+    BufferedReader in;
+    Socket socket = null;
+
+    public Client(String address, int port) {
+        this.address = address;
+        this.port = port;
+    }
+    public void start() throws IOException {
+        socket = new Socket(address, port);
+        // writing to server
+        out = new PrintWriter(socket.getOutputStream(), true);
+        // reading from server
+        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
-    /**
-     * Method to send data to the server
-     */
-    private void sendData() {
-        // TODO implement here
+    public void sendData(String mess) {
+        out.println(mess);
+        out.flush();
     }
 
-    /**
-     * Method to receive data from the server
-     */
-    private void receiveData() {
-        // TODO implement here
+    public String receiveData() throws IOException {
+        return in.readLine();
     }
 
+    public void end() throws IOException {
+        if(socket != null)
+            socket.close();
+    }
+    // driver code
+    public static void main(String[] args) throws IOException, InterruptedException {
+        Client client = new Client("localhost", 12346);
+        client.start();
+        System.out.println("Server:: " + client.receiveData()); // number
+        System.out.println("Server:: " + client.receiveData()); // info od innych
+        client.sendData("test");
+        client.end();
+    }
 }

@@ -105,6 +105,15 @@ public class Game {
 
     }
 
+    public boolean isMoveValid(int number, int row, int playerNumber, Tile tile) {
+        for (int i = 0; i < 4; i++) {
+            if (table.factories[number].getContents()[i] == tile) {
+                return playersTables[playerNumber].pattern.colours[row] == tile ||
+                        playersTables[playerNumber].pattern.colours[row] == null;
+            }
+        }
+        return false;
+    }
 
     public static void main(String[] args){
 

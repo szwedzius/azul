@@ -106,14 +106,9 @@ public class Game {
     }
 
     public boolean isMoveValid(int number, int row, int playerNumber, Tile tile) {
-        for (int i = 0; i < 4; i++) {
-            if (table.factories[number].getContents()[i] == tile) {
-                return (playersTables[playerNumber].pattern.colours[row] == tile &&
-                        playersTables[playerNumber].pattern.amounts[row] < (row + 1) ) ||
-                        playersTables[playerNumber].pattern.colours[row] == null;
-            }
-        }
-        return false;
+        return (playersTables[playerNumber].pattern.colours[row] == tile &&
+                playersTables[playerNumber].pattern.amounts[row] < (row + 1) ) ||
+                playersTables[playerNumber].pattern.colours[row] == null;
     }
 
     public void addTilesToPatternLines (int indexOfPlayer) {
@@ -188,14 +183,38 @@ public class Game {
                     table.center.remove(i);
                 }
             }
-        }else if (whereToPlaceTiles < 5 && number != 2*getNumberOfPlayers() + 2){
-            for (int i = 0; i < 4; i++){
-                if (table.factories[number].getContents()[i] == tileToAdd){
+        }else if (whereToPlaceTiles < 5 && number != 2*getNumberOfPlayers() + 2) {
+            for (int i = 0; i < 4; i++) {
+                if (table.factories[number].getContents()[i] == tileToAdd &&
+                    playersTables[indexOfPlayer].pattern.amounts[whereToPlaceTiles] < (whereToPlaceTiles + 1))
+                    playersTables[indexOfPlayer].pattern.addToRow(whereToPlaceTiles, tileToAdd, 1);
+                else if (table.factories[number].getContents()[i] == tileToAdd &&
+                        playersTables[indexOfPlayer].pattern.amounts[whereToPlaceTiles] == (whereToPlaceTiles + 1))
+                    playersTables[indexOfPlayer].floor.add(tileToAdd);
+                else
+                    table.center.add(table.factories[number].getContents()[i]);
+                table.factories[number].getContents()[i] = null;
+            }
+        } else if (whereToPlaceTiles < 5 && number == 2*getNumberOfPlayers() + 2){
+            for (int i = 0; i < table.center.size(); i++){
+                if (table.isPriorityTileInCenter()){
+                    playersTables[indexOfPlayer].setFirst();
+                    playersTables[indexOfPlayer].floor.add(Tile.FIRSTTILE);
+                    table.center.remove(Tile.FIRSTTILE);
+                }
 
+                else if (table.center.get(i) == tileToAdd &&
+                        playersTables[indexOfPlayer].pattern.amounts[whereToPlaceTiles] < (whereToPlaceTiles + 1)) {
+                    playersTables[indexOfPlayer].pattern.addToRow(whereToPlaceTiles, tileToAdd, 1);
+                    table.center.remove(i);
+                }
+                else if (table.center.get(i) == tileToAdd &&
+                        playersTables[indexOfPlayer].pattern.amounts[whereToPlaceTiles] == (whereToPlaceTiles + 1)){
+                    playersTables[indexOfPlayer].floor.add(tileToAdd);
+                    table.center.remove(i);
                 }
 
             }
-
         }
 
 

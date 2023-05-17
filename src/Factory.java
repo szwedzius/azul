@@ -1,8 +1,10 @@
+import java.io.Serializable;
+
 /**
  * Class representing the factory, with its
  * storage and methods
  */
-public class Factory {
+public class Factory implements Serializable {
 
     /**
      * The tiles that the factory contains

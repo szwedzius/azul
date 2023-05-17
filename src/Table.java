@@ -1,10 +1,11 @@
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Class representing the table, on which the factories,
  * bag and box are located
  */
-public class Table {
+public class Table  implements Serializable {
     /**
      * ArrayList representing the tiles present in the box
      */

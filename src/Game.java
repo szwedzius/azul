@@ -1,10 +1,11 @@
+import java.io.*;
 import java.util.Scanner;
 
 /**
  * The game class handles all other classes
  * and operates on their objects
  */
-public class Game {
+public class Game implements Serializable {
     /**
      * Number of players playing
      */
@@ -49,15 +50,25 @@ public class Game {
     /**
      * Method responsible for saving the current game
      */
-    public void save() {
-        // TODO implement here
+    public void save(String path) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(path+".bin"))) {
+            outputStream.writeObject(this);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
      * Method responsible for loading the game
      */
-    public void load() {
-        // TODO implement here
+    public static Game load(String path) {
+        Game game = null;
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(path+".bin"))) {
+            game = (Game) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return game;
     }
 
     /**
@@ -237,5 +248,8 @@ public class Game {
         game.printFactory();
         game.addTilesToPatternLines(0);
         game.playersTables[0].pattern.printPatternLine();
+
+        //game.save("test");
+        //Game g = Game.load("test");
     }
 }

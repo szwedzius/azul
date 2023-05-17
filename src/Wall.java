@@ -1,8 +1,10 @@
+import java.io.Serializable;
+
 /**
  * Class representing the wall with the pattern present
  * on each player's board
  */
-public class Wall {
+public class Wall implements Serializable {
     /**
      * Matrix indicating which of the places on player's wall are filled
      */

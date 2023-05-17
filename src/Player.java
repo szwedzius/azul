@@ -1,10 +1,11 @@
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * The Player class handles all the classes that are related to a player board
  * and implements player's decisions.
  */
-public class Player {
+public class Player implements Serializable {
     /*Nickname of the player*/
     private final String name;
     /*Points gathered by the player*/

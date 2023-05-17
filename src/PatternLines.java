@@ -1,9 +1,10 @@
+import java.io.Serializable;
 
 /**
  * The PatternLines class represents lines that
  * are being filled by the player
  */
-public class PatternLines {
+public class PatternLines implements Serializable {
     /**
      * Rows of pattern lines
      */

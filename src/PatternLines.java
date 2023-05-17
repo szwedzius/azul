@@ -31,6 +31,7 @@ public class PatternLines {
         if (colours[row] != colour && colours[row] != null)
             throw new IllegalArgumentException("Wrong colour");
         amounts[row] += amount;
+        colours[row] = colour;
     }
 
     /**

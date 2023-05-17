@@ -120,7 +120,7 @@ public class Game {
         Scanner reader = new Scanner(System.in);
         System.out.println();
 
-        System.out.println("Choose factory or center from which you want to take tiles");
+        System.out.println("Choose factory or center from which you want to take tiles, 10 for center");
         number = reader.nextInt() - 1;
 
         System.out.println("Choose tile which you want to take from the factory");
@@ -163,7 +163,7 @@ public class Game {
         }
 
 
-        if (whereToPlaceTiles == 5 && number != 2*getNumberOfPlayers() + 2) {
+        if (whereToPlaceTiles == 5 && number != 9) {
             for (int i =0; i < 4; i++) {
                 if (table.factories[number].getContents()[i] == tileToAdd)
                     playersTables[indexOfPlayer].floor.add(tileToAdd);
@@ -171,7 +171,7 @@ public class Game {
                     table.center.add(table.factories[number].getContents()[i]);
                 table.factories[number].getContents()[i] = null;
             }
-        } else if (whereToPlaceTiles == 5 && number == 2*getNumberOfPlayers() + 2){
+        } else if (whereToPlaceTiles == 5 && number == 9){
             if (table.isPriorityTileInCenter()){
                 playersTables[indexOfPlayer].setFirst();
                 playersTables[indexOfPlayer].floor.add(Tile.FIRSTTILE);
@@ -184,7 +184,7 @@ public class Game {
                     table.center.remove(i);
                 }
             }
-        }else if (whereToPlaceTiles < 5 && number != 2*getNumberOfPlayers() + 2) {
+        }else if (whereToPlaceTiles < 5 && number != 9) {
             for (int i = 0; i < 4; i++) {
                 if (table.factories[number].getContents()[i] == tileToAdd &&
                     playersTables[indexOfPlayer].pattern.amounts[whereToPlaceTiles] < (whereToPlaceTiles + 1))
@@ -196,7 +196,7 @@ public class Game {
                     table.center.add(table.factories[number].getContents()[i]);
                 table.factories[number].getContents()[i] = null;
             }
-        } else if (whereToPlaceTiles < 5 && number == 2*getNumberOfPlayers() + 2){
+        } else if (whereToPlaceTiles < 5 && number == 9){
             for (int i = 0; i < table.center.size(); i++){
                 if (table.isPriorityTileInCenter()){
                     playersTables[indexOfPlayer].setFirst();
@@ -214,12 +214,8 @@ public class Game {
                     playersTables[indexOfPlayer].floor.add(tileToAdd);
                     table.center.remove(i);
                 }
-
             }
         }
-
-
-
     }
     public static void main(String[] args){
 

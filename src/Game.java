@@ -1,5 +1,4 @@
-import java.io.BufferedReader;
-import java.util.*;
+import java.util.Scanner;
 
 /**
  * The game class handles all other classes
@@ -106,6 +105,7 @@ public class Game {
 
         // Printing all factories
         while (isEnd){
+            ifPossible = true;
             int amount = 0;
             for (int i = 0; i < 2 * numberOfPlayers + 1; i++) {
                 Tile[] contents = game.table.factories[i].getContents();
@@ -129,7 +129,7 @@ public class Game {
             while (ifPossible){
                 // Choosing tile from factory
                 System.out.println("Choose tile which you want to take from factory");
-                String tiles = reader.nextLine();
+                String tiles = reader.next();
                 System.out.println("Choose factory or center from which you want to take tiles");
                 number = reader.nextInt() - 1;
                 System.out.println("Choose where you want to add the tiles");
@@ -143,7 +143,14 @@ public class Game {
                     case "RED" -> Tile.RED;
                     default -> null;
                 };
-
+                Move move = new Move(0, tileToAdd, number, row);
+                if (move.isMoveValid(game)){
+                    ifPossible = false;
+                } else {
+                    System.out.println();
+                    System.out.println("This move is impossible");
+                }
+                System.out.println();
             }
 
 

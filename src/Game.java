@@ -138,7 +138,7 @@ public class Game {
             default -> null;
         };
 
-        while (!table.isColourInFactory(tileToAdd, number)) {
+        while (!table.isColourInFactory(tileToAdd, number) || isMoveValid(number, whereToPlaceTiles, indexOfPlayer, tileToAdd)){
             System.out.println("Chosen tile doesn't exist in this factory, please choose again");
 
             System.out.println("Choose factory or center from which you want to take tiles");

@@ -9,7 +9,7 @@ public class Table  implements Serializable {
     /**
      * ArrayList representing the tiles present in the box
      */
-    private ArrayList<Tile> box;
+    public ArrayList<Tile> box;
     /**
      * ArrayList representing the tiles present in the bag
      */

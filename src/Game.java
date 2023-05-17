@@ -92,11 +92,11 @@ public class Game {
     public static void main(String[] args){
 
         int numberOfPlayers = 4;
-
         int mode = 0;
+        int counter = 36;
         boolean isEnd = true;
+        boolean ifPossible = true;
         Tile tile = Tile.BLACK;
-
         // setup Table and factories
         Game game = new Game(numberOfPlayers, mode);
         for (int i = 0; i < numberOfPlayers; i++){
@@ -105,7 +105,6 @@ public class Game {
         }
 
         // Printing all factories
-        int counter = 0;
         while (isEnd){
             int amount = 0;
             for (int i = 0; i < 2 * numberOfPlayers + 1; i++) {
@@ -116,40 +115,89 @@ public class Game {
                 }
                 System.out.println();
             }
+            // Printing what center contains
+            System.out.print("10 Center : ");
+            for (int i = 0; i < game.table.center.size(); i++)
+                System.out.print(game.table.center.get(i) + " ");
 
-        // Choosing tile from factory
             Scanner reader = new Scanner(System.in);
-            String tiles = reader.nextLine();
-            int number = reader.nextInt() - 1;
-            Tile tileToAdd = switch (tiles.toUpperCase()) {
-                case "BLACK" -> Tile.BLACK;
-                case "WHITE" -> Tile.WHITE;
-                case "BLUE" -> Tile.BLUE;
-                case "YELLOW" -> Tile.YELLOW;
-                case "RED" -> Tile.RED;
-                default -> null;
-            };
+            System.out.println();
 
-        // Counting number of tile in factory
-            for(int i = 0; i < 4; i++){
-                if (game.table.factories[number].getContents()[i] == tileToAdd)
-                    amount++;
+            Tile tileToAdd = null;
+            int number = 0;
+            int row = 0;
+            while (ifPossible){
+                // Choosing tile from factory
+                System.out.println("Choose tile which you want to take from factory");
+                String tiles = reader.nextLine();
+                System.out.println("Choose factory or center from which you want to take tiles");
+                number = reader.nextInt() - 1;
+                System.out.println("Choose where you want to add the tiles");
+                row = reader.nextInt() - 1;
+
+                tileToAdd = switch (tiles.toUpperCase()) {
+                    case "BLACK" -> Tile.BLACK;
+                    case "WHITE" -> Tile.WHITE;
+                    case "BLUE" -> Tile.BLUE;
+                    case "YELLOW" -> Tile.YELLOW;
+                    case "RED" -> Tile.RED;
+                    default -> null;
+                };
+
             }
 
-        // Getting tile from factory
-            game.playersTables[0].pattern.addToRow(4, tileToAdd,amount);
-            game.table.factories[number].remove(tileToAdd);
 
-            for (int i = 0; i < 4; i++){
-                if (game.table.factories[number].getContents()[i] != null){
-                    game.table.center.add(game.table.factories[number].getContents()[i]);
-                    game.table.factories[number].getContents()[i] = null;
+            if (number < 9){
+                // Counting number of tile in factory
+                for(int i = 0; i < 4; i++){
+                    if (game.table.factories[number].getContents()[i] == tileToAdd)
+                        amount++;
                 }
 
+                // Getting tile from factory and adding it to patternLine
+                if (row < amount){
+                    game.playersTables[0].pattern.addToRow(row, tileToAdd, row);
+                    for (int i = 0; i < amount - row; i++)
+                        game.playersTables[0].floor.add(tileToAdd);
+                }
+                else
+                    game.playersTables[0].pattern.addToRow(row, tileToAdd, amount);
+                game.table.factories[number].remove(tileToAdd);
+
+                for (int i = 0; i < 4; i++){
+                    if (game.table.factories[number].getContents()[i] != null){
+                        game.table.center.add(game.table.factories[number].getContents()[i]);
+                        game.table.factories[number].getContents()[i] = null;
+                        counter++;
+                    }
+                }
+            }
+            else {
+                if (game.table.isPriorityTileInCenter()){
+                    game.playersTables[0].setFirst();
+                    game.table.center.remove(Tile.FIRSTTILE);
+                }
+
+
+                // Getting tile from center and counting amount
+                while (game.table.center.contains(tileToAdd)){
+                    System.out.println("HUJ");
+                    amount++;
+                    game.table.center.remove(tileToAdd);
+                }
+                // Getting tile from factory and adding it to patternLine or floor
+                if (row < amount){
+                    game.playersTables[0].pattern.addToRow(row,tileToAdd,row);
+                    for (int i = 0; i < amount - row; i++)
+                        game.playersTables[0].floor.add(tileToAdd);
+                }
+                else
+                    game.playersTables[0].pattern.addToRow(row, tileToAdd, amount);
             }
 
-            counter++;
-            if (counter == 2)
+            counter -= amount;
+            // end of this phase (all factories and center is empty)
+            if (counter == 0)
                 isEnd = false;
         }
 

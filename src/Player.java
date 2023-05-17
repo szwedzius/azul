@@ -16,7 +16,7 @@ public class Player {
     /*Indicator of possesion of First Player Tile*/
     private boolean first;
     /*List containing the current state of player's floor line*/
-    private ArrayList<Tile> floor;
+    public ArrayList<Tile> floor;
     /*List containing tiles that are about to be thrown away after each round*/
     private ArrayList<Tile> rejectedTiles;
 

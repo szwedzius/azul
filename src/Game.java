@@ -108,13 +108,76 @@ public class Game {
     public boolean isMoveValid(int number, int row, int playerNumber, Tile tile) {
         for (int i = 0; i < 4; i++) {
             if (table.factories[number].getContents()[i] == tile) {
-                return playersTables[playerNumber].pattern.colours[row] == tile ||
+                return (playersTables[playerNumber].pattern.colours[row] == tile &&
+                        playersTables[playerNumber].pattern.amounts[row] < (row + 1) ) ||
                         playersTables[playerNumber].pattern.colours[row] == null;
             }
         }
         return false;
     }
 
+    public void addTilesToPatternLines (int indexOfPlayer) {
+
+        Tile tileToAdd;
+        int number;
+        int whereToPlaceTiles;
+
+        Scanner reader = new Scanner(System.in);
+        System.out.println();
+
+        System.out.println("Choose factory or center from which you want to take tiles");
+        number = reader.nextInt() - 1;
+
+        while (!table.isColourInFactory(tileToAdd, number)) {
+            System.out.println("Choose tile which you want to take from the factory");
+            String tiles = reader.next();
+            tileToAdd = switch (tiles.toUpperCase()) {
+                case "BLACK" -> Tile.BLACK;
+                case "WHITE" -> Tile.WHITE;
+                case "BLUE" -> Tile.BLUE;
+                case "YELLOW" -> Tile.YELLOW;
+                case "RED" -> Tile.RED;
+                default -> null;
+            };
+
+
+        }
+
+
+
+
+
+        System.out.println("Choose where you want to add the tiles, 1-5 for pattern lines, 6 for floor");
+        whereToPlaceTiles = reader.nextInt() - 1;
+
+        if (whereToPlaceTiles == 5 && number != 2*getNumberOfPlayers() + 2) {
+            for (int i =0; i < 4; i++) {
+                if (table.factories[number].getContents()[i] == tileToAdd) {
+                    playersTables[indexOfPlayer].floor.add(tileToAdd);
+                    table.factories[number].getContents()[i] = null;
+                } else {
+                    table.center.add(table.factories[number].getContents()[i]);
+
+                }
+
+            }
+
+        } elseif () {
+
+        } else {
+
+
+
+            if (row < amount){
+                game.playersTables[0].pattern.addToRow(row, tileToAdd, row);
+                for (int i = 0; i < amount - row; i++)
+                    game.playersTables[0].floor.add(tileToAdd);
+            }
+        }
+
+
+
+    }
     public static void main(String[] args){
 
         int numberOfPlayers = 1;
@@ -136,29 +199,12 @@ public class Game {
             int amount = 0;
             game.printFactory();
 
-            Scanner reader = new Scanner(System.in);
-            System.out.println();
 
-            Tile tileToAdd = null;
-            int number = 0;
-            int row = 0;
             while (ifPossible){
                 // Choosing tile from factory
-                System.out.println("Choose tile which you want to take from factory");
-                String tiles = reader.next();
-                System.out.println("Choose factory or center from which you want to take tiles");
-                number = reader.nextInt() - 1;
-                System.out.println("Choose where you want to add the tiles");
-                row = reader.nextInt() - 1;
 
-                tileToAdd = switch (tiles.toUpperCase()) {
-                    case "BLACK" -> Tile.BLACK;
-                    case "WHITE" -> Tile.WHITE;
-                    case "BLUE" -> Tile.BLUE;
-                    case "YELLOW" -> Tile.YELLOW;
-                    case "RED" -> Tile.RED;
-                    default -> null;
-                };
+
+
                 Move move = new Move(0, tileToAdd, number, row);
                 if (move.isMoveValid(game)){
                     ifPossible = false;
@@ -178,11 +224,7 @@ public class Game {
                 }
 
                 // Getting tile from factory and adding it to patternLine
-                if (row < amount){
-                    game.playersTables[0].pattern.addToRow(row, tileToAdd, row);
-                    for (int i = 0; i < amount - row; i++)
-                        game.playersTables[0].floor.add(tileToAdd);
-                }
+
                 else
                     game.playersTables[0].pattern.addToRow(row, tileToAdd, amount);
                 game.table.factories[number].remove(tileToAdd);

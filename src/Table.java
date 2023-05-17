@@ -16,7 +16,7 @@ public class Table {
     /**
      * ArrayList representing the tiles present in the center
      */
-    private final ArrayList<Tile> center;
+    public final ArrayList<Tile> center;
 
     /**
      * List of factories
@@ -24,7 +24,7 @@ public class Table {
      * 3 players - 7 factories
      * 4 players - 9 factories
      */
-    private final Factory[] factories;
+    public Factory[] factories;
 
     /**
      * Number of factories
@@ -37,6 +37,8 @@ public class Table {
     public Table(int numberOfPlayers) {
         factoryNo = numberOfPlayers*2 + 1;
         factories = new Factory[factoryNo];
+        for (int i = 0; i < factoryNo; i++)
+            factories[i] = new Factory();
         center = new ArrayList<>();
         center.add(Tile.FIRSTTILE);
         bag = new ArrayList<>(100);

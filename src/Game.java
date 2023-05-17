@@ -1,3 +1,4 @@
+import java.io.BufferedReader;
 import java.util.*;
 
 /**
@@ -87,5 +88,71 @@ public class Game {
 
     public void applyMove(Move move) {
         // TODO
+    }
+    public static void main(String[] args){
+
+        int numberOfPlayers = 4;
+
+        int mode = 0;
+        boolean isEnd = true;
+        Tile tile = Tile.BLACK;
+
+        // setup Table and factories
+        Game game = new Game(numberOfPlayers, mode);
+        for (int i = 0; i < numberOfPlayers; i++){
+            String playerName = "XD";
+            game.playersTables[i] = new Player(playerName);
+        }
+
+        // Printing all factories
+        int counter = 0;
+        while (isEnd){
+            int amount = 0;
+            for (int i = 0; i < 2 * numberOfPlayers + 1; i++) {
+                Tile[] contents = game.table.factories[i].getContents();
+                System.out.print((i + 1) + " Factory : ");
+                for (int j = 0; j < 4; j++) {
+                    System.out.print(contents[j] + " ");
+                }
+                System.out.println();
+            }
+
+        // Choosing tile from factory
+            Scanner reader = new Scanner(System.in);
+            String tiles = reader.nextLine();
+            int number = reader.nextInt() - 1;
+            Tile tileToAdd = switch (tiles.toUpperCase()) {
+                case "BLACK" -> Tile.BLACK;
+                case "WHITE" -> Tile.WHITE;
+                case "BLUE" -> Tile.BLUE;
+                case "YELLOW" -> Tile.YELLOW;
+                case "RED" -> Tile.RED;
+                default -> null;
+            };
+
+        // Counting number of tile in factory
+            for(int i = 0; i < 4; i++){
+                if (game.table.factories[number].getContents()[i] == tileToAdd)
+                    amount++;
+            }
+
+        // Getting tile from factory
+            game.playersTables[0].pattern.addToRow(4, tileToAdd,amount);
+            game.table.factories[number].remove(tileToAdd);
+
+            for (int i = 0; i < 4; i++){
+                if (game.table.factories[number].getContents()[i] != null){
+                    game.table.center.add(game.table.factories[number].getContents()[i]);
+                    game.table.factories[number].getContents()[i] = null;
+                }
+
+            }
+
+            counter++;
+            if (counter == 2)
+                isEnd = false;
+        }
+
+
     }
 }

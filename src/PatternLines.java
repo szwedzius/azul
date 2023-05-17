@@ -26,8 +26,6 @@ public class PatternLines {
     public void addToRow(int row, Tile colour, int amount) {
         if (row > 5 || row < 0)
             throw new IllegalArgumentException("The specified row does not exist");
-        if (colours[row] != colour)
-            throw new IllegalArgumentException("Can't place two different colours in one row");
         if (amount < 0 || (amount + amounts[row]) > (row + 1) )
             throw new IllegalArgumentException("The amount of tiles can't be fewer than 0 or higher than the index of row we want to add tiles to");
         if (colours[row] != colour && colours[row] != null)

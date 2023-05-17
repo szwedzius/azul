@@ -7,7 +7,7 @@ public class Factory {
     /**
      * The tiles that the factory contains
      */
-    private final Tile[] contents;
+    private Tile[] contents;
 
     /**
      * Default constructor

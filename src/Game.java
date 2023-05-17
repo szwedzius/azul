@@ -217,7 +217,6 @@ public class Game {
 
         int numberOfPlayers = 2;
         int mode = 0;
-        int counter = 36;
         boolean isEnd = true;
         boolean ifPossible = true;
         Tile tile = Tile.BLACK;
@@ -229,6 +228,14 @@ public class Game {
         }
         game.printFactory();
         game.addTilesToPatternLines(0);
+        game.playersTables[0].pattern.printPatternLine();
         game.printFactory();
+
+        game.addTilesToPatternLines(1);
+        game.playersTables[1].pattern.printPatternLine();
+
+        game.printFactory();
+        game.addTilesToPatternLines(0);
+        game.playersTables[0].pattern.printPatternLine();
     }
 }

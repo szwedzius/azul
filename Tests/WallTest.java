@@ -21,13 +21,13 @@ class WallTest {
     }
 
     @Test
-    void colourChecKTest1() {
+    void colourCheckTest1() {
         wall.addTile(Tile.WHITE, 4);
         assertEquals(true, wall.colourCheck(Tile.WHITE, 4));
     }
 
     @Test
-    void colourChecKTest2() {
+    void colourCheckTest2() {
         wall.addTile(Tile.WHITE, 4);
         wall.addTile(Tile.BLUE, 1);
         assertEquals(false, wall.colourCheck(Tile.BLUE, 4));

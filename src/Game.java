@@ -88,9 +88,27 @@ public class Game {
     public void applyMove(Move move) {
         // TODO
     }
+
+    public void printFactory() {
+        for (int i = 0; i < 2 * players + 1; i++) {
+            Tile[] contents = table.factories[i].getContents();
+            System.out.print((i + 1) + " Factory : ");
+            for (int j = 0; j < 4; j++) {
+                System.out.print(contents[j] + " ");
+            }
+            System.out.println();
+        }
+        // Printing what center contains
+        System.out.print("10 Center : ");
+        for (int i = 0; i < table.center.size(); i++)
+            System.out.print(table.center.get(i) + " ");
+
+    }
+
+
     public static void main(String[] args){
 
-        int numberOfPlayers = 4;
+        int numberOfPlayers = 1;
         int mode = 0;
         int counter = 36;
         boolean isEnd = true;
@@ -107,18 +125,7 @@ public class Game {
         while (isEnd){
             ifPossible = true;
             int amount = 0;
-            for (int i = 0; i < 2 * numberOfPlayers + 1; i++) {
-                Tile[] contents = game.table.factories[i].getContents();
-                System.out.print((i + 1) + " Factory : ");
-                for (int j = 0; j < 4; j++) {
-                    System.out.print(contents[j] + " ");
-                }
-                System.out.println();
-            }
-            // Printing what center contains
-            System.out.print("10 Center : ");
-            for (int i = 0; i < game.table.center.size(); i++)
-                System.out.print(game.table.center.get(i) + " ");
+            game.printFactory();
 
             Scanner reader = new Scanner(System.in);
             System.out.println();
@@ -188,7 +195,7 @@ public class Game {
 
                 // Getting tile from center and counting amount
                 while (game.table.center.contains(tileToAdd)){
-                    System.out.println("HUJ");
+                    System.out.println("XD");
                     amount++;
                     game.table.center.remove(tileToAdd);
                 }

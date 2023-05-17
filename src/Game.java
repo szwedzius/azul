@@ -102,7 +102,7 @@ public class Game {
         System.out.print("10 Center : ");
         for (int i = 0; i < table.center.size(); i++)
             System.out.print(table.center.get(i) + " ");
-
+        System.out.println();
     }
 
     public boolean isMoveValid(int number, int row, int playerNumber, Tile tile) {

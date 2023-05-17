@@ -66,4 +66,14 @@ public class PatternLines {
         amounts[row] = 0;
         colours[row] = null;
     }
+
+    public void printPatternLine(){
+        System.out.println("Patternline");
+        for (int i = 0; i < 5; i++){
+            System.out.print("Line " + (i + 1));
+            for(int j = 0; j < amounts[i]; j++)
+                System.out.print(" " + colours[i] + " ");
+            System.out.println();
+        }
+    }
 }

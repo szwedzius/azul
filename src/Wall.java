@@ -33,7 +33,7 @@ public class Wall implements Serializable {
     }
 
     /**
-     * Placing a tile on the wall
+     * Method for placing a tile on the wall
      * @param tile colour of the tile
      * @param row row in which it will be put
      * @return Number of points scored for the tile's placement
@@ -50,6 +50,12 @@ public class Wall implements Serializable {
         return countPointsForTile(column, row);
     }
 
+    /**
+     * Placing a tile on the wall
+     * @param column index of column in which we placed tile
+     * @param row index of row in which we placed tile
+     * @return Number of points scored for the tile's placement
+     */
     public int countPointsForTile(int column, int row) {
         int horizontalPoints = 0;
         int verticalPoints = 0;
@@ -117,11 +123,10 @@ public class Wall implements Serializable {
     }
 
     /**
-     * Evaluation whether the given colour is already present
-     * in the indicated row
+     * Method for evaluating whether the given colour is already present in the indicated row
      * @param tile indicated colour
-     * @param row indicated row, to be checked
-     * @return Result of the evaluation
+     * @param row index of indicated row
+     * @return true if indicated row already contains tile
      */
     public boolean colourCheck(Tile tile, int row) {
         for (int i = 0; i < 5; i++) {
@@ -132,8 +137,9 @@ public class Wall implements Serializable {
     }
 
     /**
-     * Evaluation whether the row is full
-     * @return Result of the evaluation
+     * Method for evaluating whether the row is full
+     * @param row index of row
+     * @return true if row is full
      */
     public boolean IsRowFull(int row) {
         if (row > 5 || row < 0)
@@ -145,6 +151,12 @@ public class Wall implements Serializable {
         return true;
     }
 
+    /**
+     * Method for evaluating whether the row contains given tile
+     * @param row index of row
+     * @param tile indicated colour
+     * @return true if row is full
+     */
     public boolean containsTile(Tile tile, int row){
         for (int i = 0; i < 5; i++){
             if (filled[row][i] && pattern[row][i] == tile)

@@ -53,6 +53,10 @@ public class Player implements Serializable {
     public void setFirst() {
         first = true;
     }
+
+    /**
+     * Method for checking if player has First tile
+     */
     public boolean getFirst(){
         return first;
     }

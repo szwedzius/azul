@@ -53,6 +53,9 @@ public class Player implements Serializable {
     public void setFirst() {
         first = true;
     }
+    public boolean getFirst(){
+        return first;
+    }
 
     /**
      * Method for clearing the floor line

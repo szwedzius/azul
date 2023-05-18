@@ -17,7 +17,7 @@ public class Table  implements Serializable {
     /**
      * ArrayList representing the tiles present in the center
      */
-    public final ArrayList<Tile> center;
+    public ArrayList<Tile> center;
 
     /**
      * List of factories

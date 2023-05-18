@@ -11,7 +11,7 @@ class TableTest {
 
     @Test
     void isPriorityTileInCenterTest() {
-        assertEquals(table.isPriorityTileInCenter(), true);
+        assertEquals(true, table.isPriorityTileInCenter() );
     }
 
     @Test

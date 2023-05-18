@@ -15,7 +15,7 @@ public class Game implements Serializable {
 
     /**
      * Game mode
-     * 1 - single player
+     * 1 - singleplayer
      * 0 - multiplayer
      */
     public final int mode;
@@ -268,7 +268,7 @@ public class Game implements Serializable {
      * @param indexOfPlayer index of current player
      */
     public void subtractPointsFromFloor (int indexOfPlayer) {
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < playersTables[indexOfPlayer].floor.size(); i++) {
             if (playersTables[indexOfPlayer].floor.get(i) != null ){
                 if ( i == 0 || i == 1)
                     playersTables[indexOfPlayer].sumPoints(-1);

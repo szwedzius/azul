@@ -41,12 +41,12 @@ class FactoryTest {
         tiles[2] = Tile.RED;
         tiles[3] = Tile.WHITE;
         factory.addTiles(tiles);
-        assertEquals(factory.isEmpty(), false);
+        assertEquals(false, factory.isEmpty() );
     }
 
     @Test
     public void isEmptyTest2(){
-        assertEquals(factory.isEmpty(), true);
+        assertEquals(true, factory.isEmpty() );
     }
 
     @Test
@@ -56,7 +56,7 @@ class FactoryTest {
         tiles[2] = Tile.RED;
         tiles[3] = null;
         factory.addTiles(tiles);
-        assertEquals(factory.isEmpty(), false);
+        assertEquals(false, factory.isEmpty() );
     }
 
     @Test

@@ -24,10 +24,15 @@ public class Player implements Serializable {
      * Default constructor
      */
     public Player(String name) {
+        this.points = 0;
         this.name = name;
         floor = new ArrayList<>();
         pattern = new PatternLines();
         wall = new Wall();
+    }
+
+    public String getName() {
+        return name;
     }
 
     /**

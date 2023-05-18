@@ -14,12 +14,11 @@ public class Player implements Serializable {
     public Wall wall;
     /*Pattern lines filled by the player*/
     public PatternLines pattern;
-    /*Indicator of possesion of First Player Tile*/
+    /*Indicator of possession of First Player Tile*/
     private boolean first;
     /*List containing the current state of player's floor line*/
     public ArrayList<Tile> floor;
-    /*List containing tiles that are about to be thrown away after each round*/
-    private ArrayList<Tile> rejectedTiles;
+
 
     /**
      * Default constructor
@@ -27,7 +26,6 @@ public class Player implements Serializable {
     public Player(String name) {
         this.name = name;
         floor = new ArrayList<>();
-        rejectedTiles = new ArrayList<>();
         pattern = new PatternLines();
         wall = new Wall();
     }
@@ -61,25 +59,6 @@ public class Player implements Serializable {
      */
     public void clearFloor() {
         floor.clear();
-    }
-
-    /**
-     * Method for rejecting a tile
-     * @param tile Rejected tile
-     */
-    public void rejectTile(Tile tile) {
-        rejectedTiles.add(tile);
-    }
-    /**
-     * Method that rejects unused tiles and erases them
-     * by passing to the box
-     * @return List of rejected tiles
-     */
-    public ArrayList<Tile> clearRejectedTiles() {
-        ArrayList<Tile> temp;
-        temp = rejectedTiles;
-        rejectedTiles.clear();
-        return temp;
     }
 
 }

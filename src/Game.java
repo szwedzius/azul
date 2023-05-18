@@ -224,19 +224,6 @@ public class Game implements Serializable {
             }
         }
     }
-    public void addToWall(int indexOfPlayer){
-
-        for (int i = 0; i < 5; i++){
-            if (playersTables[indexOfPlayer].pattern.isRowFull(i)){
-                playersTables[indexOfPlayer].sumPoints(playersTables[indexOfPlayer].wall.addTile(playersTables[indexOfPlayer].pattern.colours[i],i));
-                for (int j = 1; j < i; j++){
-                    table.box.add(playersTables[indexOfPlayer].pattern.colours[j]);
-                }
-                playersTables[indexOfPlayer].pattern.clearRow(i);
-            }
-        }
-
-    }
     public static void main(String[] args){
 
         int numberOfPlayers = 2;

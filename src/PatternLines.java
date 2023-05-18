@@ -19,7 +19,7 @@ public class PatternLines implements Serializable {
     }
 
     /**
-     * Adding given amount of tiles of certain colour to given row of pattern lines
+     * Method for adding given amount of tiles of certain colour to given row of pattern lines
      * @param row given row
      * @param colour colour of tiles
      * @param amount amount of given tiles
@@ -36,9 +36,9 @@ public class PatternLines implements Serializable {
     }
 
     /**
-     * Evaluation whether the given row is full
-     * @param row given row
-     * @return Result of the evaluation
+     * Method for evaluating whether the given row is full
+     * @param row index of given row
+     * @return true if given row is full
      */
     public boolean isRowFull(int row) {
         if (row > 5 || row < 0)
@@ -47,9 +47,9 @@ public class PatternLines implements Serializable {
     }
 
     /**
-     * Evaluation whether the given row is empty
-     * @param row given row
-     * @return Result of the evaluation
+     * Method for evaluating whether the given row is empty
+     * @param row index of given row
+     * @return true if given row is empty
      */
     public boolean isRowEmpty(int row) {
         if (row > 5 || row < 0)
@@ -58,8 +58,8 @@ public class PatternLines implements Serializable {
     }
 
     /**
-     * Method that clears the given row
-     * @param row given row
+     * Method for clearing the given row
+     * @param row index of given row
      */
     public void clearRow(int row) {
         if (row > 5 || row < 0)
@@ -68,6 +68,9 @@ public class PatternLines implements Serializable {
         colours[row] = null;
     }
 
+    /**
+     * Method for printing contents of the pattern lines
+     */
     public void printPatternLine(){
         System.out.println();
         System.out.println("Patternline:");

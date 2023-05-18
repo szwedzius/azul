@@ -50,9 +50,7 @@ public class Game implements Serializable {
             if (!table.factories[i].isEmpty())
                 return false;
         }
-        if (table.center.isEmpty())
-             return true;
-        return false;
+        return table.center.isEmpty();
     }
 
 

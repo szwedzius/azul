@@ -56,60 +56,19 @@ public class Table  implements Serializable {
     }
 
     /**
-     * @return Result of the evaluation whether the bag is empty
+     * Method for evaluating whether the bag is empty
+     * @return true if bag is empty
      */
     public boolean isBagEmpty() {
         return bag.isEmpty();
     }
 
-    /**
-     * Taking the tiles of chosen colour from the center
-     * @param tile chosen colour
-     * @return The tiles taken
-     */
-    public int getTilesFromCenter(Tile tile) {
-        int temp = 0;
-        if (isPriorityTileInCenter())
-            center.remove(Tile.FIRSTTILE);
-        while (isColourInCenter(tile)) {
-            temp++;
-            center.remove(tile);
-        }
-        return temp;
-    }
 
     /**
-     * Taking the tiles of chosen colour from the factory
+     * Method for evaluating whether tiles of the given colour are present in the factory
      * @param tile chosen colour
-     * @param factoryNumber the index of the factory int the 'factories' list
-     * @return The tiles taken
-     */
-    public int getTilesFromFactory(Tile tile, int factoryNumber) {
-        int temp = 0;
-        while (isColourInFactory(tile, factoryNumber)) {
-            temp++;
-            factories[factoryNumber].remove(tile);
-        }
-        center.addAll(List.of(factories[factoryNumber].getContents()));
-        factories[factoryNumber] = new Factory();
-        return temp;
-    }
-
-    /**
-     * Evaluation whether tiles of the given colour are present in the center
-     * @param tile chosen colour
-     * @return Result of the evaluation
-     */
-    public boolean isColourInCenter(Tile tile) {
-        return center.contains(tile);
-    }
-
-
-    /**
-     * Evaluation whether tiles of the given colour are present in the factory
-     * @param tile chosen colour
-     * @param factory the index of the factory int the 'factories' list
-     * @return Result of the evaluation
+     * @param factory index of the chosen factory
+     * @return true if chosen factory contains chosen colour
      */
     public boolean isColourInFactory(Tile tile, int factory) {
         if (factory == 9){
@@ -128,7 +87,7 @@ public class Table  implements Serializable {
     }
 
     /**
-     * Transfer the tiles from the box to the bag when the bag is empty
+     * Method for refilling bag with tiles from the box
      */
     public void refillBag() throws Exception {
         if(isBagEmpty()) {
@@ -139,7 +98,7 @@ public class Table  implements Serializable {
     }
 
     /**
-     * Transfer of tiles from the bag to the factories - at the beginning of each turn
+     * Method for refilling factories with tiles from the bag
      */
     public void refillFactories() throws Exception {
         if(bag.size() < factoryNo*4){
@@ -170,8 +129,8 @@ public class Table  implements Serializable {
     }
 
     /**
-     * Evaluation whether the priority tile is in the center
-     * @return Result of the evaluation
+     * Method for evaluating whether the priority tile is in the center
+     * @return true if priority tile is in the center
      */
     public boolean isPriorityTileInCenter() {
         return center.contains(Tile.FIRSTTILE);

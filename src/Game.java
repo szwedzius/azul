@@ -97,23 +97,27 @@ public class Game implements Serializable {
     }
 
     public void printFactory() {
+        System.out.println();
         for (int i = 0; i < 2 * players + 1; i++) {
             Tile[] contents = table.factories[i].getContents();
-            System.out.print((i + 1) + " Factory : ");
+            System.out.print((i + 1) + " Factory: ");
             for (int j = 0; j < 4; j++) {
                 System.out.print(contents[j] + " ");
             }
             System.out.println();
         }
         // Printing what center contains
-        System.out.print("10 Center : ");
+        System.out.print("10 Center: ");
         for (int i = 0; i < table.center.size(); i++)
             System.out.print(table.center.get(i) + " ");
         System.out.println();
     }
 
     public boolean isMoveValid(int number, int row, int playerNumber, Tile tile) {
-        return (playersTables[playerNumber].pattern.colours[row] == tile &&
+        if(row == 5)
+            return true;
+        else
+            return (playersTables[playerNumber].pattern.colours[row] == tile &&
                 playersTables[playerNumber].pattern.amounts[row] < (row + 1) ) ||
                 playersTables[playerNumber].pattern.colours[row] == null;
     }
@@ -282,17 +286,21 @@ public class Game implements Serializable {
             String playerName = "XD";
             game.playersTables[i] = new Player(playerName);
         }
-        game.printFactory();
-        game.addTilesToPatternLines(0);
-        game.playersTables[0].pattern.printPatternLine();
-        game.printFactory();
+
+            game.printFactory();
+            game.addTilesToPatternLines(0);
+            game.playersTables[0].pattern.printPatternLine();
+            game. playersTables[0].printFloor();
+            game.printFactory();
 
         game.addTilesToPatternLines(1);
         game.playersTables[1].pattern.printPatternLine();
 
-        game.printFactory();
-        game.addTilesToPatternLines(0);
-        game.playersTables[0].pattern.printPatternLine();
+            game.printFactory();
+            game.addTilesToPatternLines(0);
+            game.playersTables[0].pattern.printPatternLine();
+
+        
 
         //game.save("test");
         //Game g = Game.load("test");

@@ -61,4 +61,15 @@ public class Player implements Serializable {
         floor.clear();
     }
 
+    /**
+     * Method for printing the floor
+     */
+    public void printFloor() {
+        System.out.print("Floor:");
+        for (int i = 0; i < floor.size(); i++){
+            System.out.print(floor.get(i) + " ");
+        }
+        System.out.println();
+    }
+
 }

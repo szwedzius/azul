@@ -35,7 +35,7 @@ public class Table  implements Serializable {
     /**
      * Default constructor
      */
-    public Table(int numberOfPlayers) {
+    public Table(int numberOfPlayers) throws Exception {
         factoryNo = numberOfPlayers*2 + 1;
         factories = new Factory[factoryNo];
         for (int i = 0; i < factoryNo; i++)
@@ -141,7 +141,13 @@ public class Table  implements Serializable {
     /**
      * Transfer of tiles from the bag to the factories - at the beginning of each turn
      */
-    public void refillFactories() {
+    public void refillFactories() throws Exception {
+        if(bag.size() < factoryNo*4){
+            refillBag();
+            System.out.println(bag.size());
+            System.out.println(bag);
+        }
+
         Random rand = new Random();
         for (int i = 0; i < factoryNo; i++){
             int temp;

@@ -31,7 +31,7 @@ public class Game implements Serializable {
     /**
      * Default constructor
      */
-    public Game(int numberOfPlayers, int mode) {
+    public Game(int numberOfPlayers, int mode) throws Exception {
         playersTables = new Player[numberOfPlayers];
         players = numberOfPlayers;
         table = new Table(players);
@@ -186,7 +186,6 @@ public class Game implements Serializable {
             System.out.println("Choose where you want to add the tiles, 1-5 for pattern lines, 6 for floor");
             whereToPlaceTiles = reader.nextInt() - 1;
 
-            tiles = reader.next();
             tileToAdd = switch (tiles.toUpperCase()) {
                 case "BLACK" -> Tile.BLACK;
                 case "WHITE" -> Tile.WHITE;
@@ -321,11 +320,6 @@ public class Game implements Serializable {
             game.addToWall(0);
             System.out.println(game.table.bag);
             game.playersTables[0].wall.printWall();
-            if(game.table.bag.size() < game.table.factories.length*4){
-                game.table.refillBag();
-                System.out.println(game.table.bag.size());
-                System.out.println(game.table.bag);
-            }
             game.table.refillFactories();
             isGameFinished = game.isGameFinished(0);
         }

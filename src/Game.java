@@ -13,7 +13,7 @@ public class Game implements Serializable {
 
     /**
      * Game mode
-     * 1 - singleplayer
+     * 1 - single player
      * 0 - multiplayer
      */
     public final int mode;
@@ -62,7 +62,7 @@ public class Game implements Serializable {
      * Method responsible for loading the game
      */
     public static Game load(String path) {
-        Game game = null;
+        Game game;
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(path+".bin"))) {
             game = (Game) inputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
@@ -177,7 +177,6 @@ public class Game implements Serializable {
             };
         }
 
-
         if (whereToPlaceTiles == 5 && number != 9) {
             for (int i =0; i < 4; i++) {
                 if (table.factories[number].getContents()[i] == tileToAdd){
@@ -190,7 +189,7 @@ public class Game implements Serializable {
                     table.center.add(table.factories[number].getContents()[i]);
                 table.factories[number].getContents()[i] = null;
             }
-        } else if (whereToPlaceTiles == 5 && number == 9){
+        } else if (whereToPlaceTiles == 5){
             if (table.isPriorityTileInCenter()){
                 playersTables[indexOfPlayer].setFirst();
                 playersTables[indexOfPlayer].floor.add(Tile.FIRSTTILE);
@@ -223,7 +222,7 @@ public class Game implements Serializable {
                     table.center.add(table.factories[number].getContents()[i]);
                 table.factories[number].getContents()[i] = null;
             }
-        } else if (whereToPlaceTiles < 5 && number == 9){
+        } else if (whereToPlaceTiles < 5){
             for (int i = 0; i < table.center.size(); i++){
                 if (table.isPriorityTileInCenter()){
                     playersTables[indexOfPlayer].setFirst();
@@ -248,7 +247,6 @@ public class Game implements Serializable {
         }
     }
     public void addToWall(int indexOfPlayer){
-
         for (int i = 0; i < 5; i++){
             if (playersTables[indexOfPlayer].pattern.isRowFull(i)){
                 playersTables[indexOfPlayer].sumPoints(playersTables[indexOfPlayer].wall.addTile(playersTables[indexOfPlayer].pattern.colours[i],i));
@@ -258,7 +256,6 @@ public class Game implements Serializable {
                 playersTables[indexOfPlayer].pattern.clearRow(i);
             }
         }
-
     }
 
     public void subtractPointsFromFloor (int indexOfPlayer) {
@@ -266,7 +263,7 @@ public class Game implements Serializable {
             if (playersTables[indexOfPlayer].floor.get(i) != null ){
                 if ( i == 0 || i == 1)
                     playersTables[indexOfPlayer].sumPoints(-1);
-                else if (i > 1 && i < 5) {
+                else if (i < 5) {
                     playersTables[indexOfPlayer].sumPoints(-2);
                 } else {
                     playersTables[indexOfPlayer].sumPoints(-3);
@@ -295,7 +292,7 @@ public class Game implements Serializable {
             game.addTilesToPatternLines(0);
             game.playersTables[0].pattern.printPatternLine();
             game.playersTables[0].printFloor();
-            int i = 0;
+            int i;
             for (i = 0; i < game.table.factories.length; i++){
                 if (!game.table.factories[i].isEmpty())
                     break;
@@ -303,7 +300,6 @@ public class Game implements Serializable {
             if (i == game.table.factories.length - 1 && game.table.center.isEmpty())
                 isEnd = true;
         }
-
 
         //game.save("test");
         //Game g = Game.load("test");

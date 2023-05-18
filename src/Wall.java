@@ -68,13 +68,13 @@ public class Wall implements Serializable {
         }
 
         // checking vertically
-        for (int i = column - 1; i >= 0; i--){
+        for (int i = row - 1; i >= 0; i--){
             if (!filled[i][column])
                 break;
             verticalPoints++;
         }
 
-        for (int i = column + 1; i < 5; i++){
+        for (int i = row + 1; i < 5; i++){
             if (!filled[i][column])
                 break;
             verticalPoints++;
@@ -91,16 +91,27 @@ public class Wall implements Serializable {
         if(verticalPoints + horizontalPoints == 0)
             verticalPoints++;
 
-        // BLACK, RED, WHITE, YELLOW, BLUE,
-        int[] amounts = new int[]{0, 0, 0, 0, 0};
-        for(int i=0; i<5; i++) {
-            for(int j=0; j<5; j++) {
-                amounts[pattern[i][j].ordinal()] += 1;
-            }
+
+        // Checking if the color blue is completed
+        if( filled[0][0] && filled[1][1] && filled[2][2] && filled[3][3] && filled[4][4]){
+            horizontalPoints+=10;
         }
-        for(int i=0; i<5; i++)
-            if(amounts[i] == 5)
-                horizontalPoints += 10;
+        // Checking if the color white is completed
+        else if (filled[0][4] && filled[1][0] && filled[2][1] && filled[3][2] && filled[4][3]) {
+            horizontalPoints+=10;
+        }
+        // Checking if the color black is completed
+        else if (filled[0][3] && filled[1][4] && filled[2][0] && filled[3][1] && filled[4][2]) {
+            horizontalPoints+=10;
+        }
+        // Checking if the color red is completed
+        else if (filled[0][2] && filled[1][3] && filled[2][4] && filled[3][0] && filled[4][1]){
+            horizontalPoints+=10;
+        }
+        // Checking if the color yellow is completed
+        else if (filled[0][1] && filled[1][2] && filled[2][3] && filled[3][4] && filled[4][0]) {
+            horizontalPoints+=10;
+        }
 
         return verticalPoints + horizontalPoints;
     }

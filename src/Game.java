@@ -58,8 +58,12 @@ public class Game implements Serializable {
      * Checking whether the conditions for ending the game are met
      * @return Check result
      */
-    public boolean isGameFinished() {
-        // TODO implement here
+    public boolean isGameFinished(int indexOfPlayer) {
+        for(int i = 0; i < 5; i++){
+            if(playersTables[indexOfPlayer].wall.IsRowFull(i)){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -295,6 +299,7 @@ public class Game implements Serializable {
         int numberOfPlayers = 1;
         int mode = 0;
         boolean isEnd = false;
+        boolean isGameFinished = false;
         Tile tile = Tile.BLACK;
         // setup Table and factories
         Game game = new Game(numberOfPlayers, mode);
@@ -303,12 +308,23 @@ public class Game implements Serializable {
             game.playersTables[i] = new Player(playerName);
         }
 
-        while(!isEnd){
-            game.printFactory();
-            game.addTilesToPatternLines(0);
-            game.playersTables[0].pattern.printPatternLine();
-            game.playersTables[0].printFloor();
-            isEnd = game.isFirstStageFinished();
+        while(!isGameFinished){
+            //isEnd = false;
+            System.out.println(game.table.bag.size());
+            while(!isEnd){
+                game.printFactory();
+                game.addTilesToPatternLines(0);
+                game.playersTables[0].pattern.printPatternLine();
+                game.playersTables[0].printFloor();
+                isEnd = game.isFirstStageFinished();
+            }
+            game.addToWall(0);
+            game.playersTables[0].wall.printWall();
+            if(game.table.bag.size() < game.table.factories.length*4){
+                game.table.refillBag();
+            }
+            game.table.refillFactories();
+            isGameFinished = game.isGameFinished(0);
         }
 
         //game.save("test");

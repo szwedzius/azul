@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * Class representing the wall with the pattern present

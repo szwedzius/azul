@@ -278,7 +278,6 @@ public class Game implements Serializable {
         int numberOfPlayers = 2;
         int mode = 0;
         boolean isEnd = true;
-        boolean ifPossible = true;
         Tile tile = Tile.BLACK;
         // setup Table and factories
         Game game = new Game(numberOfPlayers, mode);
@@ -300,14 +299,10 @@ public class Game implements Serializable {
             game.playersTables[0].printFloor();
             game.printFactory();
 
-        game.addTilesToPatternLines(1);
-        game.playersTables[1].pattern.printPatternLine();
-
             game.printFactory();
             game.addTilesToPatternLines(0);
             game.playersTables[0].pattern.printPatternLine();
 
-        
 
         //game.save("test");
         //Game g = Game.load("test");

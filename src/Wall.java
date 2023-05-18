@@ -83,7 +83,7 @@ public class Wall implements Serializable {
         if(verticalPoints == 4)
             verticalPoints += 7;
         if(horizontalPoints == 4)
-            verticalPoints += 2;
+            horizontalPoints += 2;
         if(horizontalPoints > 0)
             horizontalPoints++;
         if(verticalPoints > 0)

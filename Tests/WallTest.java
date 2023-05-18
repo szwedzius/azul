@@ -57,12 +57,34 @@ class WallTest {
     }
 
     @Test
-    void countPointsForTileTest() {
+    void countPointsForTileTest1() {
         Wall wall8 = new Wall();
         wall8.addTile(Tile.BLUE, 2);
         wall8.addTile(Tile.YELLOW, 2);
         wall8.addTile(Tile.RED, 2);
         assertEquals(3, wall8.countPointsForTile(2 , 2));
+    }
+
+    @Test
+    void countPointsForTileTest2() {
+        Wall wall9 = new Wall();
+        wall9.addTile(Tile.YELLOW, 3);
+        wall9.addTile(Tile.RED, 3);
+        wall9.addTile(Tile.BLACK, 3);
+        wall9.addTile(Tile.WHITE, 3);
+        wall9.addTile(Tile.BLUE, 3);
+        assertEquals(7, wall9.countPointsForTile(2 , 3));
+    }
+
+    @Test
+    void countPointsForTileTest3() {
+        Wall wall10 = new Wall();
+        wall10.addTile(Tile.YELLOW, 4);
+        wall10.addTile(Tile.BLUE, 0);
+        wall10.addTile(Tile.WHITE, 1);
+        wall10.addTile(Tile.BLACK, 2);
+        wall10.addTile(Tile.RED, 3);
+        assertEquals(12, wall10.countPointsForTile(0 , 0));
     }
 
 }

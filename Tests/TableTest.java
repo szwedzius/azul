@@ -6,6 +6,9 @@ class TableTest {
 
     Table table = new Table(2);
 
+    TableTest() throws Exception {
+    }
+
     @Test
     void isPriorityTileInCenterTest() {
         assertEquals(table.isPriorityTileInCenter(), true);

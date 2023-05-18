@@ -58,7 +58,7 @@ public class Table  implements Serializable {
     /**
      * @return Result of the evaluation whether the bag is empty
      */
-    private boolean isBagEmpty() {
+    public boolean isBagEmpty() {
         return bag.isEmpty();
     }
 
@@ -131,8 +131,8 @@ public class Table  implements Serializable {
      * Transfer the tiles from the box to the bag when the bag is empty
      */
     public void refillBag() throws Exception {
-        if(bag.size() < factoryNo*4) {
-            bag.addAll(box);
+        if(isBagEmpty()) {
+            bag = box;
             box = new ArrayList<>();
         } else
             throw new Exception("Can't refill bag until it is not empty");

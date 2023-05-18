@@ -50,7 +50,7 @@ public class Wall implements Serializable {
         return countPointsForTile(column, row);
     }
 
-    private int countPointsForTile(int column, int row) {
+    public int countPointsForTile(int column, int row) {
         int horizontalPoints = 0;
         int verticalPoints = 0;
 

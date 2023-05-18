@@ -39,10 +39,26 @@ public class Game implements Serializable {
     }
 
     /**
+     * Checking whether the conditions for ending the first stage of the game are met
+     * @return Check result
+     */
+    public boolean isFirstStageFinished() {
+        int i;
+        for (i = 0; i < table.factories.length; i++){
+            if (!table.factories[i].isEmpty())
+                return false;
+        }
+        if (table.center.isEmpty())
+             return true;
+        return false;
+    }
+
+
+    /**
      * Checking whether the conditions for ending the game are met
      * @return Check result
      */
-    public boolean isFinished() {
+    public boolean isGameFinished() {
         // TODO implement here
         return false;
     }
@@ -120,8 +136,8 @@ public class Game implements Serializable {
             return table.center.contains(tile);
         }
         return (playersTables[playerNumber].pattern.colours[row] == tile &&
-                        playersTables[playerNumber].pattern.amounts[row] < (row + 1) ) ||
-                        playersTables[playerNumber].pattern.colours[row] == null;
+                playersTables[playerNumber].pattern.amounts[row] < (row + 1) ) ||
+                playersTables[playerNumber].pattern.colours[row] == null;
 
     }
 
@@ -209,7 +225,7 @@ public class Game implements Serializable {
         }else if (whereToPlaceTiles < 5 && number != 9) {
             for (int i = 0; i < 4; i++) {
                 if (table.factories[number].getContents()[i] == tileToAdd &&
-                    !playersTables[indexOfPlayer].pattern.isRowFull(whereToPlaceTiles))
+                        !playersTables[indexOfPlayer].pattern.isRowFull(whereToPlaceTiles))
                     playersTables[indexOfPlayer].pattern.addToRow(whereToPlaceTiles, tileToAdd, 1);
                 else if (table.factories[number].getContents()[i] == tileToAdd &&
                         playersTables[indexOfPlayer].pattern.isRowFull(whereToPlaceTiles)){
@@ -276,7 +292,7 @@ public class Game implements Serializable {
     }
     public static void main(String[] args){
 
-        int numberOfPlayers = 2;
+        int numberOfPlayers = 1;
         int mode = 0;
         boolean isEnd = false;
         Tile tile = Tile.BLACK;
@@ -292,13 +308,7 @@ public class Game implements Serializable {
             game.addTilesToPatternLines(0);
             game.playersTables[0].pattern.printPatternLine();
             game.playersTables[0].printFloor();
-            int i;
-            for (i = 0; i < game.table.factories.length; i++){
-                if (!game.table.factories[i].isEmpty())
-                    break;
-            }
-            if (i == game.table.factories.length - 1 && game.table.center.isEmpty())
-                isEnd = true;
+            isEnd = game.isFirstStageFinished();
         }
 
         //game.save("test");

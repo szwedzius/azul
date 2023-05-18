@@ -270,8 +270,8 @@ public class Game implements Serializable {
         for (int i = 0; i < 5; i++){
             if (playersTables[indexOfPlayer].pattern.isRowFull(i)){
                 playersTables[indexOfPlayer].sumPoints(playersTables[indexOfPlayer].wall.addTile(playersTables[indexOfPlayer].pattern.colours[i],i));
-                for (int j = 1; j < i; j++){
-                    table.box.add(playersTables[indexOfPlayer].pattern.colours[j]);
+                for (int j = 1; j < playersTables[indexOfPlayer].pattern.amounts[i]; j++){
+                    table.box.add(playersTables[indexOfPlayer].pattern.colours[i]);
                 }
                 playersTables[indexOfPlayer].pattern.clearRow(i);
             }
@@ -294,7 +294,7 @@ public class Game implements Serializable {
         }
         playersTables[indexOfPlayer].clearFloor();
     }
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception {
 
         int numberOfPlayers = 1;
         int mode = 0;
@@ -319,9 +319,12 @@ public class Game implements Serializable {
                 isEnd = game.isFirstStageFinished();
             }
             game.addToWall(0);
+            System.out.println(game.table.bag);
             game.playersTables[0].wall.printWall();
             if(game.table.bag.size() < game.table.factories.length*4){
                 game.table.refillBag();
+                System.out.println(game.table.bag.size());
+                System.out.println(game.table.bag);
             }
             game.table.refillFactories();
             isGameFinished = game.isGameFinished(0);

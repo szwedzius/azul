@@ -13,7 +13,7 @@ public class Table  implements Serializable {
     /**
      * ArrayList representing the tiles present in the bag
      */
-    private ArrayList<Tile> bag;
+    public ArrayList<Tile> bag;
     /**
      * ArrayList representing the tiles present in the center
      */
@@ -130,9 +130,9 @@ public class Table  implements Serializable {
     /**
      * Transfer the tiles from the box to the bag when the bag is empty
      */
-    private void refillBag() throws Exception {
-        if(isBagEmpty()) {
-            bag = box;
+    public void refillBag() throws Exception {
+        if(bag.size() < factoryNo*4) {
+            bag.addAll(box);
             box = new ArrayList<>();
         } else
             throw new Exception("Can't refill bag until it is not empty");

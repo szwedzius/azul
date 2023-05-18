@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -285,8 +286,8 @@ public class Game implements Serializable {
     }
 
     public static void main(String[] args) throws Exception {
-        int numberOfPlayers = 4;
-        int mode = 1;
+        int numberOfPlayers = 2;
+        int mode = 0;
         boolean isEnd = false;
         boolean isGameFinished = false;
 
@@ -378,7 +379,119 @@ public class Game implements Serializable {
             }
 
         } else { // MULTIPLAYER
+            numberOfPlayers = 3;
 
+            //SOCKET
+            Client client = new Client("localhost", 12345);
+            client.start();
+
+            String rec1 = client.receiveData();
+            System.out.println(rec1);
+            if(rec1.charAt(0) == '0') {
+                client.sendData(String.valueOf(numberOfPlayers));
+            } else {
+                numberOfPlayers = Integer.parseInt(rec1.substring(1,2));
+                client.sendData("waiting");
+            }
+            int id = Integer.parseInt(rec1.substring(0,1));
+            while(!Objects.equals(client.receiveData(), "START")){Thread.onSpinWait();}
+            System.out.println("STARTED");
+            // SOCKET
+
+            // setup Table and factories
+            Game game = new Game(numberOfPlayers, mode);
+            ArrayList<Integer> que = new ArrayList<>();
+            for (int i = 0; i < numberOfPlayers; i++){
+                String playerName = "playerName";
+                game.playersTables[i] = new Player(playerName);
+            }
+            int first = 0;
+
+            while(!isGameFinished){
+                for(int i = 0; i<numberOfPlayers; i++)
+                    que.add((first+i)%numberOfPlayers);
+
+                while(!isEnd) {
+                    for(int order: que) {
+                        System.out.println(game.table.bag.size());
+                        System.out.println("Player : " + (order+1));
+                        int number;
+                        String tiles;
+                        int whereToPlaceTiles;
+                        Tile tileToAdd;
+
+                        if(order == id) {
+                            // READING FROM KEYBOARD
+                            do {
+                                game.printFactory();
+                                System.out.println();
+                                System.out.println();
+
+                                System.out.println("Choose factory or center from which you want to take tiles");
+                                number = reader.nextInt() - 1;
+
+                                System.out.println("Choose tile which you want to take from the factory");
+                                tiles = reader.next();
+
+                                System.out.println("Choose where you want to add the tiles, 1-5 for pattern lines, 6 for floor");
+                                whereToPlaceTiles = reader.nextInt() - 1;
+
+                                tileToAdd = switch (tiles.toUpperCase()) {
+                                    case "BLACK" -> Tile.BLACK;
+                                    case "WHITE" -> Tile.WHITE;
+                                    case "BLUE" -> Tile.BLUE;
+                                    case "YELLOW" -> Tile.YELLOW;
+                                    case "RED" -> Tile.RED;
+                                    default -> null;
+                                };
+                                if (!game.table.isColourInFactory(tileToAdd, number) || !game.isMoveValid(number, whereToPlaceTiles, order, tileToAdd))
+                                    System.out.println("Chosen tile doesn't exist in this factory, please choose again");
+                            } while (!game.table.isColourInFactory(tileToAdd, number) || !game.isMoveValid(number, whereToPlaceTiles, order, tileToAdd));
+
+                            client.sendData(String.valueOf(order) + number + whereToPlaceTiles + tiles);
+                            // END
+                        } else {
+                            String temp = client.receiveData();
+                            while(temp == null) temp = client.receiveData();
+                            number = Integer.parseInt(temp.substring(1,2));
+                            whereToPlaceTiles = Integer.parseInt(temp.substring(2,3));
+                            tiles = temp.substring(3);
+                            tileToAdd = switch (tiles.toUpperCase()) {
+                                case "BLACK" -> Tile.BLACK;
+                                case "WHITE" -> Tile.WHITE;
+                                case "BLUE" -> Tile.BLUE;
+                                case "YELLOW" -> Tile.YELLOW;
+                                case "RED" -> Tile.RED;
+                                default -> null;
+                            };
+                        }
+                        game.addTilesToPatternLines(order, tileToAdd, number, whereToPlaceTiles);
+                        game.playersTables[order].pattern.printPatternLine();
+                        game.playersTables[order].printFloor();
+
+                        isEnd = game.isFirstStageFinished();
+                        if(isEnd) {
+                            first = game.findFirstPlayer();
+                            que.clear();
+                            break;
+                        }
+                    }
+                }
+                for(int i=0; i<numberOfPlayers; i++){
+                    game.addToWall(i);
+                    game.subtractPointsFromFloor(i);
+                }
+
+                System.out.println(game.table.bag);
+                game.playersTables[0].wall.printWall();
+                game.table.refillFactories();
+
+                for(int i=0; i<numberOfPlayers; i++)
+                    if(game.isGameFinished(i))
+                        isGameFinished = true;
+            }
+
+            client.end();
         }
 
 

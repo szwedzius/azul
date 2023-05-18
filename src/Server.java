@@ -6,6 +6,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 // Server class
 class Server {
     static ArrayList<ClientHandler> clients;
+    private static int numOfPlayers = 1000;
+    private static volatile boolean start = false;
+    private static volatile boolean end = false;
 
     static ConcurrentLinkedQueue<String> data = new ConcurrentLinkedQueue<>();
     static ClientHandler sender;
@@ -19,7 +22,7 @@ class Server {
         ServerSocket server = null;
 
         try {
-            server = new ServerSocket(12346);
+            server = new ServerSocket(12345);
             server.setReuseAddress(true);
 
             while (true) {
@@ -31,6 +34,7 @@ class Server {
 
                 ClientHandler clientSock = new ClientHandler(client);
                 clients.add(clientSock);
+                System.out.println(clients);
                 new Thread(clientSock).start();
 
                 // USUWANIE NIEPODLACZONYCH KLIENTOW
@@ -69,13 +73,24 @@ class Server {
                 // get the inputstream of client
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-                out.println("Number: " + (clients.size()-1));
-
-                String temp;
-                while((temp = in.readLine()) != null) {
-                    data.add(temp);
-                    sender = this;
+                if(clients.size() == 1) {
+                    out.println(0);
+                    numOfPlayers = Integer.parseInt(in.readLine());
+                    System.out.println(numOfPlayers + String.valueOf(clients.size()));
+                } else {
+                    out.println((clients.size()-1)+String.valueOf(numOfPlayers));
+                    in.readLine();
                 }
+
+                while(!start){Thread.onSpinWait();}
+                out.println("START");
+
+                while(!end){
+                String temp = in.readLine();
+                while(temp == null) temp = in.readLine();
+                data.add(temp);
+                sender = this;
+                Thread.onSpinWait();}
             }
             catch (IOException e) {
                 e.printStackTrace();
@@ -99,8 +114,11 @@ class Server {
         @Override
         public void run() {
             while(true) {
-                if(data.peek()!=null)
-                    System.out.print(data.peek());
+                if(data.peek()!=null) {
+                    System.out.println("DATA: " + data.peek());
+                    System.out.println(clients);
+                }
+
                 if (!data.isEmpty()) {
                     for (ClientHandler clt : clients) {
                         if(clt != sender) {
@@ -110,6 +128,13 @@ class Server {
                     data.poll();
                     sender = null;
                 }
+
+                if(clients.size() == numOfPlayers && !start)
+                    start = true;
+                if(clients.size() == 0)
+                    start = false;
+
+                Thread.onSpinWait();
             }
         }
     }

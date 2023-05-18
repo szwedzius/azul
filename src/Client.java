@@ -24,11 +24,12 @@ class Client {
 
     public void sendData(String mess) {
         out.println(mess);
-        out.flush();
     }
 
     public String receiveData() throws IOException {
-        return in.readLine();
+        String temp = in.readLine();
+        while(temp == null) temp = in.readLine();
+        return temp;
     }
 
     public void end() throws IOException {

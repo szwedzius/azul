@@ -172,8 +172,12 @@ public class Game implements Serializable {
 
         if (whereToPlaceTiles == 5 && number != 9) {
             for (int i =0; i < 4; i++) {
-                if (table.factories[number].getContents()[i] == tileToAdd)
-                    playersTables[indexOfPlayer].floor.add(tileToAdd);
+                if (table.factories[number].getContents()[i] == tileToAdd){
+                    if (playersTables[indexOfPlayer].floor.size() < 7)
+                        playersTables[indexOfPlayer].floor.add(tileToAdd);
+                    else
+                        table.box.add(tileToAdd);
+                }
                 else
                     table.center.add(table.factories[number].getContents()[i]);
                 table.factories[number].getContents()[i] = null;
@@ -187,7 +191,10 @@ public class Game implements Serializable {
 
             for (int i = 0; i < table.center.size(); i++){
                 if (table.center.get(i) == tileToAdd){
-                    playersTables[indexOfPlayer].floor.add(tileToAdd);
+                    if (playersTables[indexOfPlayer].floor.size() < 7)
+                        playersTables[indexOfPlayer].floor.add(tileToAdd);
+                    else
+                        table.box.add(tileToAdd);
                     table.center.remove(i);
                 }
             }
@@ -197,8 +204,13 @@ public class Game implements Serializable {
                     playersTables[indexOfPlayer].pattern.amounts[whereToPlaceTiles] < (whereToPlaceTiles + 1))
                     playersTables[indexOfPlayer].pattern.addToRow(whereToPlaceTiles, tileToAdd, 1);
                 else if (table.factories[number].getContents()[i] == tileToAdd &&
-                        playersTables[indexOfPlayer].pattern.amounts[whereToPlaceTiles] == (whereToPlaceTiles + 1))
-                    playersTables[indexOfPlayer].floor.add(tileToAdd);
+                        playersTables[indexOfPlayer].pattern.amounts[whereToPlaceTiles] == (whereToPlaceTiles + 1)){
+
+                    if (playersTables[indexOfPlayer].floor.size() < 7)
+                        playersTables[indexOfPlayer].floor.add(tileToAdd);
+                    else
+                        table.box.add(tileToAdd);
+                }
                 else
                     table.center.add(table.factories[number].getContents()[i]);
                 table.factories[number].getContents()[i] = null;
@@ -218,11 +230,44 @@ public class Game implements Serializable {
                 }
                 else if (table.center.get(i) == tileToAdd &&
                         playersTables[indexOfPlayer].pattern.amounts[whereToPlaceTiles] == (whereToPlaceTiles + 1)){
-                    playersTables[indexOfPlayer].floor.add(tileToAdd);
+                    if (playersTables[indexOfPlayer].floor.size() < 7)
+                        playersTables[indexOfPlayer].floor.add(tileToAdd);
+                    else
+                        table.box.add(tileToAdd);
                     table.center.remove(i);
                 }
             }
         }
+    }
+    public void addToWall(int indexOfPlayer){
+
+        for (int i = 0; i < 5; i++){
+            if (playersTables[indexOfPlayer].pattern.isRowFull(i)){
+                playersTables[indexOfPlayer].sumPoints(playersTables[indexOfPlayer].wall.addTile(playersTables[indexOfPlayer].pattern.colours[i],i));
+                for (int j = 1; j < i; j++){
+                    table.box.add(playersTables[indexOfPlayer].pattern.colours[j]);
+                }
+                playersTables[indexOfPlayer].pattern.clearRow(i);
+            }
+        }
+
+    }
+
+    public void subtractPointsFromFloor (int indexOfPlayer) {
+        for (int i = 0; i < 7; i++) {
+            if (playersTables[indexOfPlayer].floor.get(i) != null ){
+                if ( i == 0 || i == 1)
+                    playersTables[indexOfPlayer].sumPoints(-1);
+                else if (i > 1 && i < 5) {
+                    playersTables[indexOfPlayer].sumPoints(-2);
+                } else {
+                    playersTables[indexOfPlayer].sumPoints(-3);
+                }
+            }
+            else
+                break;
+        }
+        playersTables[indexOfPlayer].clearFloor();
     }
     public static void main(String[] args){
 

@@ -4,11 +4,11 @@ import java.net.*;
 // Client class
 class Client {
 
-    String address;
-    int port;
-    PrintWriter out;
-    BufferedReader in;
-    Socket socket = null;
+    private String address;
+    private int port;
+    private PrintWriter out;
+    private BufferedReader in;
+    private Socket socket = null;
 
     public Client(String address, int port) {
         this.address = address;

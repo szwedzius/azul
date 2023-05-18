@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -257,9 +259,8 @@ public class Game implements Serializable {
     }
 
     public static void main(String[] args) throws Exception {
-
-        int numberOfPlayers = 1;
-        int mode = 0;
+        int numberOfPlayers = 4;
+        int mode = 1;
         boolean isEnd = false;
         boolean isGameFinished = false;
 

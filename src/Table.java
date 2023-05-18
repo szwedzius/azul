@@ -112,9 +112,17 @@ public class Table  implements Serializable {
      * @return Result of the evaluation
      */
     public boolean isColourInFactory(Tile tile, int factory) {
-        for (int i = 0; i < 4; i++) {
-            if(factories[factory].getContents()[i] == tile)
-                return true;
+        if (factory == 9){
+            for (int i = 0; i < center.size(); i++){
+                if (center.contains(tile))
+                    return true;
+            }
+        }
+        else {
+            for (int i = 0; i < 4; i++) {
+                if(factories[factory].getContents()[i] == tile)
+                    return true;
+            }
         }
         return false;
     }

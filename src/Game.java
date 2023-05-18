@@ -116,10 +116,13 @@ public class Game implements Serializable {
     public boolean isMoveValid(int number, int row, int playerNumber, Tile tile) {
         if(row == 5)
             return true;
-        else
-            return (playersTables[playerNumber].pattern.colours[row] == tile &&
-                playersTables[playerNumber].pattern.amounts[row] < (row + 1) ) ||
-                playersTables[playerNumber].pattern.colours[row] == null;
+        if (number == 9){
+            return table.center.contains(tile);
+        }
+        return (playersTables[playerNumber].pattern.colours[row] == tile &&
+                        playersTables[playerNumber].pattern.amounts[row] < (row + 1) ) ||
+                        playersTables[playerNumber].pattern.colours[row] == null;
+
     }
 
     public void addTilesToPatternLines (int indexOfPlayer) {
@@ -150,6 +153,7 @@ public class Game implements Serializable {
         };
 
         while (!table.isColourInFactory(tileToAdd, number) || !isMoveValid(number, whereToPlaceTiles, indexOfPlayer, tileToAdd)){
+            printFactory();
             System.out.println("Chosen tile doesn't exist in this factory, please choose again");
             System.out.println();
 
@@ -199,17 +203,17 @@ public class Game implements Serializable {
                         playersTables[indexOfPlayer].floor.add(tileToAdd);
                     else
                         table.box.add(tileToAdd);
-                    table.center.remove(i);
                 }
             }
+            while(table.center.contains(tileToAdd))
+                table.center.remove(tileToAdd);
         }else if (whereToPlaceTiles < 5 && number != 9) {
             for (int i = 0; i < 4; i++) {
                 if (table.factories[number].getContents()[i] == tileToAdd &&
-                    playersTables[indexOfPlayer].pattern.amounts[whereToPlaceTiles] < (whereToPlaceTiles + 1))
+                    !playersTables[indexOfPlayer].pattern.isRowFull(whereToPlaceTiles))
                     playersTables[indexOfPlayer].pattern.addToRow(whereToPlaceTiles, tileToAdd, 1);
                 else if (table.factories[number].getContents()[i] == tileToAdd &&
-                        playersTables[indexOfPlayer].pattern.amounts[whereToPlaceTiles] == (whereToPlaceTiles + 1)){
-
+                        playersTables[indexOfPlayer].pattern.isRowFull(whereToPlaceTiles)){
                     if (playersTables[indexOfPlayer].floor.size() < 7)
                         playersTables[indexOfPlayer].floor.add(tileToAdd);
                     else
@@ -227,20 +231,20 @@ public class Game implements Serializable {
                     table.center.remove(Tile.FIRSTTILE);
                 }
 
-                else if (table.center.get(i) == tileToAdd &&
-                        playersTables[indexOfPlayer].pattern.amounts[whereToPlaceTiles] < (whereToPlaceTiles + 1)) {
+                if (table.center.get(i) == tileToAdd &&
+                        !playersTables[indexOfPlayer].pattern.isRowFull(whereToPlaceTiles)) {
                     playersTables[indexOfPlayer].pattern.addToRow(whereToPlaceTiles, tileToAdd, 1);
-                    table.center.remove(i);
                 }
                 else if (table.center.get(i) == tileToAdd &&
-                        playersTables[indexOfPlayer].pattern.amounts[whereToPlaceTiles] == (whereToPlaceTiles + 1)){
+                        playersTables[indexOfPlayer].pattern.isRowFull(whereToPlaceTiles)){
                     if (playersTables[indexOfPlayer].floor.size() < 7)
                         playersTables[indexOfPlayer].floor.add(tileToAdd);
                     else
                         table.box.add(tileToAdd);
-                    table.center.remove(i);
                 }
             }
+            while(table.center.contains(tileToAdd))
+                table.center.remove(tileToAdd);
         }
     }
     public void addToWall(int indexOfPlayer){
@@ -277,7 +281,7 @@ public class Game implements Serializable {
 
         int numberOfPlayers = 2;
         int mode = 0;
-        boolean isEnd = true;
+        boolean isEnd = false;
         Tile tile = Tile.BLACK;
         // setup Table and factories
         Game game = new Game(numberOfPlayers, mode);
@@ -286,22 +290,19 @@ public class Game implements Serializable {
             game.playersTables[i] = new Player(playerName);
         }
 
+        while(!isEnd){
             game.printFactory();
             game.addTilesToPatternLines(0);
             game.playersTables[0].pattern.printPatternLine();
-            game.addTilesToPatternLines(0);
-            game.playersTables[0].pattern.printPatternLine();
-            game.addTilesToPatternLines(0);
-            game.playersTables[0].pattern.printPatternLine();
-
-            game.addToWall(0);
-            game.playersTables[0].wall.printWall();
             game.playersTables[0].printFloor();
-            game.printFactory();
-
-            game.printFactory();
-            game.addTilesToPatternLines(0);
-            game.playersTables[0].pattern.printPatternLine();
+            int i = 0;
+            for (i = 0; i < game.table.factories.length; i++){
+                if (!game.table.factories[i].isEmpty())
+                    break;
+            }
+            if (i == game.table.factories.length - 1 && game.table.center.isEmpty())
+                isEnd = true;
+        }
 
 
         //game.save("test");

@@ -42,7 +42,7 @@ public class Game implements Serializable {
 
     /**
      * Checking whether the conditions for ending the first stage of the game are met
-     * @return Check result
+     * @return true if first stage of game is finished
      */
     public boolean isFirstStageFinished() {
         int i;
@@ -58,7 +58,7 @@ public class Game implements Serializable {
 
     /**
      * Checking whether the conditions for ending the game are met
-     * @return Check result
+     * @return true if game is finished
      */
     public boolean isGameFinished(int indexOfPlayer) {
         for(int i = 0; i < 5; i++){
@@ -123,6 +123,9 @@ public class Game implements Serializable {
         return playersTables;
     }
 
+    /**
+     * Method for printing the factory
+     */
     public void printFactory() {
         System.out.println();
         for (int i = 0; i < 2 * players + 1; i++) {
@@ -140,6 +143,15 @@ public class Game implements Serializable {
         System.out.println();
     }
 
+    /**
+     * Method for checking if move is valid
+     *
+     * @param number index of factory or center
+     * @param row index of row in pattern lines to which we want to add tile
+     * @param playerNumber players number
+     * @param tile the colour of the tiles which we want to add
+     * @return true if move is valid
+     */
     public boolean isMoveValid(int number, int row, int playerNumber, Tile tile) {
         if(row == 5)
             return true;
@@ -150,7 +162,10 @@ public class Game implements Serializable {
                 playersTables[playerNumber].pattern.amounts[row] < (row + 1) ) ||
                 playersTables[playerNumber].pattern.colours[row] == null;
     }
-
+    /**
+     * Method for finding the first player
+     * @return index of player who has the First tile or -1 if players do not have the First tile
+     */
     public int findFirstPlayer(){
         for (int i = 0; i < players; i++){
             if(playersTables[i].getFirst())
@@ -158,7 +173,13 @@ public class Game implements Serializable {
         }
         return -1;
     }
-
+    /**
+     * Method for adding tiles to pattern line
+     * @param indexOfPlayer index of current player
+     * @param number index of factory or center
+     * @param tileToAdd the colour of the tiles which we want to add
+     * @param whereToPlaceTiles index of row in pattern lines to which we want to add tile
+     */
     public void addTilesToPatternLines (int indexOfPlayer, Tile tileToAdd, int number, int whereToPlaceTiles) {
         if (whereToPlaceTiles == 5 && number != 9) {
             for (int i =0; i < 4; i++) {
@@ -229,6 +250,10 @@ public class Game implements Serializable {
                 table.center.remove(tileToAdd);
         }
     }
+    /**
+     * Method for adding tiles from pattern lines to wall
+     * @param indexOfPlayer index of current player
+     */
     public void addToWall(int indexOfPlayer){
         for (int i = 0; i < 5; i++){
             if (playersTables[indexOfPlayer].pattern.isRowFull(i)){
@@ -240,7 +265,10 @@ public class Game implements Serializable {
             }
         }
     }
-
+    /**
+     * Method for subtracting points for the tiles on the floor and clearing floor
+     * @param indexOfPlayer index of current player
+     */
     public void subtractPointsFromFloor (int indexOfPlayer) {
         for (int i = 0; i < 7; i++) {
             if (playersTables[indexOfPlayer].floor.get(i) != null ){
@@ -296,7 +324,7 @@ public class Game implements Serializable {
                         String tiles;
                         int whereToPlaceTiles;
                         Tile tileToAdd;
-                        
+
                         // READING FROM KEYBOARD
                         do{
                             game.printFactory();

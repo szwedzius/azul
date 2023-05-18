@@ -140,4 +140,25 @@ public class Wall implements Serializable {
         }
         return false;
     }
+
+    /**
+     * Method for printing contents of the wall
+     */
+
+    public void printWall(){
+        System.out.println();
+        System.out.println("Wall:");
+        for (int i = 0; i < 5; i++){
+            System.out.print("Line " + (i + 1) + ": ");
+            System.out.print(Arrays.toString(pattern[i]) + " ");
+            System.out.println();
+        }
+        System.out.println();
+        for (int i = 0; i < 5; i++){
+            System.out.print("Line:" + (i + 1) + ": ");
+            System.out.print(Arrays.toString(filled[i]) + " ");
+            System.out.println();
+        }
+        System.out.println();
+    }
 }

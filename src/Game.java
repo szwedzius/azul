@@ -290,7 +290,14 @@ public class Game implements Serializable {
             game.printFactory();
             game.addTilesToPatternLines(0);
             game.playersTables[0].pattern.printPatternLine();
-            game. playersTables[0].printFloor();
+            game.addTilesToPatternLines(0);
+            game.playersTables[0].pattern.printPatternLine();
+            game.addTilesToPatternLines(0);
+            game.playersTables[0].pattern.printPatternLine();
+
+            game.addToWall(0);
+            game.playersTables[0].wall.printWall();
+            game.playersTables[0].printFloor();
             game.printFactory();
 
         game.addTilesToPatternLines(1);

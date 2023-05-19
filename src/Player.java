@@ -6,17 +6,17 @@ import java.util.*;
  * and implements player's decisions.
  */
 public class Player implements Serializable {
-    /*Nickname of the player*/
+    /** Nickname of the player */
     private final String name;
-    /*Points gathered by the player*/
+    /** Points gathered by the player */
     private int points;
-    /*Wall containing the progress of the player*/
+    /** Wall containing the progress of the player */
     public Wall wall;
-    /*Pattern lines filled by the player*/
+    /** Pattern lines filled by the player */
     public PatternLines pattern;
-    /*Indicator of possession of First Player Tile*/
+    /** Indicator of possession of First Player Tile */
     private boolean first;
-    /*List containing the current state of player's floor line*/
+    /** List containing the current state of player's floor line */
     public ArrayList<Tile> floor;
 
 

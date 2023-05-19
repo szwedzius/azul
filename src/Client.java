@@ -1,19 +1,32 @@
 import java.io.*;
 import java.net.*;
 
-// Client class
+/**
+ * The Client class handles the connection to the server
+ */
 class Client {
 
+    /** Address IP of server */
     private String address;
+    /** Server port */
     private int port;
+    /** Instance of the class to handle output stream */
     private PrintWriter out;
+    /** Instance of the class to handle input stream */
     private BufferedReader in;
+    /** Instance of the class to store socket information */
     private Socket socket = null;
 
+    /**
+     * Constructor
+     */
     public Client(String address, int port) {
         this.address = address;
         this.port = port;
     }
+    /**
+     * Method responsible for starting connection to the server
+     */
     public void start() throws IOException {
         socket = new Socket(address, port);
         // writing to server
@@ -22,16 +35,27 @@ class Client {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
+    /**
+     * Method responsible for sending data
+     * @param mess is a data which we want to send
+     */
     public void sendData(String mess) {
         out.println(mess);
     }
 
+    /**
+     * Method responsible for receiving data
+     * @return received data
+     */
     public String receiveData() throws IOException {
         String temp = in.readLine();
         while(temp == null) temp = in.readLine();
         return temp;
     }
 
+    /**
+     * Method responsible for ending connection with server
+     */
     public void end() throws IOException {
         if(socket != null)
             socket.close();

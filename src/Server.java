@@ -3,14 +3,22 @@ import java.net.*;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-// Server class
+/**
+ * The Server class handles communication between clients
+ */
 class Server {
+    /** List which contains all connected clients */
     static ArrayList<ClientHandler> clients;
+    /** Max number of players */
     private static int numOfPlayers = 1000;
+    /** Indicator telling whether the game started */
     private static volatile boolean start = false;
+    /** Indicator telling whether the game ended */
     private static volatile boolean end = false;
 
+    /** Synchronized queue containing data which will be sent to client */
     static ConcurrentLinkedQueue<String> data = new ConcurrentLinkedQueue<>();
+    /** Client who made move in game*/
     static ClientHandler sender;
 
     public static void main(String[] args)
@@ -57,6 +65,9 @@ class Server {
     }
 
     // ClientHandler class
+    /**
+     * Class responsible for handling client in multithreading.
+     */
     private static class ClientHandler implements Runnable {
         private final Socket clientSocket;
         public PrintWriter out = null;
@@ -110,6 +121,9 @@ class Server {
         }
     }
 
+    /**
+     * Class that handles operations on global variables
+     */
     private static class AllSender implements Runnable {
         @Override
         public void run() {

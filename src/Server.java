@@ -8,7 +8,6 @@ class Server {
     static ArrayList<ClientHandler> clients;
     private static int numOfPlayers = 1000;
     private static volatile boolean start = false;
-    private static volatile boolean end = false;
 
     static ConcurrentLinkedQueue<String> data = new ConcurrentLinkedQueue<>();
     static ClientHandler sender;
@@ -37,7 +36,7 @@ class Server {
                 System.out.println(clients);
                 new Thread(clientSock).start();
 
-                // USUWANIE NIEPODLACZONYCH KLIENTOW
+                // DELETING NOT CONNECTED CLIENTS
                 clients.removeIf(clt -> clt.clientSocket.isClosed());
             }
         }
@@ -68,9 +67,9 @@ class Server {
         public void run()
         {
             try {
-                // get the outputstream of client
+                // get the output stream of client
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
-                // get the inputstream of client
+                // get the input stream of client
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
                 if(clients.size() == 1) {
@@ -80,12 +79,16 @@ class Server {
                 } else {
                     out.println((clients.size()-1)+String.valueOf(numOfPlayers));
                     in.readLine();
+                    if(clients.size()!=numOfPlayers) {
+                        data.add(String.valueOf(clients.size() - 1));
+                        sender = this;
+                    }
                 }
 
                 while(!start){Thread.onSpinWait();}
                 out.println("START");
 
-                while(!end){
+                while(true){
                 String temp = in.readLine();
                 while(temp == null) temp = in.readLine();
                 data.add(temp);
@@ -125,13 +128,14 @@ class Server {
                             clt.out.println(data.peek());
                         }
                     }
+                    System.out.println("SENT DATA: " + data.peek());
                     data.poll();
                     sender = null;
                 }
 
                 if(clients.size() == numOfPlayers && !start)
                     start = true;
-                if(clients.size() == 0)
+                if(clients.size() == 0 || (start && clients.size() < numOfPlayers))
                     start = false;
 
                 Thread.onSpinWait();

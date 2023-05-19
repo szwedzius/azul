@@ -9,7 +9,7 @@ public class Factory implements Serializable {
     /**
      * The tiles that the factory contains
      */
-    private Tile[] contents;
+    private final Tile[] contents;
 
     /**
      * Default constructor

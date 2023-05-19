@@ -16,8 +16,8 @@ public class Game implements Serializable {
 
     /**
      * Game mode
-     * 1 - singleplayer
-     * 0 - multiplayer
+     * 1 - local
+     * 0 - online
      */
     public final int mode;
 
@@ -286,8 +286,9 @@ public class Game implements Serializable {
     }
 
     public static void main(String[] args) throws Exception {
-        int numberOfPlayers = 2;
-        int mode = 0;
+        System.out.println();
+        int numberOfPlayers;
+        int mode;
         boolean isEnd = false;
         boolean isGameFinished = false;
 
@@ -317,7 +318,7 @@ public class Game implements Serializable {
                 isEnd = false;
                 while(!isEnd) {
                     for(int order: que) {
-                        System.out.println(game.table.bag.size());
+                        //System.out.println(game.table.bag.size());
                         System.out.println("Player : " + (order+1));
                         int number;
                         String tiles;
@@ -379,22 +380,29 @@ public class Game implements Serializable {
             }
 
         } else { // MULTIPLAYER
-            numberOfPlayers = 3;
-
             //SOCKET
             Client client = new Client("localhost", 12345);
             client.start();
 
             String rec1 = client.receiveData();
-            System.out.println(rec1);
+            //System.out.println(rec1);
             if(rec1.charAt(0) == '0') {
+                System.out.println("Type number of players (between 1 and 4)");
+                numberOfPlayers = reader.nextInt();
                 client.sendData(String.valueOf(numberOfPlayers));
             } else {
                 numberOfPlayers = Integer.parseInt(rec1.substring(1,2));
                 client.sendData("waiting");
             }
             int id = Integer.parseInt(rec1.substring(0,1));
+            System.out.println("Players: " + (id + 1) + "/" + numberOfPlayers);
+            System.out.println("CONNECTED TO SERVER, WAITING FOR PLAYERS");
+            for(int i = id+1; i<numberOfPlayers-1; i++) {
+                while(!Objects.equals(client.receiveData(), String.valueOf(i))){Thread.onSpinWait();}
+                System.out.println("Players: " + (i + 1) + "/" + numberOfPlayers);
+            }
             while(!Objects.equals(client.receiveData(), "START")){Thread.onSpinWait();}
+            System.out.println("Players: " + numberOfPlayers + "/" + numberOfPlayers);
             System.out.println("STARTED");
             // SOCKET
 
@@ -413,7 +421,7 @@ public class Game implements Serializable {
 
                 while(!isEnd) {
                     for(int order: que) {
-                        System.out.println(game.table.bag.size());
+                        //System.out.println(game.table.bag.size());
                         System.out.println("Player : " + (order+1));
                         int number;
                         String tiles;
@@ -421,6 +429,7 @@ public class Game implements Serializable {
                         Tile tileToAdd;
 
                         if(order == id) {
+                            game.playersTables[order].pattern.printPatternLine();
                             // READING FROM KEYBOARD
                             do {
                                 game.printFactory();
@@ -494,8 +503,8 @@ public class Game implements Serializable {
             client.end();
         }
 
-
-        //game.save("test");
-        //Game g = Game.load("test");
+        // SAVING AND LOADING GAME
+        // game.save("test");
+        // Game g = Game.load("test");
     }
 }

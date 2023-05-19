@@ -4,8 +4,8 @@ import java.net.*;
 // Client class
 class Client {
 
-    private String address;
-    private int port;
+    private final String address;
+    private final int port;
     private PrintWriter out;
     private BufferedReader in;
     private Socket socket = null;
@@ -40,8 +40,8 @@ class Client {
     public static void main(String[] args) throws IOException {
         Client client = new Client("localhost", 12346);
         client.start();
-        System.out.println("Server:: " + client.receiveData()); // number
-        System.out.println("Server:: " + client.receiveData()); // info od innych
+        System.out.println("Server:: " + client.receiveData());
+        System.out.println("Server:: " + client.receiveData());
         client.sendData("test");
         client.end();
     }

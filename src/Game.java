@@ -152,10 +152,13 @@ public class Game implements Serializable {
      * @return true if move is valid
      */
     public boolean isMoveValid(int number, int row, int playerNumber, Tile tile) {
-        if(row == 5)
+        if(row == 5) {
             return true;
+        }
         if (number == 9){
-            return table.center.contains(tile);
+            return (table.center.contains(tile) && ((playersTables[playerNumber].pattern.colours[row] == tile &&
+                    playersTables[playerNumber].pattern.amounts[row] < (row + 1)) ||
+                    playersTables[playerNumber].pattern.colours[row] == null));
         }
         return (playersTables[playerNumber].pattern.colours[row] == tile &&
                 playersTables[playerNumber].pattern.amounts[row] < (row + 1) ) ||

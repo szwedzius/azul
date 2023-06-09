@@ -8,6 +8,7 @@ public class Options {
     private JButton smallButton;
     private JButton mediumButton;
     private JButton bigButton;
+    private JButton returnButton;
 
     public static ActionListener setWidthHeight(int width, int height){
         return e -> {
@@ -19,6 +20,14 @@ public class Options {
             }
         };
     }
+    public ActionListener getBackToMenu(){
+        return e -> {
+            //Options options = (Options) e.getSource();
+            panel1.setVisible(false);
+            MainFrame azul = new MainFrame();
+            azul.getAZUL().setVisible(true);
+        };
+    }
 
     public JPanel getPanel1() {
         return panel1;
@@ -28,5 +37,6 @@ public class Options {
         smallButton.addActionListener(setWidthHeight(1280, 720));
         mediumButton.addActionListener(setWidthHeight(1600, 900));
         bigButton.addActionListener(setWidthHeight(1904, 1071));
+        returnButton.addActionListener(getBackToMenu());
     }
 }

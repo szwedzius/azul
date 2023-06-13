@@ -1,15 +1,10 @@
 package Mechanics;
 
 import GUIForms.GUI;
-import GUIForms.MainFrame;
 import GUIForms.NumberOfPlayers;
 
 import javax.swing.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Random;
-import java.util.Scanner;
 
 /**
  * The game class handles all other classes

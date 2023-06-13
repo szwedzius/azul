@@ -1,10 +1,7 @@
 package GUIForms;
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.jar.Attributes;
-import java.util.List;
 
 /**
  * The GUIForms.GUI class is responsible for displaying the current state

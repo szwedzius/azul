@@ -36,7 +36,7 @@ public class Options {
     Options(){
         smallButton.addActionListener(setWidthHeight(1280, 720));
         mediumButton.addActionListener(setWidthHeight(1600, 900));
-        bigButton.addActionListener(setWidthHeight(1904, 1071));
+        bigButton.addActionListener(setWidthHeight(1920, 1080));
         returnButton.addActionListener(getBackToMenu());
     }
 }

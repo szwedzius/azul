@@ -1,9 +1,8 @@
 package GUIForms;
 
+import Mechanics.GUIGAME;
+
 import javax.swing.*;
-
-import Mechanics.*;
-
 import java.awt.*;
 
 public class MainFrame {
@@ -25,13 +24,26 @@ public class MainFrame {
     }
 
     public MainFrame() {
-        ImageIcon imageIcon = new ImageIcon("img/logo.png"); // load the image to a imageIcon
-        Image image = imageIcon.getImage(); // transform it
-        Image newimg = image.getScaledInstance(400, 213,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-        imageIcon = new ImageIcon(newimg);  // transform it back
-        logoLabel.setIcon(imageIcon);
-        LOCALButton.setIcon(new ImageIcon("img/localButton.png"));
+        logoLabel.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/logo.png", 600, 320));
+
+        LOCALButton.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/localButton.png", 291, 150));
         LOCALButton.setBorder(BorderFactory.createEmptyBorder());
+        LOCALButton.setOpaque(false);
+        LOCALButton.setContentAreaFilled(false);
+        LOCALButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        ONLINEButton.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/onlineButton.png", 291, 150));
+        ONLINEButton.setBorder(BorderFactory.createEmptyBorder());
+        ONLINEButton.setOpaque(false);
+        ONLINEButton.setContentAreaFilled(false);
+        ONLINEButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        SETTINGSButton.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/settingsButton.png", 291, 150));
+        SETTINGSButton.setBorder(BorderFactory.createEmptyBorder());
+        SETTINGSButton.setOpaque(false);
+        SETTINGSButton.setContentAreaFilled(false);
+        SETTINGSButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        //LOCALButton.setBorderPainted(false);
 
         GUI.frame.add(AZUL);
         SETTINGSButton.addActionListener(e -> {
@@ -58,6 +70,29 @@ public class MainFrame {
                     throw new RuntimeException(ex);
                 }
         });
-        //LOCALButton.addActionListener(e);
+
+        SETTINGSButton.addMouseListener(
+                HelpfulMethodsGuiJava.hoverEvents(
+                        SETTINGSButton,
+                        "img/settingsButton.png",
+                        "img/settingsButtonHover.png",
+                        291,
+                        150));
+
+        LOCALButton.addMouseListener(
+                HelpfulMethodsGuiJava.hoverEvents(
+                        LOCALButton,
+                        "img/localButton.png",
+                        "img/localButtonHover.png",
+                        291,
+                        150));
+
+        ONLINEButton.addMouseListener(
+                HelpfulMethodsGuiJava.hoverEvents(
+                        ONLINEButton,
+                        "img/onlineButton.png",
+                        "img/onlineButtonHover.png",
+                        291,
+                        150));
     }
 }

@@ -4,13 +4,17 @@
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
-    <properties/>
+    <properties>
+      <background color="-12228725"/>
+    </properties>
     <border type="none"/>
     <children>
       <grid id="1bf77" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="Center"/>
-        <properties/>
+        <properties>
+          <background color="-12228725"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="c2ba3" class="javax.swing.JButton" binding="smallButton" default-binding="true">

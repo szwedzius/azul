@@ -44,6 +44,14 @@ public class MainFrame {
                 }
             }
         });
+        LOCALButton.addActionListener(e->{
+                try {
+                    GUIGAME.currentPanel = AZUL;
+                    GUIGAME.mainGame(1);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+        });
         //LOCALButton.addActionListener(e);
     }
 }

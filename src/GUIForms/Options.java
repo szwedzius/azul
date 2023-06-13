@@ -20,7 +20,7 @@ public class Options {
             }
             HelpfulMethodsGuiJava.createButton("img/small.png", 291,150, smallButton);
             HelpfulMethodsGuiJava.createButton("img/medium.png", 291,150, mediumButton);
-            HelpfulMethodsGuiJava.createButton("img/medium.png", 291,150, bigButton);
+            HelpfulMethodsGuiJava.createButton("img/big.png", 291,150, bigButton);
             HelpfulMethodsGuiJava.createButton("img/medium.png", 291,150, returnButton);
         };
     }
@@ -40,7 +40,7 @@ public class Options {
     Options(){
         HelpfulMethodsGuiJava.createButton("img/small.png", 291,150, smallButton);
         HelpfulMethodsGuiJava.createButton("img/medium.png", 291,150, mediumButton);
-        HelpfulMethodsGuiJava.createButton("img/medium.png", 291,150, bigButton);
+        HelpfulMethodsGuiJava.createButton("img/big.png", 291,150, bigButton);
         HelpfulMethodsGuiJava.createButton("img/medium.png", 291,150, returnButton);
 
         smallButton.addActionListener(setWidthHeight(1280, 720));
@@ -67,8 +67,8 @@ public class Options {
         bigButton.addMouseListener(
                 HelpfulMethodsGuiJava.hoverEvents(
                         bigButton,
-                        "img/medium.png",
-                        "img/mediumHover.png",
+                        "img/big.png",
+                        "img/bigHover.png",
                         291,
                         150));
 

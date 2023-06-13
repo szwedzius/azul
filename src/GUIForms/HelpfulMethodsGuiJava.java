@@ -33,4 +33,12 @@ public class HelpfulMethodsGuiJava {
             }
         };
     }
+    public static JButton createButton(String path, int width, int height, JButton current){
+        current.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(path, width, height));
+        current.setBorder(BorderFactory.createEmptyBorder());
+        current.setOpaque(false);
+        current.setContentAreaFilled(false);
+        current.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        return current;
+    }
 }

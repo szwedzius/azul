@@ -1,10 +1,12 @@
+package Mechanics;
+
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * The Server class handles communication between clients
+ * The Mechanics.Server class handles communication between clients
  */
 class Server {
     /** List which contains all connected clients */
@@ -19,7 +21,7 @@ class Server {
 
     /** Synchronized queue containing data which will be sent to client */
     static ConcurrentLinkedQueue<String> data = new ConcurrentLinkedQueue<>();
-    /** Client who made move in game*/
+    /** Mechanics.Client who made move in game*/
     static ClientHandler sender;
 
     public static void main(String[] args)

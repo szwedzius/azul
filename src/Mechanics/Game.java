@@ -1,3 +1,5 @@
+package Mechanics;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -15,19 +17,19 @@ public class Game implements Serializable {
     public final int players;
 
     /**
-     * Game mode
+     * Mechanics.Game mode
      * 1 - local
      * 0 - online
      */
     public final int mode;
 
     /**
-     * Table - one instance per game
+     * Mechanics.Table - one instance per game
      */
     public final Table table;
 
     /**
-     * Player class instances - each player is represented by one
+     * Mechanics.Player class instances - each player is represented by one
      */
     public final Player[] playersTables;
 
@@ -116,7 +118,7 @@ public class Game implements Serializable {
 
     /**
      * Method to return the table of players
-     * @return Table of Player objects representing the players
+     * @return Mechanics.Table of Mechanics.Player objects representing the players
      */
     public Player[] getPlayersTables() {
         return playersTables;
@@ -129,7 +131,7 @@ public class Game implements Serializable {
         System.out.println();
         for (int i = 0; i < 2 * players + 1; i++) {
             Tile[] contents = table.factories[i].getContents();
-            System.out.print((i + 1) + " Factory: ");
+            System.out.print((i + 1) + " Mechanics.Factory: ");
             for (int j = 0; j < 4; j++) {
                 System.out.print(contents[j] + " ");
             }
@@ -302,7 +304,7 @@ public class Game implements Serializable {
         if(mode == 1) { // SINGLE PLAYER
             System.out.println("Type number of players (between 1 and 4)");
             numberOfPlayers = reader.nextInt();
-            // setup Table and factories
+            // setup Mechanics.Table and factories
             Game game = new Game(numberOfPlayers, mode);
             for (int i = 0; i < numberOfPlayers; i++){
                 String playerName = "playerName";
@@ -322,7 +324,7 @@ public class Game implements Serializable {
                 while(!isEnd) {
                     for(int order: que) {
                         //System.out.println(game.table.bag.size());
-                        System.out.println("Player : " + (order+1));
+                        System.out.println("Mechanics.Player : " + (order+1));
                         int number;
                         String tiles;
                         int whereToPlaceTiles;
@@ -409,7 +411,7 @@ public class Game implements Serializable {
             System.out.println("STARTED");
             // SOCKET
 
-            // setup Table and factories
+            // setup Mechanics.Table and factories
             Game game = new Game(numberOfPlayers, mode);
             ArrayList<Integer> que = new ArrayList<>();
             for (int i = 0; i < numberOfPlayers; i++){
@@ -425,7 +427,7 @@ public class Game implements Serializable {
                 while(!isEnd) {
                     for(int order: que) {
                         //System.out.println(game.table.bag.size());
-                        System.out.println("Player : " + (order+1));
+                        System.out.println("Mechanics.Player : " + (order+1));
                         int number;
                         String tiles;
                         int whereToPlaceTiles;
@@ -508,6 +510,6 @@ public class Game implements Serializable {
 
         // SAVING AND LOADING GAME
         // game.save("test");
-        // Game g = Game.load("test");
+        // Mechanics.Game g = Mechanics.Game.load("test");
     }
 }

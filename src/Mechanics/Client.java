@@ -1,13 +1,15 @@
+package Mechanics;
+
 import java.io.*;
 import java.net.*;
 
 /**
- * The Client class handles the connection to the server
+ * The Mechanics.Client class handles the connection to the server
  */
 class Client {
     /** Address IP of server */
     private final String address;
-    /** Server port */
+    /** Mechanics.Server port */
     private final int port;
     /** Instance of the class to handle output stream */
     private PrintWriter out;
@@ -62,10 +64,10 @@ class Client {
     }
     // driver code
     public static void main(String[] args) throws IOException {
-        Client client = new Client("localhost", 12346);
+        Client client = new Client("localhost", 12345);
         client.start();
-        System.out.println("Server:: " + client.receiveData());
-        System.out.println("Server:: " + client.receiveData());
+        System.out.println("Mechanics.Server:: " + client.receiveData());
+        System.out.println("Mechanics.Server:: " + client.receiveData());
         client.sendData("test");
         client.end();
     }

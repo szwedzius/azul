@@ -1,7 +1,9 @@
+package Mechanics;
+
 import java.io.Serializable;
 
 /**
- * The PatternLines class represents lines that
+ * The Mechanics.PatternLines class represents lines that
  * are being filled by the player
  */
 public class PatternLines implements Serializable {

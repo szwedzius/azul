@@ -1,3 +1,5 @@
+package Mechanics;
+
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -171,7 +173,7 @@ public class Wall implements Serializable {
 
     public void printWall(){
         System.out.println();
-        System.out.println("Wall:");
+        System.out.println("Mechanics.Wall:");
         for (int i = 0; i < 5; i++){
             System.out.print("Line " + (i + 1) + ": ");
             System.out.print(Arrays.toString(pattern[i]) + " ");

@@ -1,5 +1,7 @@
 package GUIForms;
 
+import Mechanics.GUIGAME;
+
 import javax.swing.*;
 
 public class NumberOfPlayers {
@@ -16,5 +18,9 @@ public class NumberOfPlayers {
     public NumberOfPlayers() {
         GUI.frame.add(PLAYERS);
         PLAYERS.setVisible(true);
+        a3Button.addActionListener(e -> GUIGAME.choosePlayerNumber(1));
+        a2Button.addActionListener(e -> GUIGAME.choosePlayerNumber(2));
+        a3Button.addActionListener(e -> GUIGAME.choosePlayerNumber(3));
+        a4Button.addActionListener(e -> GUIGAME.choosePlayerNumber(4));
     }
 }

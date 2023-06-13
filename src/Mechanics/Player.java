@@ -1,8 +1,10 @@
+package Mechanics;
+
 import java.io.Serializable;
 import java.util.*;
 
 /**
- * The Player class handles all the classes that are related to a player board
+ * The Mechanics.Player class handles all the classes that are related to a player board
  * and implements player's decisions.
  */
 public class Player implements Serializable {
@@ -10,11 +12,11 @@ public class Player implements Serializable {
     private final String name;
     /** Points gathered by the player */
     private int points;
-    /** Wall containing the progress of the player */
+    /** Mechanics.Wall containing the progress of the player */
     public Wall wall;
     /** Pattern lines filled by the player */
     public PatternLines pattern;
-    /** Indicator of possession of First Player Tile */
+    /** Indicator of possession of First Mechanics.Player Mechanics.Tile */
     private boolean first;
     /** List containing the current state of player's floor line */
     public ArrayList<Tile> floor;

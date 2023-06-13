@@ -4,7 +4,6 @@ import Mechanics.GUIGAME;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Set;
 
 public class MainFrame {
     private JButton SETTINGSButton;
@@ -24,21 +23,20 @@ public class MainFrame {
         return AZUL;
     }
 
-    public static JButton createButton(String path, int width, int height, JButton current){
+    public static void createButton(String path, int width, int height, JButton current){
         current.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(path, width, height));
         current.setBorder(BorderFactory.createEmptyBorder());
         current.setOpaque(false);
         current.setContentAreaFilled(false);
         current.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        return current;
     }
 
     public MainFrame() {
         logoLabel.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/logo.png", 600, 320));
 
-        LOCALButton = MainFrame.createButton("img/localButton.png", 291,150, LOCALButton);
-        ONLINEButton = MainFrame.createButton("img/onlineButton.png", 291,150, ONLINEButton);
-        SETTINGSButton = MainFrame.createButton("img/settingsButton.png", 291,150, SETTINGSButton);
+        MainFrame.createButton("img/localButton.png", 291,150, LOCALButton);
+        MainFrame.createButton("img/onlineButton.png", 291,150, ONLINEButton);
+        MainFrame.createButton("img/settingsButton.png", 291,150, SETTINGSButton);
 
 
         GUI.frame.add(AZUL);

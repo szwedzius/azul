@@ -34,10 +34,15 @@ public class ChoosePlayerNames {
                 textField1.setText(null);
                 numberOfNames++;
             });
-            if(numberOfNames==NumberOfPlayers.getClickedNumberOfPlayers()){
+            if(MainFrame.getIsGameOnline()==1) {
+                if (numberOfNames==1){
+                    //TODO należy utworzyć sesje gry, tzn jakiś panel
+                }
+            }
+            else if (numberOfNames == NumberOfPlayers.getClickedNumberOfPlayers()) {
                 panel1.setVisible(false);
                 //TODO należy utworzyć sesje gry, tzn jakiś panel
-        }
+            }
 
         // Add any necessary code for setting up the GUI, such as creating the panel and text field
         // and adding them to the frame.

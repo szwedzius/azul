@@ -24,6 +24,12 @@ public class NumberOfPlayers {
     public NumberOfPlayers() {
         //GUI.frame.add(PLAYERS);
         //PLAYERS.setVisible(true);
+
+        /**
+         * ważne - zakomentowane są GUIGAME.choosePlayerNumber(), ze względu na brak dokończonej metody
+         * w klasie GUIGAME
+         */
+        // TODO disclaimer nad ^^^^
         a1Button.addActionListener(e -> {//GUIGAME.choosePlayerNumber(1);
             ClickedNumberOfPlayers=1;
             PLAYERS.setVisible(false);
@@ -32,19 +38,22 @@ public class NumberOfPlayers {
             names.getPanel1().setVisible(true);
 
         });
-        a2Button.addActionListener(e -> {GUIGAME.choosePlayerNumber(2);
+        a2Button.addActionListener(e -> {//GUIGAME.choosePlayerNumber(2);
             ClickedNumberOfPlayers=2;
+            PLAYERS.setVisible(false);
             ChoosePlayerNames names = new ChoosePlayerNames();
             GUI.frame.add(names.getPanel1());
             names.getPanel1().setVisible(true);
         });
-        a3Button.addActionListener(e -> {GUIGAME.choosePlayerNumber(3);
+        a3Button.addActionListener(e -> {//GUIGAME.choosePlayerNumber(3);
             ClickedNumberOfPlayers=3;
+            PLAYERS.setVisible(false);
             ChoosePlayerNames names = new ChoosePlayerNames();
             GUI.frame.add(names.getPanel1());
             names.getPanel1().setVisible(true);
         });
-        a4Button.addActionListener(e -> {GUIGAME.choosePlayerNumber(4);
+        a4Button.addActionListener(e -> {//GUIGAME.choosePlayerNumber(4);
+            PLAYERS.setVisible(false);
             ClickedNumberOfPlayers=4;
             ChoosePlayerNames names = new ChoosePlayerNames();
             GUI.frame.add(names.getPanel1());

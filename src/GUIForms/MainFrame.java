@@ -12,6 +12,11 @@ public class MainFrame {
     private JButton LOCALButton;
     public JPanel AZUL;
     private JLabel logoLabel;
+    private static int isGameOnline=0;
+
+    public static int getIsGameOnline() {
+        return isGameOnline;
+    }
 
     private static int init =0;
 
@@ -38,6 +43,7 @@ public class MainFrame {
             if(init ==0){
                 try {
                     GUIGAME.currentPanel = AZUL;
+                    isGameOnline=1;
                     GUIGAME.mainGame(2);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);

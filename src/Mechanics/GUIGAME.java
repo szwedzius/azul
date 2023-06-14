@@ -308,13 +308,27 @@ public class GUIGAME implements Serializable {
     private void playerTurn(Player currentPlayer){
 
     }
+    private void secondStage(GUIGAME game) throws Exception {
+        for(int i=0; i<numberOfPlayers; i++){
+            game.addToWall(i);
+            game.subtractPointsFromFloor(i);
+        }
+
+        //System.out.println(game.table.bag);
+        //game.playersTables[0].wall.printWall();
+        game.table.refillFactories();
+
+        for(int i=0; i<numberOfPlayers; i++)
+            if(game.isGameFinished(i))
+                isGameFinished = true;
+    }
     private static void localGame() throws Exception {
 
         NumberOfPlayers numberOfPlayersForm = new NumberOfPlayers();
         GUI.frame.add(numberOfPlayersForm.getPLAYERS());
         numberOfPlayersForm.getPLAYERS().setVisible(true);
         currentPanel.setVisible(false);
-        //TODO Przekieruj na panel z wyborem nazwy gracza
+
 
         GUIGAME game = new GUIGAME(numberOfPlayers, 1);
         for (int i = 0; i < numberOfPlayers; i++){
@@ -389,18 +403,7 @@ public class GUIGAME implements Serializable {
                     }
                 }
             }
-            for(int i=0; i<numberOfPlayers; i++){
-                game.addToWall(i);
-                game.subtractPointsFromFloor(i);
-            }
 
-            System.out.println(game.table.bag);
-            game.playersTables[0].wall.printWall();
-            game.table.refillFactories();
-
-            for(int i=0; i<numberOfPlayers; i++)
-                if(game.isGameFinished(i))
-                    isGameFinished = true;
         }
          */
     }

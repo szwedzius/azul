@@ -41,4 +41,11 @@ public class HelpfulMethodsGuiJava {
         current.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         return current;
     }
+    public static JLabel createLabel(String path, int width, int height, JLabel current){
+        current.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(path, width, height));
+        current.setBorder(BorderFactory.createEmptyBorder());
+        current.setOpaque(false);
+        current.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        return current;
+    }
 }

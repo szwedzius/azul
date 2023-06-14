@@ -3,11 +3,11 @@ package GUIForms;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class Board {
-    private JPanel xD;
+public class Pattern {
+    private JPanel wall;
 
-    public JPanel getxD() {
-        return xD;
+    public JPanel getWall() {
+        return wall;
     }
 
     private JList list1;
@@ -37,7 +37,7 @@ public class Board {
     private JButton button24;
     private JButton button25;
     ArrayList<JButton> tilebuttons = new ArrayList<>();
-    public Board(){
+    public Pattern(){
         tilebuttons.add(button1);
         tilebuttons.add(button2);
         tilebuttons.add(button3);
@@ -60,10 +60,12 @@ public class Board {
         tilebuttons.add(button20);
         tilebuttons.add(button21);
         tilebuttons.add(button22);
+        tilebuttons.add(button23);
+        tilebuttons.add(button24);
+        tilebuttons.add(button25);
         for(JButton button: tilebuttons){
             HelpfulMethodsGuiJava.createButton("img/notile.png", 50,50,button);
         }
-        HelpfulMethodsGuiJava.createButton("img/settingsButton.png", 50,100,button25);
     }
 
 }

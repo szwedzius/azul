@@ -28,42 +28,42 @@ public class Workshop {
     private JPanel factory8;
     private JPanel factory9;
     private JLabel scoreboard;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
-    private JButton button6;
-    private JButton button7;
-    private JButton button8;
-    private JButton button9;
-    private JButton button10;
-    private JButton button11;
-    private JButton button12;
-    private JButton button13;
-    private JButton button14;
-    private JButton button15;
-    private JButton button16;
-    private JButton button17;
-    private JButton button18;
-    private JButton button19;
-    private JButton button20;
-    private JButton button21;
-    private JButton button22;
-    private JButton button23;
-    private JButton button24;
-    private JButton button25;
-    private JButton button26;
-    private JButton button27;
-    private JButton button28;
-    private JButton button29;
-    private JButton button30;
-    private JButton button31;
-    private JButton button32;
-    private JButton button33;
-    private JButton button34;
-    private JButton button35;
-    private JButton button36;
+    private JButton factory1Tile1;
+    private JButton factory1Tile2;
+    private JButton factory1Tile3;
+    private JButton factory1Tile4;
+    private JButton factory2Tile1;
+    private JButton factory2Tile2;
+    private JButton factory2Tile3;
+    private JButton factory2Tile4;
+    private JButton factory3Tile1;
+    private JButton factory3Tile2;
+    private JButton factory3Tile3;
+    private JButton factory3Tile4;
+    private JButton factory4Tile1;
+    private JButton factory4Tile2;
+    private JButton factory4Tile3;
+    private JButton factory4Tile4;
+    private JButton factory5Tile1;
+    private JButton factory5Tile2;
+    private JButton factory5Tile3;
+    private JButton factory5Tile4;
+    private JButton factory6Tile1;
+    private JButton factory6Tile2;
+    private JButton factory6Tile3;
+    private JButton factory6Tile4;
+    private JButton factory7Tile1;
+    private JButton factory7Tile2;
+    private JButton factory7Tile3;
+    private JButton factory7Tile4;
+    private JButton factory8Tile1;
+    private JButton factory8Tile2;
+    private JButton factory8Tile3;
+    private JButton factory8Tile4;
+    private JButton factory9Tile1;
+    private JButton factory9Tile2;
+    private JButton factory9Tile3;
+    private JButton factory9Tile4;
     private JTextField textField1;
 
     public JPanel getWorkshopPanel() {
@@ -72,8 +72,34 @@ public class Workshop {
 
     Workshop() throws HeadlessException  {
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
-
         HelpfulMethodsGuiJava.createButton("img/confirm.png",291,150,boardButton);
+
+
+
+
+
+        switch (NumberOfPlayers.getClickedNumberOfPlayers()){
+            case 1:
+                playerName1.setText(GUI.nameList.get(0));
+                break;
+            case 2:
+                playerName1.setText(GUI.nameList.get(0));
+                playerName2.setText(GUI.nameList.get(1));
+                break;
+            case 3:
+                playerName1.setText(GUI.nameList.get(0));
+                playerName2.setText(GUI.nameList.get(1));
+                playerName3.setText(GUI.nameList.get(2));
+                break;
+            case 4:
+                playerName1.setText(GUI.nameList.get(0));
+                playerName2.setText(GUI.nameList.get(1));
+                playerName3.setText(GUI.nameList.get(2));
+                playerName4.setText(GUI.nameList.get(3));
+            default:
+                playerName1.setText(GUI.nameList.get(0));
+        }
+
     }
 
 

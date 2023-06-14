@@ -3,6 +3,7 @@ package GUIForms;
 import Mechanics.GUIGAME;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class NumberOfPlayers {
     private JPanel PLAYERS;
@@ -11,7 +12,7 @@ public class NumberOfPlayers {
     private JButton a2Button;
     private JButton a1Button;
     private JButton returnButton;
-    private JLabel ChoseNumberOfPlayers;
+    private JLabel chosenumberofplayers;
     private static int ClickedNumberOfPlayers;
 
     public static int getClickedNumberOfPlayers() {
@@ -23,6 +24,8 @@ public class NumberOfPlayers {
     }
 
     public NumberOfPlayers() {
+        chosenumberofplayers.setForeground(Color.WHITE);
+        chosenumberofplayers.setBackground(Color.decode("#45678B"));
         //GUI.frame.add(PLAYERS);
         //PLAYERS.setVisible(true);
 

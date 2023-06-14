@@ -31,6 +31,14 @@ public class ChoosePlayerNames {
     }
 
     public ChoosePlayerNames() throws HeadlessException {
+        playerName4.setForeground(Color.WHITE);
+        playerName3.setForeground(Color.WHITE);
+        playerName2.setForeground(Color.WHITE);
+        playerName1.setForeground(Color.WHITE);
+        score1.setForeground(Color.WHITE);
+        score2.setForeground(Color.WHITE);
+        score3.setForeground(Color.WHITE);
+        score4.setForeground(Color.WHITE);
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
         HelpfulMethodsGuiJava.createButton("img/confirm.png",291,150,confirmButton);
         panel1.setVisible(true);
@@ -86,6 +94,8 @@ public class ChoosePlayerNames {
         // Add any necessary code for setting up the GUI, such as creating the panel and text field
         // and adding them to the frame.
     }
+
+
 
 //    @Override
 //    public void actionPerformed(ActionEvent e) {

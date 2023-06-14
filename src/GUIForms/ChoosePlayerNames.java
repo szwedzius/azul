@@ -4,6 +4,7 @@ import Mechanics.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class ChoosePlayerNames {
     private JPanel panel1;
@@ -18,6 +19,8 @@ public class ChoosePlayerNames {
     private JLabel score2;
     private JLabel score3;
     private JLabel score4;
+
+    private static ArrayList<String> playerNames;
     private JLabel scoreboard;
     private static int numberOfNames = 0;
     private Player[] names = new Player[NumberOfPlayers.getClickedNumberOfPlayers()];
@@ -58,6 +61,7 @@ public class ChoosePlayerNames {
                 } else {
                     playerName4.setText(name);
                 }
+                playerNames.add(name);
                 numberOfNames++;
 
               //  System.out.println(numberOfNames);
@@ -97,7 +101,11 @@ public class ChoosePlayerNames {
 
 
 
-//    @Override
+    public static ArrayList<String> getPlayerNames() {
+        return playerNames;
+    }
+
+    //    @Override
 //    public void actionPerformed(ActionEvent e) {
 //        if ("Confirm".equals(e.getActionCommand())) {  // Check action command of the event
 //            System.out.println("Welcome " + textField1.getText());

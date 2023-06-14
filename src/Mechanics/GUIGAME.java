@@ -1,10 +1,14 @@
 package Mechanics;
 
+import GUIForms.ChoosePlayerNames;
 import GUIForms.GUI;
 import GUIForms.NumberOfPlayers;
+import GUIForms.Workshop;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * The game class handles all other classes
@@ -306,38 +310,41 @@ public class GUIGAME implements Serializable {
         currentPanel.setVisible(false);
         //TODO Przekieruj na panel z wyborem nazwy gracza
 
-        GUIGAME game = new GUIGAME(numberOfPlayers, 1);
-        for (int i = 0; i < numberOfPlayers; i++){
-            String playerName = "playerName";
+        GUIGAME game = new GUIGAME(NumberOfPlayers.getClickedNumberOfPlayers(), 1);
+        for (int i = 0; i < NumberOfPlayers.getClickedNumberOfPlayers(); i++){
+            String playerName = ChoosePlayerNames.getPlayerNames().get(i);
             game.playersTables[i] = new Player(playerName);
         }
 
-        /*
+
         ArrayList<Integer> que = new ArrayList<>();
         // First starting player is chosen randomly
         Random rand = new Random();
-        int first = rand.nextInt(numberOfPlayers);
+        int first = rand.nextInt(NumberOfPlayers.getClickedNumberOfPlayers());
 
         while(!isGameFinished){
-            for(int i = 0; i<numberOfPlayers; i++)
-                que.add((first+i)%numberOfPlayers);
+            for(int i = 0; i<NumberOfPlayers.getClickedNumberOfPlayers(); i++)
+                que.add((first+i)%NumberOfPlayers.getClickedNumberOfPlayers());
 
             isEnd = false;
             while(!isEnd) {
                 for(int order: que) {
                     //System.out.println(game.table.bag.size());
-                    System.out.println("Mechanics.Player : " + (order+1));
+                    System.out.println("Player : " + (order+1));
                     int number;
                     String tiles;
                     int whereToPlaceTiles;
                     Tile tileToAdd;
+                    Workshop.factoryTable = game.table;
 
                     // READING FROM KEYBOARD
+                    /*
                     do{
-                        game.printFactory();
-                        System.out.println();
-                        System.out.println();
+                        //Returning
+                        Workshop.factoryTable = game.table;
 
+
+                        //TODO wydzielić to do GUI
                         System.out.println("Choose factory or center from which you want to take tiles");
                         number = reader.nextInt() - 1;
 
@@ -346,6 +353,8 @@ public class GUIGAME implements Serializable {
 
                         System.out.println("Choose where you want to add the tiles, 1-5 for pattern lines, 6 for floor");
                         whereToPlaceTiles = reader.nextInt() - 1;
+                        //TODO dotąd
+
 
                         tileToAdd = switch (tiles.toUpperCase()) {
                             case "BLACK" -> Tile.BLACK;
@@ -370,8 +379,11 @@ public class GUIGAME implements Serializable {
                         que.clear();
                         break;
                     }
+                    */
                 }
             }
+
+            /*
             for(int i=0; i<numberOfPlayers; i++){
                 game.addToWall(i);
                 game.subtractPointsFromFloor(i);
@@ -384,8 +396,9 @@ public class GUIGAME implements Serializable {
             for(int i=0; i<numberOfPlayers; i++)
                 if(game.isGameFinished(i))
                     isGameFinished = true;
+            */
         }
-         */
+
     }
 
     public static void choosePlayerNumber(int number){

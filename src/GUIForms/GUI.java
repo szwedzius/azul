@@ -1,6 +1,7 @@
 package GUIForms;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.jar.Attributes;
 
 /**
@@ -17,6 +18,8 @@ public class GUI {
     }
 
     public static WindowSize windowSize;
+
+    public static ArrayList<String> nameList = new ArrayList<>();
 
     public static final JFrame frame = new JFrame("azul");
 

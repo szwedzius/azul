@@ -1,9 +1,11 @@
 package GUIForms;
 
+import Mechanics.GUIGAME;
 import Mechanics.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class ChoosePlayerNames {
     private JPanel panel1;
@@ -18,8 +20,10 @@ public class ChoosePlayerNames {
     private JLabel score2;
     private JLabel score3;
     private JLabel score4;
+    private JLabel scoreboard;
     private static int numberOfNames = 0;
     private Player[] names = new Player[NumberOfPlayers.getClickedNumberOfPlayers()];
+
 
     public JPanel getPanel1() {
         return panel1;
@@ -30,6 +34,15 @@ public class ChoosePlayerNames {
     }
 
     public ChoosePlayerNames() throws HeadlessException {
+        playerName4.setForeground(Color.WHITE);
+        playerName3.setForeground(Color.WHITE);
+        playerName2.setForeground(Color.WHITE);
+        playerName1.setForeground(Color.WHITE);
+        score1.setForeground(Color.WHITE);
+        score2.setForeground(Color.WHITE);
+        score3.setForeground(Color.WHITE);
+        score4.setForeground(Color.WHITE);
+        scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
         HelpfulMethodsGuiJava.createButton("img/confirm.png",291,150,confirmButton);
         panel1.setVisible(true);
         ScoreBoard.setVisible(true);
@@ -41,6 +54,7 @@ public class ChoosePlayerNames {
                 textField1.setText(null);
                 if(numberOfNames==0){
                     playerName1.setText(name);
+
                 } else if (numberOfNames==1) {
                     playerName2.setText(name);
                 } else if (numberOfNames==2) {
@@ -48,6 +62,7 @@ public class ChoosePlayerNames {
                 } else {
                     playerName4.setText(name);
                 }
+                GUI.nameList.add(name);
                 numberOfNames++;
 
               //  System.out.println(numberOfNames);
@@ -58,6 +73,11 @@ public class ChoosePlayerNames {
                     Workshop workshop = new Workshop();
                     GUI.frame.add(workshop.getWorkshopPanel());
                     panel1.setVisible(false);
+                    try {
+                        GUIGAME.localGameStart();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                     workshop.getWorkshopPanel().setVisible(true);
                 }
             });
@@ -84,6 +104,8 @@ public class ChoosePlayerNames {
         // Add any necessary code for setting up the GUI, such as creating the panel and text field
         // and adding them to the frame.
     }
+
+
 
 //    @Override
 //    public void actionPerformed(ActionEvent e) {

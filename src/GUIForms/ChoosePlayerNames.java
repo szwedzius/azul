@@ -1,9 +1,11 @@
 package GUIForms;
 
+import Mechanics.GUIGAME;
 import Mechanics.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class ChoosePlayerNames {
     private JPanel panel1;
@@ -21,6 +23,7 @@ public class ChoosePlayerNames {
     private JLabel scoreboard;
     private static int numberOfNames = 0;
     private Player[] names = new Player[NumberOfPlayers.getClickedNumberOfPlayers()];
+
 
     public JPanel getPanel1() {
         return panel1;
@@ -51,6 +54,7 @@ public class ChoosePlayerNames {
                 textField1.setText(null);
                 if(numberOfNames==0){
                     playerName1.setText(name);
+
                 } else if (numberOfNames==1) {
                     playerName2.setText(name);
                 } else if (numberOfNames==2) {
@@ -58,6 +62,7 @@ public class ChoosePlayerNames {
                 } else {
                     playerName4.setText(name);
                 }
+                GUI.nameList.add(name);
                 numberOfNames++;
 
               //  System.out.println(numberOfNames);
@@ -68,6 +73,11 @@ public class ChoosePlayerNames {
                     Workshop workshop = new Workshop();
                     GUI.frame.add(workshop.getWorkshopPanel());
                     panel1.setVisible(false);
+                    try {
+                        GUIGAME.localGameStart();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                     workshop.getWorkshopPanel().setVisible(true);
                 }
             });

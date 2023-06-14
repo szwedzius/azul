@@ -49,16 +49,29 @@ public class ChoosePlayerNames {
                     playerName4.setText(name);
                 }
                 numberOfNames++;
-            });
-            if(MainFrame.getIsGameOnline()==1) {
-                if (numberOfNames==1){
-                    //TODO należy utworzyć sesje gry, tzn jakiś panel
+
+              //  System.out.println(numberOfNames);
+               // System.out.println(NumberOfPlayers.getClickedNumberOfPlayers());
+
+                if (numberOfNames == NumberOfPlayers.getClickedNumberOfPlayers()) {
+                    System.out.println("wchodzi");
+                    Workshop workshop = new Workshop();
+                    GUI.frame.add(workshop.getWorkshopPanel());
+                    panel1.setVisible(false);
+                    workshop.getWorkshopPanel().setVisible(true);
                 }
-            }
-            else if (numberOfNames == NumberOfPlayers.getClickedNumberOfPlayers()) {
-                panel1.setVisible(false);
+            });
+        if(MainFrame.getIsGameOnline()==1) {
+            if (numberOfNames==1){
                 //TODO należy utworzyć sesje gry, tzn jakiś panel
             }
+        }
+        else if (numberOfNames == NumberOfPlayers.getClickedNumberOfPlayers()) {
+            Workshop workshop = new Workshop();
+            GUI.frame.add(workshop.getWorkshopPanel());
+            panel1.setVisible(false);
+        }
+
 
         confirmButton.addMouseListener(
                 HelpfulMethodsGuiJava.hoverEvents(

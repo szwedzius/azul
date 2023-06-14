@@ -18,6 +18,7 @@ public class ChoosePlayerNames {
     private JLabel score2;
     private JLabel score3;
     private JLabel score4;
+    private JLabel scoreboard;
     private static int numberOfNames = 0;
     private Player[] names = new Player[NumberOfPlayers.getClickedNumberOfPlayers()];
 
@@ -30,6 +31,7 @@ public class ChoosePlayerNames {
     }
 
     public ChoosePlayerNames() throws HeadlessException {
+        scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
         HelpfulMethodsGuiJava.createButton("img/confirm.png",291,150,confirmButton);
         panel1.setVisible(true);
         ScoreBoard.setVisible(true);

@@ -11,6 +11,7 @@ public class NumberOfPlayers {
     private JButton a2Button;
     private JButton a1Button;
     private JButton returnButton;
+    private JLabel ChoseNumberOfPlayers;
     private static int ClickedNumberOfPlayers;
 
     public static int getClickedNumberOfPlayers() {
@@ -64,6 +65,53 @@ public class NumberOfPlayers {
             azulMenu.AZUL.setVisible(true);
             getPLAYERS().setVisible(false);
         });
+
+        HelpfulMethodsGuiJava.createButton("img/oneHover.png", 291,150, a1Button);
+        HelpfulMethodsGuiJava.createButton("img/two.png", 291,150, a2Button);
+        HelpfulMethodsGuiJava.createButton("img/three.png", 291,150, a3Button);
+        HelpfulMethodsGuiJava.createButton("img/four.png", 291,150, a4Button);
+        HelpfulMethodsGuiJava.createButton("img/return.png", 291,150, returnButton);
+
+
+        a1Button.addMouseListener(
+                HelpfulMethodsGuiJava.hoverEvents(
+                        a1Button,
+                        "img/oneHover.png",
+                        "img/one.png",
+                        291,
+                        150));
+
+        a2Button.addMouseListener(
+                HelpfulMethodsGuiJava.hoverEvents(
+                        a2Button,
+                        "img/two.png",
+                        "img/twoHover.png",
+                        291,
+                        150));
+
+        a3Button.addMouseListener(
+                HelpfulMethodsGuiJava.hoverEvents(
+                        a3Button,
+                        "img/three.png",
+                        "img/threeHover.png",
+                        291,
+                        150));
+
+        a4Button.addMouseListener(
+                HelpfulMethodsGuiJava.hoverEvents(
+                        a4Button,
+                        "img/four.png",
+                        "img/fourHover.png",
+                        291,
+                        150));
+
+        returnButton.addMouseListener(
+                HelpfulMethodsGuiJava.hoverEvents(
+                        returnButton,
+                        "img/return.png",
+                        "img/returnHover.png",
+                        291,
+                        150));
     }
 
 }

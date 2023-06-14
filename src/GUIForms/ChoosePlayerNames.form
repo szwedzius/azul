@@ -158,13 +158,13 @@
               <foreground color="-394241"/>
             </properties>
           </component>
-          <component id="f56d3" class="javax.swing.JLabel">
+          <component id="f56d3" class="javax.swing.JLabel" binding="scoreboard">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font size="28"/>
-              <text value="SCOREBOARD"/>
+              <text value=""/>
             </properties>
           </component>
           <vspacer id="f24f4">

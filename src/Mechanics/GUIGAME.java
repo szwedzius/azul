@@ -5,6 +5,8 @@ import GUIForms.NumberOfPlayers;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * The game class handles all other classes
@@ -297,7 +299,15 @@ public class GUIGAME implements Serializable {
         }
         playersTables[indexOfPlayer].clearFloor();
     }
+    // localGame methods
 
+    private int getFirstPlayer(){
+        Random rand = new Random();
+        return rand.nextInt(numberOfPlayers);
+    }
+    private void playerTurn(Player currentPlayer){
+
+    }
     private static void localGame() throws Exception {
 
         NumberOfPlayers numberOfPlayersForm = new NumberOfPlayers();
@@ -312,15 +322,22 @@ public class GUIGAME implements Serializable {
             game.playersTables[i] = new Player(playerName);
         }
 
-        /*
-        ArrayList<Integer> que = new ArrayList<>();
-        // First starting player is chosen randomly
-        Random rand = new Random();
-        int first = rand.nextInt(numberOfPlayers);
-
+        ArrayList<Integer> playersQueue = new ArrayList<>();
         while(!isGameFinished){
             for(int i = 0; i<numberOfPlayers; i++)
-                que.add((first+i)%numberOfPlayers);
+                playersQueue.add((game.getFirstPlayer()+i)%numberOfPlayers);
+            boolean isEnd = false;
+            while(!isEnd){
+                for(int order : playersQueue){
+                    Player currentPlayer = game.playersTables[order];
+                    game.playerTurn(currentPlayer);
+                }
+            }
+        }
+        /*
+
+        while(!isGameFinished){
+
 
             isEnd = false;
             while(!isEnd) {

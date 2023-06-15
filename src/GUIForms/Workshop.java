@@ -83,7 +83,16 @@ public class Workshop {
           center.getFactoryCenterPanel().setVisible(true);
         };
     }
+    public ActionListener getToBoard(){
+        return e -> {
+            workshop.setVisible(false);
+            FactoriesCenter center = new FactoriesCenter();
+            GUI.frame.add(center.getFactoryCenterPanel());
+            center.getFactoryCenterPanel().setVisible(true);
+        };
+    }
     Workshop() throws Exception {
+        boardButton.addActionListener(getToBoard());
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
         centerButton.addActionListener(getToCenter());
         HelpfulMethodsGuiJava.createButton("img/confirm.png",291,150,boardButton);

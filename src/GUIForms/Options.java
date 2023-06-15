@@ -75,8 +75,8 @@ public class Options {
         returnButton.addMouseListener(
                 HelpfulMethodsGuiJava.hoverEvents(
                         returnButton,
-                        "img/medium.png",
-                        "img/mediumHover.png",
+                        "img/return.png",
+                        "img/returnHover.png",
                         291,
                         150));
     }

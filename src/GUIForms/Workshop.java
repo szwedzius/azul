@@ -110,8 +110,9 @@ public class Workshop {
     public ActionListener  collectTiles(int numberOfFactory, int numberOfTile, Table table){
         final int[] howManydeleted = {0};
         return e -> {
+            String name ="";
             if(!isTileTaken && !FactoriesCenter.getFactoriesCenterINSTANCE().isTilePicked()) {
-                String name = table.factories[numberOfFactory - 1].getContents()[numberOfTile - 1].getImageName();
+                name = table.factories[numberOfFactory - 1].getContents()[numberOfTile - 1].getImageName();
                 table.factories[numberOfFactory - 1].remove(table.factories[numberOfFactory - 1].getContents()[numberOfTile - 1]);
                 for (int i = 0; i < 4; i++) {
                     if (table.factories[numberOfFactory - 1].getContents()[i] == table.factories[numberOfFactory - 1].getContents()[numberOfTile - 1]) {
@@ -129,18 +130,18 @@ public class Workshop {
                     }
                 }
                 System.out.println(name);
-                addToPlayersPocketFromWorkshop(howManydeleted[0], name);
                 isTileTaken = true;
+                addToPlayersPocketFromWorkshop(howManydeleted[0], name);
             }
             JButton currentPressed = (JButton) e.getSource();
             workshopid = buttons.indexOf(currentPressed)/4;
-            String currentIcon = currentPressed.getIcon().toString();
-            switch (currentIcon){
+            switch (name){
                 case "img/red.png" -> takenTile = Tile.RED;
                 case "img/black.png" -> takenTile = Tile.BLACK;
                 case "img/white.png" -> takenTile = Tile.WHITE;
                 case "img/yellow.png" -> takenTile = Tile.YELLOW;
                 case "img/blue.png" -> takenTile = Tile.BLUE;
+                default -> takenTile = null;
             }
             workshop.setVisible(false);
             bord board = new bord();

@@ -389,7 +389,7 @@ public class GUIGAME implements Serializable {
                     System.out.println("Choose factory or center from which you want to take tiles");
                     //WorkshopID
                     //number = reader.nextInt() - 1;
-                    Workshop workshop = new Workshop();
+                    Workshop workshop = Workshop.getWorkshopInstance();
                     number = workshop.getWorkshopid();
 
                     System.out.println("Choose tile which you want to take from the factory");

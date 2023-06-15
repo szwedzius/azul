@@ -92,7 +92,7 @@ public class ChoosePlayerNames {
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
-                    workshop.getWorkshopPanel().setVisible(true);
+
                 }
             });
         if(MainFrame.getIsGameOnline()==1) {

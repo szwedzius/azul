@@ -109,6 +109,20 @@ public class Workshop {
                 if(table.factories[numberOfFactory-1].getContents()[i] == table.factories[numberOfFactory-1].getContents()[numberOfTile-1])
                     buttons.get((numberOfFactory-1)*4 + i).setVisible(false);
             }
+            JButton currentPressed = (JButton) e.getSource();
+            workshopid = buttons.indexOf(currentPressed)/4;
+            String currentIcon = currentPressed.getIcon().toString();
+            switch (currentIcon){
+                case "img/red.png" -> takenTile = Tile.RED;
+                case "img/black.png" -> takenTile = Tile.BLACK;
+                case "img/white.png" -> takenTile = Tile.WHITE;
+                case "img/yellow.png" -> takenTile = Tile.YELLOW;
+                case "img/blue.png" -> takenTile = Tile.BLUE;
+            }
+            workshop.setVisible(false);
+            bord board = new bord();
+            GUI.frame.add(board.getFullbord());
+            board.getFullbord().setVisible(true);
         };
     }
     public ActionListener chosenTile(){
@@ -123,6 +137,9 @@ public class Workshop {
                 case "img/yellow.png" -> takenTile = Tile.YELLOW;
                 case "img/blue.png" -> takenTile = Tile.BLUE;
             }
+            workshop.setVisible(false);
+            bord board = new bord();
+            board.getFullbord().setVisible(true);
         };
     }
 

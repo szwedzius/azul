@@ -4,7 +4,11 @@ import Mechanics.GUIGAME;
 import Mechanics.Tile;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
+
+import static Mechanics.GUIGAME.localGamePhase1;
+import static Mechanics.GUIGAME.que;
 
 public class bord {
     private JPanel fullbord;
@@ -119,6 +123,15 @@ public class bord {
         HelpfulMethodsGuiJava.createLabel("img/white_notile.png", 80,80, l24);
         HelpfulMethodsGuiJava.createLabel("img/blue_notile.png", 80,80, l25);
 
+        int index = 0;
+
+        for (Component component : this.stairs.getComponents()) {
+            if (component instanceof JButton && index < 22) {
+                ((JButton) component).addActionListener(makeTurn());
+                index++;
+            }
+        }
+
     }
 
     public JPanel getFullbord() {
@@ -129,4 +142,21 @@ public class bord {
         return e->{
         };
     }
+
+    public ActionListener makeTurn(){
+        return e -> {
+            try {
+                localGamePhase1(que.get(GUI.currentPlayerIndex));
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+            GUI.currentPlayerIndex++;
+        };
+    }
+
+
+
+
+
+
 }

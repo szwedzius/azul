@@ -333,39 +333,48 @@ public class GUIGAME implements Serializable {
         localGameMainLoop();
     }
 
-    public static void localGameMainLoop() throws Exception {
-        while (!isGameFinished) {
-            for (int i = 0; i < numberOfPlayers; i++)
-                que.add((first + i) % numberOfPlayers);
-            //TODO podświetl pierwszego gracza?
-
-
-            isEnd = false;
-
-                for(int order: que) {
-                    localGamePhase1(order);
-                }
-
-
-            for (int i = 0; i < numberOfPlayers; i++) {
-                game.addToWall(i);
-                game.subtractPointsFromFloor(i);
-            }
-
-            game.table.refillFactories();
-
-            for (int i = 0; i < numberOfPlayers; i++)
-                if (game.isGameFinished(i))
-                    isGameFinished = true;
+    public static void localGameNextTurn(int index) throws Exception {
+        if(!isEnd){
+            GUI.currentPlayerIndex = index;
+            //wywal do GUI na guziki w bordzie
+            //localGamePhase1(que.get(index));
+            //isEnd = game.isFirstStageFinished();
+        }
+        if(isEnd) {
+            first = game.findFirstPlayer();
+            que.clear();
+            localGameEmptyFactory();
         }
     }
 
 
+    public static void localGameMainLoop() throws Exception {
+        if (!isGameFinished) {
+            for (int i = 0; i < numberOfPlayers; i++)
+                que.add((first + i) % numberOfPlayers);
+            //TODO podświetl pierwszego gracza?
+            isEnd = false;
+            localGameNextTurn(0);
+        }
+    }
+
+    public static void localGameEmptyFactory() throws Exception {
+        for (int i = 0; i < numberOfPlayers; i++) {
+            game.addToWall(i);
+            game.subtractPointsFromFloor(i);
+        }
+
+        game.table.refillFactories();
+
+        for (int i = 0; i < numberOfPlayers; i++)
+            if (game.isGameFinished(i))
+                isGameFinished = true;
+
+        localGameMainLoop();
+    }
 
 
     public static void localGamePhase1(int order) throws Exception {
-
-
                 //System.out.println(game.table.bag.size());
                 System.out.println("Mechanics.Player : " + (order+1));
                 int number;
@@ -408,11 +417,7 @@ public class GUIGAME implements Serializable {
                 game.playersTables[order].pattern.printPatternLine();
                 game.playersTables[order].printFloor();
 
-                isEnd = game.isFirstStageFinished();
-                if(isEnd) {
-                    first = game.findFirstPlayer();
-                    que.clear();
-                }
+
 
 
     }

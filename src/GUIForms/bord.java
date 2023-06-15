@@ -71,6 +71,7 @@ public class bord {
     private JButton button21;
     private JButton button22;
     private JLabel[] tiles = new JLabel[25];
+    private static int row;
 
     bord() {
         HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button2);
@@ -144,6 +145,20 @@ public class bord {
 
     public ActionListener makeTurn(){
         return e -> {
+            row = 0;
+            if(e.getSource().equals(button1))
+                row =1;
+            else if (e.getSource().equals(button2)||e.getSource().equals(button3)) {
+                row =2;
+            } else if (e.getSource().equals(button4)||e.getSource().equals(button5)||e.getSource().equals(button6)) {
+                row =3;
+            } else if (e.getSource().equals(button7)||e.getSource().equals(button8) ||e.getSource().equals(button9)|| e.getSource().equals(button10)) {
+                row =4;
+            }else {
+                row =5;
+            }
+
+
             try {
                 //TODO error handling
                 localGamePhase1(que.get(GUI.currentPlayerIndex));
@@ -152,12 +167,11 @@ public class bord {
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
+            
         };
     }
 
-
-
-
-
-
+    public static int getRow() {
+        return row;
+    }
 }

@@ -1,5 +1,6 @@
 package GUIForms;
 
+import Mechanics.GUIGAME;
 import Mechanics.Table;
 import Mechanics.Tile;
 
@@ -113,7 +114,7 @@ public class Workshop {
             String name ="";
             if(!isTileTaken && !FactoriesCenter.getFactoriesCenterINSTANCE().isTilePicked()) {
                 name = table.factories[numberOfFactory - 1].getContents()[numberOfTile - 1].getImageName();
-                table.factories[numberOfFactory - 1].remove(table.factories[numberOfFactory - 1].getContents()[numberOfTile - 1]);
+                //table.factories[numberOfFactory - 1].remove(table.factories[numberOfFactory - 1].getContents()[numberOfTile - 1]);
                 for (int i = 0; i < 4; i++) {
                     if (table.factories[numberOfFactory - 1].getContents()[i] == table.factories[numberOfFactory - 1].getContents()[numberOfTile - 1]) {
                         buttons.get((numberOfFactory - 1) * 4 + i).setVisible(false);
@@ -181,8 +182,9 @@ public class Workshop {
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
         centerButton.addActionListener(getToCenter());
         HelpfulMethodsGuiJava.createButton("img/confirm.png",291,150,boardButton);
-        table = new Table(NumberOfPlayers.getClickedNumberOfPlayers());
-        table.refillFactories();
+        //table = new Table(NumberOfPlayers.getClickedNumberOfPlayers());
+        table = GUIGAME.getGame().table;
+        //table.refillFactories();
         buttons.add(factory1Tile1);
         buttons.add(factory1Tile2);
         buttons.add(factory1Tile3);
@@ -221,7 +223,6 @@ public class Workshop {
         buttons.add(factory9Tile4);
         int button = 0;
 
-        
         for (int i = 0; i < table.factories.length; i++) {
             for (int j = 0; j < 4; j++) {
                 HelpfulMethodsGuiJava.createButton(table.factories[i].getContents()[j].getImageName(),80,80,buttons.get(button));

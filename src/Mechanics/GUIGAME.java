@@ -3,6 +3,7 @@ package Mechanics;
 import GUIForms.GUI;
 import GUIForms.NumberOfPlayers;
 import GUIForms.Workshop;
+import GUIForms.bord;
 
 import javax.swing.*;
 import java.io.*;
@@ -17,6 +18,7 @@ public class GUIGAME implements Serializable {
     /**
      * Number of players playing
      */
+    private static GUIGAME INSTANCE;
     public final int players;
     public static int first;
     static int numberOfPlayers;
@@ -51,6 +53,16 @@ public class GUIGAME implements Serializable {
     /**
      * Default constructor
      */
+//    public static GUIGAME getINSTANCEOfGUIGAME(int numberOfPlayers, int mode) throws Exception {
+//        if(INSTANCE == null){
+//            INSTANCE = new GUIGAME(numberOfPlayers,mode);
+//        }
+//        return INSTANCE;
+//    }
+
+//    public static GUIGAME getINSTANCEGUIGAME(){
+//        return INSTANCE;
+//    }
     public GUIGAME(int numberOfPlayers, int mode) throws Exception {
         playersTables = new Player[numberOfPlayers];
         players = numberOfPlayers;
@@ -328,7 +340,8 @@ public class GUIGAME implements Serializable {
         Random rand = new Random();
 
         first = rand.nextInt(numberOfPlayers);
-
+        Workshop workshop = Workshop.getWorkshopInstance();
+        GUI.frame.add(workshop.getWorkshopPanel());
 
         localGameMainLoop();
     }
@@ -392,6 +405,7 @@ public class GUIGAME implements Serializable {
                     Workshop workshop = Workshop.getWorkshopInstance();
                     number = workshop.getWorkshopid();
 
+
                     System.out.println("Choose tile which you want to take from the factory");
                     //tile button -> który przycisk
                     //tiles = reader.next();
@@ -399,13 +413,14 @@ public class GUIGAME implements Serializable {
                     System.out.println("Choose where you want to add the tiles, 1-5 for pattern lines, 6 for floor");
                     //Sprytna metoda na rząd linii
                     //whereToPlaceTiles = reader.nextInt() - 1;
-                    whereToPlaceTiles = 3 - 1;
+                    whereToPlaceTiles = bord.getRow() - 1;
 
                     tileToAdd = workshop.takenTile;
 
 
                     if(!game.table.isColourInFactory(tileToAdd, number) || !game.isMoveValid(number, whereToPlaceTiles, order, tileToAdd))
                         System.out.println("Chosen tile doesn't exist in this factory, please choose again");
+
                 } while (!game.table.isColourInFactory(tileToAdd, number) || !game.isMoveValid(number, whereToPlaceTiles, order, tileToAdd));
                 // END
 
@@ -614,4 +629,7 @@ public class GUIGAME implements Serializable {
         }
     }
 
+    public static GUIGAME getGame() {
+        return game;
+    }
 }

@@ -79,20 +79,17 @@ public class ChoosePlayerNames {
 
                 if (numberOfNames == NumberOfPlayers.getClickedNumberOfPlayers()) {
                     System.out.println("wchodzi");
-                    Workshop workshop;
-                    try {
-                        workshop = Workshop.getWorkshopInstance();
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    GUI.frame.add(workshop.getWorkshopPanel());
-                    //GUI.setWorkshop(workshop);
-                    panel1.setVisible(false);
+                    //Workshop workshop;
                     try {
                         GUIGAME.localGameStart();
+                        //workshop = Workshop.getWorkshopInstance();
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
+                    //GUI.frame.add(workshop.getWorkshopPanel());
+                    //GUI.setWorkshop(workshop);
+                    panel1.setVisible(false);
+
 
                 }
             });
@@ -120,8 +117,9 @@ public class ChoosePlayerNames {
         // and adding them to the frame.
     }
 
-
-
+    public static int getNumberOfNames() {
+        return numberOfNames;
+    }
 //    @Override
 //    public void actionPerformed(ActionEvent e) {
 //        if ("Confirm".equals(e.getActionCommand())) {  // Check action command of the event

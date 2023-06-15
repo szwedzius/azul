@@ -72,12 +72,12 @@ public class ChoosePlayerNames {
                     System.out.println("wchodzi");
                     Workshop workshop = null;
                     try {
-                        workshop = new Workshop();
+                        workshop = Workshop.getWorkshopInstance();
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
                     GUI.frame.add(workshop.getWorkshopPanel());
-                    GUI.setWorkshop(workshop);
+                    //GUI.setWorkshop(workshop);
                     panel1.setVisible(false);
                     try {
                         GUIGAME.localGameStart();
@@ -93,7 +93,7 @@ public class ChoosePlayerNames {
             }
         }
         else if (numberOfNames == NumberOfPlayers.getClickedNumberOfPlayers()) {
-            Workshop workshop = new Workshop();
+            Workshop workshop = Workshop.getWorkshopInstance();
             GUI.frame.add(workshop.getWorkshopPanel());
             panel1.setVisible(false);
         }

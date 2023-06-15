@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 
 public class FactoriesCenter {
+    private static FactoriesCenter INSTANCE;
     private JPanel factoryCenter;
     private JPanel scoreBoard;
     private JLabel playerName1;
@@ -29,11 +30,12 @@ public class FactoriesCenter {
     private JLabel redNumber;
     private JLabel yellowNumber;
 
-    private static int whiteQuantity;
-    private static int blackQuantity;
-    private static int redQuantity;
-    private static int blueQuantity;
-    private static int yellowQuantity;
+    private static int whiteQuantity = 0;
+    private static int blackQuantity = 0;
+    private static int redQuantity = 0;
+    private static int blueQuantity = 0;
+    private static int yellowQuantity = 0;
+
 
 
     public JPanel getFactoryCenterPanel(){
@@ -41,23 +43,40 @@ public class FactoriesCenter {
     }
     public ActionListener getToWorkshop(){
         return e -> {
+            Workshop workshop;
           factoryCenter.setVisible(false);
-          GUI.getWorkshop().getWorkshopPanel().setVisible(true);
+            try {
+                workshop = Workshop.getWorkshopInstance();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+            workshop.getWorkshopPanel().setVisible(true);
         };
     }
-    FactoriesCenter(){
-        whiteQuantity = 0;
-        blackQuantity = 0;
-        redQuantity = 0;
-        blueQuantity = 0;
-        yellowQuantity = 0;
+
+    public static FactoriesCenter getFactoriesCenterINSTANCE() {
+        if(INSTANCE == null){
+            INSTANCE = new FactoriesCenter();
+        }
+        return INSTANCE;
+    }
+
+    private FactoriesCenter(){
         HelpfulMethodsGuiJava.createButton("img/white.png",100,100,whiteTile);
         HelpfulMethodsGuiJava.createButton("img/black.png",100,100,blackTile);
         HelpfulMethodsGuiJava.createButton("img/blue.png",100,100,blueTile);
         HelpfulMethodsGuiJava.createButton("img/red.png",100,100,redTile);
         HelpfulMethodsGuiJava.createButton("img/yellow.png",100,100,yellowTile);
-        whiteNumber.setText(String.valueOf(whiteQuantity));
+        updateTileQuantities();
         factoriesButton.addActionListener(getToWorkshop());
+    }
+
+    public void updateTileQuantities() {
+        whiteNumber.setText(String.valueOf(whiteQuantity));
+        blackNumber.setText(String.valueOf(blackQuantity));
+        redNumber.setText(String.valueOf(redQuantity));
+        blueNumber.setText(String.valueOf(blueQuantity));
+        yellowNumber.setText(String.valueOf(yellowQuantity));
     }
 
     public static void setWhiteQuantity(int whiteQuantity) {

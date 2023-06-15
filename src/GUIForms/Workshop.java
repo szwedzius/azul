@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 
 public class Workshop {
+
+    private static Workshop INSTANCE;
+
     private JPanel workshop;
     private JButton confirmButton;
     private JPanel ScoreBoard;
@@ -72,15 +75,15 @@ public class Workshop {
     private ArrayList<JButton> buttons = new ArrayList<>();
     private Table table;
     private boolean isRoundFinished;
+
     public JPanel getWorkshopPanel() {
         return workshop;
     }
-
     public ActionListener getToCenter(){
         return e -> {
-          workshop.setVisible(false);
-          FactoriesCenter center = new FactoriesCenter();
+          FactoriesCenter center = FactoriesCenter.getFactoriesCenterINSTANCE();
           GUI.frame.add(center.getFactoryCenterPanel());
+          workshop.setVisible(false);
           center.getFactoryCenterPanel().setVisible(true);
         };
     }
@@ -105,6 +108,7 @@ public class Workshop {
                 if(table.factories[numberOfFactory-1].getContents()[i] == table.factories[numberOfFactory-1].getContents()[numberOfTile-1]) {
                     buttons.get((numberOfFactory - 1) * 4 + i).setVisible(false);
                     howManydeleted[0]++;
+                    System.out.println(howManydeleted[0]);
                 }
             }
             addToCenter(howManydeleted[0],numberOfFactory,numberOfTile);
@@ -112,7 +116,15 @@ public class Workshop {
         };
     }
 
-    Workshop() throws Exception {
+
+
+    public static Workshop getWorkshopInstance() throws Exception {
+        if(INSTANCE == null){
+            INSTANCE = new Workshop();
+        }
+        return INSTANCE;
+    }
+    private Workshop() throws Exception {
         isRoundFinished = false;
         boardButton.addActionListener(getToBoard());
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
@@ -235,17 +247,23 @@ public class Workshop {
     }
     private void addToCenter(int quantity,int factory,int tile){
         String tileName = table.factories[factory].getContents()[tile].getImageName();
+        FactoriesCenter center = FactoriesCenter.getFactoriesCenterINSTANCE();
         switch (tileName){
             case ("WHITE"):
-
+                FactoriesCenter.setWhiteQuantity(quantity);
+                center.updateTileQuantities();
                 break;
             case ("BLACK"):
+                FactoriesCenter.setBlackQuantity(quantity);
                 break;
             case ("RED"):
+                FactoriesCenter.setRedQuantity(quantity);
                 break;
             case ("BLUE"):
+                FactoriesCenter.setBlueQuantity(quantity);
                 break;
             case ("YELLOW"):
+                FactoriesCenter.setYellowQuantity(quantity);
                 break;
         }
     }

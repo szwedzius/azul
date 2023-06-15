@@ -1,9 +1,9 @@
 package GUIForms;
 
 import Mechanics.Table;
+import Mechanics.Tile;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 
@@ -74,7 +74,7 @@ public class Workshop {
     private JTextField textField1;
     private ArrayList<JButton> buttons = new ArrayList<>();
     private Table table;
-    private boolean isRoundFinished;
+    private boolean isTileTaken = false;
 
     public JPanel getWorkshopPanel() {
         return workshop;
@@ -103,16 +103,28 @@ public class Workshop {
     public ActionListener  collectTiles(int numberOfFactory, int numberOfTile, Table table){
         final int[] howManydeleted = {0};
         return e -> {
-            table.factories[numberOfFactory-1].remove(table.factories[numberOfFactory-1].getContents()[numberOfTile-1]);
-            for(int i = 0; i < 4 ; i++) {
-                if(table.factories[numberOfFactory-1].getContents()[i] == table.factories[numberOfFactory-1].getContents()[numberOfTile-1]) {
+            if(!isTileTaken && !FactoriesCenter.getFactoriesCenterINSTANCE().isTilePicked()) {
+                String name = table.factories[numberOfFactory - 1].getContents()[numberOfTile - 1].getImageName();
+                table.factories[numberOfFactory - 1].remove(table.factories[numberOfFactory - 1].getContents()[numberOfTile - 1]);
+                for (int i = 0; i < 4; i++) {
+                    if (table.factories[numberOfFactory - 1].getContents()[i] == table.factories[numberOfFactory - 1].getContents()[numberOfTile - 1]) {
+                        buttons.get((numberOfFactory - 1) * 4 + i).setVisible(false);
+                        howManydeleted[0]++;
+                        System.out.println(howManydeleted[0]);
+                        continue;
+                    }
                     buttons.get((numberOfFactory - 1) * 4 + i).setVisible(false);
-                    howManydeleted[0]++;
-                    System.out.println(howManydeleted[0]);
                 }
+
+                for (Tile t : table.factories[numberOfFactory - 1].getContents()) {
+                    if (t != null) {
+                        addToCenter(1, t.getImageName());
+                    }
+                }
+                System.out.println(name);
+                addToPlayersPocketFromWorkshop(howManydeleted[0], name);
+                isTileTaken = true;
             }
-            addToCenter(howManydeleted[0],numberOfFactory,numberOfTile);
-            isRoundFinished = true;
         };
     }
 
@@ -125,7 +137,7 @@ public class Workshop {
         return INSTANCE;
     }
     private Workshop() throws Exception {
-        isRoundFinished = false;
+        isTileTaken = false;
         boardButton.addActionListener(getToBoard());
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
         centerButton.addActionListener(getToCenter());
@@ -245,25 +257,33 @@ public class Workshop {
         factory9Tile4.addActionListener(collectTiles(9,4, table));
 
     }
-    private void addToCenter(int quantity,int factory,int tile){
-        String tileName = table.factories[factory].getContents()[tile].getImageName();
-        FactoriesCenter center = FactoriesCenter.getFactoriesCenterINSTANCE();
+    private void addToPlayersPocketFromWorkshop(int quantity, String tileName){
+
+    }
+    private void addToCenter(int quantity,String tileName){
+                FactoriesCenter center = FactoriesCenter.getFactoriesCenterINSTANCE();
         switch (tileName){
-            case ("WHITE"):
-                FactoriesCenter.setWhiteQuantity(quantity);
+            case ("img/white.png"):
+                System.out.println(quantity+FactoriesCenter.getWhiteQuantity());
+                FactoriesCenter.setWhiteQuantity(quantity+FactoriesCenter.getWhiteQuantity());
                 center.updateTileQuantities();
                 break;
-            case ("BLACK"):
-                FactoriesCenter.setBlackQuantity(quantity);
+            case ("img/black.png"):
+                FactoriesCenter.setBlackQuantity(quantity+FactoriesCenter.getBlackQuantity());
+                center.updateTileQuantities();
                 break;
-            case ("RED"):
-                FactoriesCenter.setRedQuantity(quantity);
+            case ("img/red.png"):
+
+                FactoriesCenter.setRedQuantity(quantity+FactoriesCenter.getRedQuantity());
+                center.updateTileQuantities();
                 break;
-            case ("BLUE"):
-                FactoriesCenter.setBlueQuantity(quantity);
+            case ("img/blue.png"):
+                FactoriesCenter.setBlueQuantity(quantity+FactoriesCenter.getBlueQuantity());
+                center.updateTileQuantities();
                 break;
-            case ("YELLOW"):
-                FactoriesCenter.setYellowQuantity(quantity);
+            case ("img/yellow.png"):
+                FactoriesCenter.setYellowQuantity(quantity+FactoriesCenter.getYellowQuantity());
+                center.updateTileQuantities();
                 break;
         }
     }
@@ -306,5 +326,7 @@ public class Workshop {
     }
 
 
-
+    public boolean isTileTaken() {
+        return isTileTaken;
+    }
 }

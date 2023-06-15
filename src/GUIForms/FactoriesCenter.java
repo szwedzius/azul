@@ -36,6 +36,27 @@ public class FactoriesCenter {
     private static int blueQuantity = 0;
     private static int yellowQuantity = 0;
 
+    private boolean isTilePicked = false;
+
+    public static int getWhiteQuantity() {
+        return whiteQuantity;
+    }
+
+    public static int getBlackQuantity() {
+        return blackQuantity;
+    }
+
+    public static int getRedQuantity() {
+        return redQuantity;
+    }
+
+    public static int getBlueQuantity() {
+        return blueQuantity;
+    }
+
+    public static int getYellowQuantity() {
+        return yellowQuantity;
+    }
 
 
     public JPanel getFactoryCenterPanel(){
@@ -60,6 +81,18 @@ public class FactoriesCenter {
         }
         return INSTANCE;
     }
+    public ActionListener tilePicked(String name){
+        return e -> {
+            try {
+                if(!isTilePicked && !Workshop.getWorkshopInstance().isTileTaken()) {
+                    addTileToPlayersPocketFromCenter(name);
+                    isTilePicked = true;
+                }
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        };
+    }
 
     private FactoriesCenter(){
         HelpfulMethodsGuiJava.createButton("img/white.png",100,100,whiteTile);
@@ -69,6 +102,12 @@ public class FactoriesCenter {
         HelpfulMethodsGuiJava.createButton("img/yellow.png",100,100,yellowTile);
         updateTileQuantities();
         factoriesButton.addActionListener(getToWorkshop());
+        whiteTile.addActionListener(tilePicked("WHITE"));
+        blackTile.addActionListener(tilePicked("BLACK"));
+        blueTile.addActionListener(tilePicked("BLUE"));
+        redTile.addActionListener(tilePicked("RED"));
+        yellowTile.addActionListener(tilePicked("YELLOW"));
+
     }
 
     public void updateTileQuantities() {
@@ -77,6 +116,48 @@ public class FactoriesCenter {
         redNumber.setText(String.valueOf(redQuantity));
         blueNumber.setText(String.valueOf(blueQuantity));
         yellowNumber.setText(String.valueOf(yellowQuantity));
+    }
+    private void addTileToPlayersPocketFromCenter( String tileName){
+        int quantity;
+            switch (tileName) {
+                case ("WHITE"):
+                    if(whiteQuantity!=0) {
+                        quantity = whiteQuantity;
+                        System.out.println(quantity);
+                        setWhiteQuantity(0);
+                        updateTileQuantities();
+                    }
+                    break;
+                case ("BLACK"):
+                    if (blackQuantity !=0) {
+                        quantity = blackQuantity;
+                        setBlackQuantity(0);
+                        updateTileQuantities();
+                    }
+                    break;
+                case ("RED"):
+                    if(redQuantity != 0) {
+                        quantity = redQuantity;
+                        setRedQuantity(0);
+                        updateTileQuantities();
+                    }
+                    break;
+                case ("BLUE"):
+                    if(blueQuantity !=0) {
+                        quantity = blueQuantity;
+                        setBlueQuantity(0);
+                        updateTileQuantities();
+                    }
+                    break;
+                case ("YELLOW"):
+                    if(yellowQuantity != 0) {
+                        quantity = yellowQuantity;
+                        setYellowQuantity(0);
+                        updateTileQuantities();
+                    }
+                    break;
+
+            }
     }
 
     public static void setWhiteQuantity(int whiteQuantity) {
@@ -97,5 +178,9 @@ public class FactoriesCenter {
 
     public static void setYellowQuantity(int yellowQuantity) {
         FactoriesCenter.yellowQuantity = yellowQuantity;
+    }
+
+    public boolean isTilePicked() {
+        return isTilePicked;
     }
 }

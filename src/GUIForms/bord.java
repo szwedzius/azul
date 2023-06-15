@@ -74,6 +74,22 @@ public class bord {
     private static int row;
 
     bord() {
+        playerName4.setForeground(Color.WHITE);
+        playerName3.setForeground(Color.WHITE);
+        playerName2.setForeground(Color.WHITE);
+        playerName1.setForeground(Color.WHITE);
+        playerName1.setFont(new Font("Georgia", Font.PLAIN, 28));
+        playerName2.setFont(new Font("Georgia", Font.PLAIN, 28));
+        playerName3.setFont(new Font("Georgia", Font.PLAIN, 28));
+        playerName4.setFont(new Font("Georgia", Font.PLAIN, 28));
+        score1.setForeground(Color.WHITE);
+        score1.setFont(new Font("Georgia", Font.PLAIN, 28));
+        score2.setForeground(Color.WHITE);
+        score2.setFont(new Font("Georgia", Font.PLAIN, 28));
+        score3.setForeground(Color.WHITE);
+        score3.setFont(new Font("Georgia", Font.PLAIN, 28));
+        score4.setForeground(Color.WHITE);
+        score4.setFont(new Font("Georgia", Font.PLAIN, 28));
         HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button2);
         HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button3);
         HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button5);
@@ -130,6 +146,33 @@ public class bord {
                 ((JButton) component).addActionListener(makeTurn());
                 index++;
             }
+        }
+
+        switch (NumberOfPlayers.getClickedNumberOfPlayers()){
+            case 1:
+                playerName1.setText(GUI.nameList.get(0));
+
+                break;
+            case 2:
+                playerName1.setText(GUI.nameList.get(0));
+                playerName2.setText(GUI.nameList.get(1));
+
+                break;
+            case 3:
+                playerName1.setText(GUI.nameList.get(0));
+                playerName2.setText(GUI.nameList.get(1));
+                playerName3.setText(GUI.nameList.get(2));
+
+                break;
+            case 4:
+                playerName1.setText(GUI.nameList.get(0));
+                playerName2.setText(GUI.nameList.get(1));
+                playerName3.setText(GUI.nameList.get(2));
+                playerName4.setText(GUI.nameList.get(3));
+
+            default:
+                playerName1.setText(GUI.nameList.get(0));
+
         }
 
     }

@@ -181,10 +181,18 @@
       <component id="88ed1" class="javax.swing.JTextField" binding="textField1" default-binding="true">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
+            <minimum-size width="400" height="60"/>
+            <preferred-size width="400" height="60"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-12228725"/>
+          <font name="Georgia Pro" size="24"/>
+          <foreground color="-2564375"/>
+          <horizontalAlignment value="0"/>
+          <text value="insert your name"/>
+          <toolTipText value="insert your name"/>
+        </properties>
       </component>
     </children>
   </grid>

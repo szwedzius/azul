@@ -1,9 +1,6 @@
 package Mechanics;
 
-import GUIForms.GUI;
-import GUIForms.NumberOfPlayers;
-import GUIForms.Workshop;
-import GUIForms.bord;
+import GUIForms.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -354,6 +351,8 @@ public class GUIGAME implements Serializable {
             Workshop workshop = Workshop.getWorkshopInstance();
             bord bord = GUIGAME.game.playersTables[(GUI.currentPlayerIndex + numberOfPlayers -1) % numberOfPlayers].getPlayersBoard();
             bord.getFullbord().setVisible(false);
+            Workshop.getWorkshopInstance().setIfTileIsTaken();
+            FactoriesCenter.getFactoriesCenterINSTANCE().setIfTileIsPicked();
             workshop.getWorkshopPanel().setVisible(true);
         }
         if(isEnd) {

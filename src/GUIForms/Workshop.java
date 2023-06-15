@@ -127,7 +127,7 @@ public class Workshop {
                 }
 
                 for (Tile t : table.factories[numberOfFactory - 1].getContents()) {
-                    if (t != null) {
+                    if (t.getImageName() != name) {
                         addToCenter(1, t.getImageName());
                     }
                 }
@@ -384,5 +384,9 @@ public class Workshop {
 
     public boolean isTileTaken() {
         return isTileTaken;
+    }
+
+    public void setIfTileIsTaken(){
+        isTileTaken = false;
     }
 }

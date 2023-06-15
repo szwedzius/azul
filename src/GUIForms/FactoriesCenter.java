@@ -226,4 +226,7 @@ public class FactoriesCenter {
     public boolean isTilePicked() {
         return isTilePicked;
     }
+    public void setIfTileIsPicked(){
+        isTilePicked = false;
+    }
 }

@@ -86,9 +86,9 @@ public class Workshop {
         return e -> {
             System.out.println("essa");
             workshop.setVisible(false);
-            Board board = new Board();
-            GUI.frame.add(board.getBoard());
-            board.getBoard().setVisible(true);
+            bord bord = new bord();
+            GUI.frame.add(bord.getFullbord());
+            bord.getFullbord().setVisible(true);
 //            Pattern pattern = new Pattern();
 //            GUI.frame.add(pattern.getWall());
 //            pattern.getWall().setVisible(true);

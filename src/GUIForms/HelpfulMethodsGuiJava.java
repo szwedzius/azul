@@ -26,7 +26,6 @@ public class HelpfulMethodsGuiJava {
             public void mouseEntered(MouseEvent me) {
                 button.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(pathDefault, width, height));
             }
-
             @Override
             public void mouseExited(MouseEvent me){
                 button.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(pathHovered, width, height));
@@ -46,7 +45,7 @@ public class HelpfulMethodsGuiJava {
         current.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(path, width, height));
         current.setBorder(BorderFactory.createEmptyBorder());
         current.setOpaque(false);
-        current.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        //current.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         return current;
     }
 }

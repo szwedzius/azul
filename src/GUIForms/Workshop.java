@@ -75,6 +75,23 @@ public class Workshop {
     private JButton factory9Tile4;
     private JTextField textField1;
     private ArrayList<JButton> buttons = new ArrayList<>();
+
+    public JLabel getPlayerName1() {
+        return playerName1;
+    }
+
+    public JLabel getPlayerName4() {
+        return playerName4;
+    }
+
+    public JLabel getPlayerName3() {
+        return playerName3;
+    }
+
+    public JLabel getPlayerName2() {
+        return playerName2;
+    }
+
     private Table table;
     private boolean isTileTaken = false;
     public int workshopid = 0;
@@ -179,6 +196,8 @@ public class Workshop {
         return INSTANCE;
     }
     private Workshop() throws Exception {
+
+
         playerName4.setForeground(Color.WHITE);
         playerName3.setForeground(Color.WHITE);
         playerName2.setForeground(Color.WHITE);

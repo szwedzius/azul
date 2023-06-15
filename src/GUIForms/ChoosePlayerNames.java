@@ -79,7 +79,7 @@ public class ChoosePlayerNames {
 
                 if (numberOfNames == NumberOfPlayers.getClickedNumberOfPlayers()) {
                     System.out.println("wchodzi");
-                    Workshop workshop = null;
+                    Workshop workshop;
                     try {
                         workshop = new Workshop();
                     } catch (Exception ex) {

@@ -336,9 +336,6 @@ public class GUIGAME implements Serializable {
     public static void localGameNextTurn(int index) throws Exception {
         if(!isEnd){
             GUI.currentPlayerIndex = index;
-            //wywal do GUI na guziki w bordzie
-            //localGamePhase1(que.get(index));
-            //isEnd = game.isFirstStageFinished();
         }
         if(isEnd) {
             first = game.findFirstPlayer();
@@ -352,7 +349,6 @@ public class GUIGAME implements Serializable {
         if (!isGameFinished) {
             for (int i = 0; i < numberOfPlayers; i++)
                 que.add((first + i) % numberOfPlayers);
-            //TODO podświetl pierwszego gracza?
             isEnd = false;
             localGameNextTurn(0);
         }
@@ -416,10 +412,7 @@ public class GUIGAME implements Serializable {
                 game.addTilesToPatternLines(order, tileToAdd, number, whereToPlaceTiles);
                 game.playersTables[order].pattern.printPatternLine();
                 game.playersTables[order].printFloor();
-
-
-
-
+                isEnd = game.isFirstStageFinished();
     }
 
     private static void localGame() throws Exception {

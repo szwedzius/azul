@@ -7,8 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-import static Mechanics.GUIGAME.localGamePhase1;
-import static Mechanics.GUIGAME.que;
+import static Mechanics.GUIGAME.*;
 
 public class bord {
     private JPanel fullbord;
@@ -146,11 +145,13 @@ public class bord {
     public ActionListener makeTurn(){
         return e -> {
             try {
+                //TODO error handling
                 localGamePhase1(que.get(GUI.currentPlayerIndex));
+                GUI.currentPlayerIndex++;
+                localGameNextTurn(GUI.currentPlayerIndex);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
-            GUI.currentPlayerIndex++;
         };
     }
 

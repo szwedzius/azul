@@ -61,58 +61,60 @@ public class bord {
     private JLabel l23;
     private JLabel l24;
     private JLabel l25;
+    private JButton button21;
+    private JButton button22;
     private JLabel[] tiles = new JLabel[25];
 
     bord() {
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button2);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button3);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button5);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button6);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button7);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button8);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button9);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button10);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button11);
-        HelpfulMethodsGuiJava.createButton("img/black.png", 60, 60, button12);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button13);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button14);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button15);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button16);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button17);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button18);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button19);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button20);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button1);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button4);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button2);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button3);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button5);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button6);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button7);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button8);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button9);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button10);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button11);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button12);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button13);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button14);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button15);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button16);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button17);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button18);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button19);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button20);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button21);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button4);
+        HelpfulMethodsGuiJava.createButton("img/notile.png", 80, 80, button1);
+        HelpfulMethodsGuiJava.createButton("img/notile.png", 80, 80, button22);
 
-        tiles[0] = l1;
-        tiles[1] = l2;
-        tiles[2] = l3;
-        tiles[3] = l4;
-        tiles[4] = l5;
-        tiles[5] = l6;
-        tiles[6] = l7;
-        tiles[7] = l8;
-        tiles[8] = l9;
-        tiles[9] = l10;
-        tiles[10] = l11;
-        tiles[11] = l12;
-        tiles[12] = l13;
-        tiles[13] = l14;
-        tiles[14] = l15;
-        tiles[15] = l16;
-        tiles[16] = l17;
-        tiles[17] = l18;
-        tiles[18] = l19;
-        tiles[19] = l20;
-        tiles[20] = l21;
-        tiles[21] = l22;
-        tiles[22] = l23;
-        tiles[23] = l24;
-        tiles[24] = l25;
-        for(JLabel tile: tiles){
-            HelpfulMethodsGuiJava.createLabel("img/notile.png", 50,50, tile);
-        }
+        HelpfulMethodsGuiJava.createLabel("img/blue_notile.png", 80,80, l1);
+        HelpfulMethodsGuiJava.createLabel("img/yellow_notile.png", 80,80, l2);
+        HelpfulMethodsGuiJava.createLabel("img/red_notile.png", 80,80, l3);
+        HelpfulMethodsGuiJava.createLabel("img/black_notile.png", 80,80, l4);
+        HelpfulMethodsGuiJava.createLabel("img/white_notile.png", 80,80, l5);
+        HelpfulMethodsGuiJava.createLabel("img/white_notile.png", 80,80, l6);
+        HelpfulMethodsGuiJava.createLabel("img/blue_notile.png", 80,80, l7);
+        HelpfulMethodsGuiJava.createLabel("img/yellow_notile.png", 80,80, l8);
+        HelpfulMethodsGuiJava.createLabel("img/red_notile.png", 80,80, l9);
+        HelpfulMethodsGuiJava.createLabel("img/black_notile.png", 80,80, l10);
+        HelpfulMethodsGuiJava.createLabel("img/black_notile.png", 80,80, l11);
+        HelpfulMethodsGuiJava.createLabel("img/white_notile.png", 80,80, l12);
+        HelpfulMethodsGuiJava.createLabel("img/blue_notile.png", 80,80, l13);
+        HelpfulMethodsGuiJava.createLabel("img/yellow_notile.png", 80,80, l14);
+        HelpfulMethodsGuiJava.createLabel("img/red_notile.png", 80,80, l15);
+        HelpfulMethodsGuiJava.createLabel("img/red_notile.png", 80,80, l16);
+        HelpfulMethodsGuiJava.createLabel("img/black_notile.png", 80,80, l17);
+        HelpfulMethodsGuiJava.createLabel("img/white_notile.png", 80,80, l18);
+        HelpfulMethodsGuiJava.createLabel("img/blue_notile.png", 80,80, l19);
+        HelpfulMethodsGuiJava.createLabel("img/yellow_notile.png", 80,80, l20);
+        HelpfulMethodsGuiJava.createLabel("img/yellow_notile.png", 80,80, l21);
+        HelpfulMethodsGuiJava.createLabel("img/red_notile.png", 80,80, l22);
+        HelpfulMethodsGuiJava.createLabel("img/black_notile.png", 80,80, l23);
+        HelpfulMethodsGuiJava.createLabel("img/white_notile.png", 80,80, l24);
+        HelpfulMethodsGuiJava.createLabel("img/blue_notile.png", 80,80, l25);
+
     }
 
     public JPanel getFullbord() {

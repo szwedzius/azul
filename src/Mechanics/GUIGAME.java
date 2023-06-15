@@ -310,6 +310,7 @@ public class GUIGAME implements Serializable {
         int index = 0;
         for(String x: GUI.nameList){
             game.playersTables[index] = new Player(x);
+            index++;
         }
 
         // First starting player is chosen randomly

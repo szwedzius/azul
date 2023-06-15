@@ -130,7 +130,7 @@
           <component id="ff25a" class="javax.swing.JButton" binding="button16" default-binding="true">
             <constraints>
               <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="40" height="40"/>
+                <preferred-size width="80" height="80"/>
               </grid>
             </constraints>
             <properties>
@@ -140,7 +140,7 @@
           <component id="e1a0d" class="javax.swing.JButton" binding="button17" default-binding="true">
             <constraints>
               <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="40" height="40"/>
+                <preferred-size width="80" height="80"/>
               </grid>
             </constraints>
             <properties>
@@ -190,7 +190,7 @@
           <component id="31dca" class="javax.swing.JButton" binding="button5" default-binding="true">
             <constraints>
               <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="40" height="40"/>
+                <preferred-size width="80" height="80"/>
               </grid>
             </constraints>
             <properties>
@@ -200,7 +200,7 @@
           <component id="3e9da" class="javax.swing.JButton" binding="button21" default-binding="true">
             <constraints>
               <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                <preferred-size width="40" height="40"/>
+                <preferred-size width="80" height="80"/>
               </grid>
             </constraints>
             <properties>

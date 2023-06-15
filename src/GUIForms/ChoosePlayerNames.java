@@ -59,7 +59,7 @@ public class ChoosePlayerNames {
                 textField1.getText();
                 System.out.println(textField1.getText());
                 String name = (textField1.getText());
-                Player player = new Player(name);
+
                 textField1.setText(null);
                 if(numberOfNames==0){
                     playerName1.setText(name);

@@ -17,6 +17,7 @@ public class GUIGAME implements Serializable {
      * Number of players playing
      */
     public final int players;
+    public static int first;
     static int numberOfPlayers;
     static boolean isEnd = false;
     static boolean isGameFinished = false;
@@ -27,6 +28,7 @@ public class GUIGAME implements Serializable {
     public static JPanel currentPanel;
     public static String rec1;
 
+    public static ArrayList<Integer> que = new ArrayList<>();
 
     /**
      * Mechanics.Game mode
@@ -310,52 +312,98 @@ public class GUIGAME implements Serializable {
             game.playersTables[index] = new Player(x);
         }
 
-        ArrayList<Integer> que = new ArrayList<>();
         // First starting player is chosen randomly
         Random rand = new Random();
-        int first = rand.nextInt(numberOfPlayers);
+
+        first = rand.nextInt(numberOfPlayers);
+
+
+        localGameMainLoop();
     }
 
-    public static void localGamePhase1(){
-        /*do{
-            game.printFactory();
-            System.out.println();
-            System.out.println();
+    public static void localGameMainLoop() throws Exception {
+        while(!isGameFinished){
+            for(int i = 0; i<numberOfPlayers; i++)
+                que.add((first+i)%numberOfPlayers);
+            //TODO podświetl pierwszego gracza?
 
-            System.out.println("Choose factory or center from which you want to take tiles");
-            number = reader.nextInt() - 1;
 
-            System.out.println("Choose tile which you want to take from the factory");
-            tiles = reader.next();
+            isEnd = false;
+            localGamePhase1();
 
-            System.out.println("Choose where you want to add the tiles, 1-5 for pattern lines, 6 for floor");
-            whereToPlaceTiles = reader.nextInt() - 1;
-
-            tileToAdd = switch (tiles.toUpperCase()) {
-                case "BLACK" -> Tile.BLACK;
-                case "WHITE" -> Tile.WHITE;
-                case "BLUE" -> Tile.BLUE;
-                case "YELLOW" -> Tile.YELLOW;
-                case "RED" -> Tile.RED;
-                default -> null;
-            };
-            if(!game.table.isColourInFactory(tileToAdd, number) || !game.isMoveValid(number, whereToPlaceTiles, order, tileToAdd))
-                System.out.println("Chosen tile doesn't exist in this factory, please choose again");
-        } while (!game.table.isColourInFactory(tileToAdd, number) || !game.isMoveValid(number, whereToPlaceTiles, order, tileToAdd));
-
-             */
+            for(int i=0; i<numberOfPlayers; i++)
+                if(game.isGameFinished(i))
+                    isGameFinished = true;
+        }
     }
 
-    private static void localGamePhase2(){
-        /*
-                    game.addTilesToPatternLines(order, tileToAdd, number, whereToPlaceTiles);
-                    game.playersTables[order].pattern.printPatternLine();
-                    game.playersTables[order].printFloor();
-                    for(int i=0; i<numberOfPlayers; i++){
-                        game.addToWall(i);
-                        game.subtractPointsFromFloor(i);
-                    }
-         */
+
+
+    public static void localGamePhase1() throws Exception {
+        while(!isEnd) {
+            for(int order: que) {
+                //System.out.println(game.table.bag.size());
+                System.out.println("Mechanics.Player : " + (order+1));
+                int number;
+                String tiles;
+                int whereToPlaceTiles;
+                Tile tileToAdd;
+
+                // READING FROM KEYBOARD
+                do{
+                    game.printFactory();
+                    System.out.println();
+                    System.out.println();
+
+                    //TODO Tura gracza wewnątrz GUI
+
+                    System.out.println("Choose factory or center from which you want to take tiles");
+                    //WorkshopID
+                    //number = reader.nextInt() - 1;
+                    number = 3 - 1;
+
+                    System.out.println("Choose tile which you want to take from the factory");
+                    //tile button -> który przycisk
+                    //tiles = reader.next();
+                    tiles = "2";
+
+                    System.out.println("Choose where you want to add the tiles, 1-5 for pattern lines, 6 for floor");
+                    //Sprytna metoda na rząd linii
+                    //whereToPlaceTiles = reader.nextInt() - 1;
+                    whereToPlaceTiles = 3 - 1;
+
+                    tileToAdd = switch (tiles.toUpperCase()) {
+                        case "BLACK" -> Tile.BLACK;
+                        case "WHITE" -> Tile.WHITE;
+                        case "BLUE" -> Tile.BLUE;
+                        case "YELLOW" -> Tile.YELLOW;
+                        case "RED" -> Tile.RED;
+                        default -> null;
+                    };
+                    if(!game.table.isColourInFactory(tileToAdd, number) || !game.isMoveValid(number, whereToPlaceTiles, order, tileToAdd))
+                        System.out.println("Chosen tile doesn't exist in this factory, please choose again");
+                } while (!game.table.isColourInFactory(tileToAdd, number) || !game.isMoveValid(number, whereToPlaceTiles, order, tileToAdd));
+                // END
+
+                game.addTilesToPatternLines(order, tileToAdd, number, whereToPlaceTiles);
+                game.playersTables[order].pattern.printPatternLine();
+                game.playersTables[order].printFloor();
+
+                isEnd = game.isFirstStageFinished();
+                if(isEnd) {
+                    first = game.findFirstPlayer();
+                    que.clear();
+                    break;
+                }
+            }
+        }
+
+        for(int i=0; i<numberOfPlayers; i++){
+            game.addToWall(i);
+            game.subtractPointsFromFloor(i);
+        }
+
+        game.table.refillFactories();
     }
 
     private static void localGame() throws Exception {

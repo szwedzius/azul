@@ -370,6 +370,7 @@ public class Game implements Serializable {
                         }
                     }
                 }
+                //Zliczanie punktów?
                 for(int i=0; i<numberOfPlayers; i++){
                     game.addToWall(i);
                     game.subtractPointsFromFloor(i);

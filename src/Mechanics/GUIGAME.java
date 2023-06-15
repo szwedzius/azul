@@ -377,6 +377,9 @@ public class GUIGAME implements Serializable {
             game.addToWall(i);
             game.subtractPointsFromFloor(i);
         }
+        for (int i = 0; i<game.playersTables.length; i++){
+
+        }
 
         game.table.refillFactories();
 

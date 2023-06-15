@@ -6,6 +6,7 @@ import Mechanics.Tile;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import static Mechanics.GUIGAME.*;
 
@@ -72,8 +73,20 @@ public class bord {
     private JButton button22;
     private JLabel[] tiles = new JLabel[25];
     private static int row;
+    ArrayList<JButton> buttonsArray = new ArrayList<>();
+    ArrayList<JButton> floorArray = new ArrayList<>();
 
-    public bord() {
+   public bord() {
+
+
+        floorArray.add(button22);
+        floorArray.add(button21);
+        floorArray.add(button20);
+        floorArray.add(button19);
+        floorArray.add(button18);
+        floorArray.add(button17);
+        floorArray.add(button16);
+
         playerName4.setForeground(Color.WHITE);
         playerName3.setForeground(Color.WHITE);
         playerName2.setForeground(Color.WHITE);
@@ -139,6 +152,22 @@ public class bord {
         HelpfulMethodsGuiJava.createLabel("img/white_notile.png", 80,80, l24);
         HelpfulMethodsGuiJava.createLabel("img/blue_notile.png", 80,80, l25);
 
+        buttonsArray.add(button1);
+        buttonsArray.add(button6);
+        buttonsArray.add(button5);
+        buttonsArray.add(button11);
+        buttonsArray.add(button7);
+        buttonsArray.add(button4);
+        buttonsArray.add(button14);
+        buttonsArray.add(button12);
+        buttonsArray.add(button8);
+        buttonsArray.add(button3);
+        buttonsArray.add(button15);
+        buttonsArray.add(button10);
+        buttonsArray.add(button13);
+        buttonsArray.add(button9);
+        buttonsArray.add(button2);
+
         int index = 0;
 
         for (Component component : this.stairs.getComponents()) {
@@ -188,18 +217,72 @@ public class bord {
 
     public ActionListener makeTurn(){
         return e -> {
+            int index=100;
+            for (int i = 0; i < buttonsArray.size(); i++) {
+                if (e.getSource()==buttonsArray.get(i)){
+                    index = i;
+//                    if(i<16&&i>9) index=10;
+//                    if(i<10&&i>5) index = 6;
+//                    if(i<6&&i>2) index = 3;
+//                    if(i<3&&i>0) index =1;
+//                    if(i==0) index =0;
+                }
+            }
+
             row = 0;
-            if(e.getSource().equals(button1))
-                row =1;
+            int howManyTilesInARow;
+            if(e.getSource().equals(button1)) {
+                row = 1;
+                howManyTilesInARow = 1;
+            }
             else if (e.getSource().equals(button5)||e.getSource().equals(button6)) {
                 row =2;
+                howManyTilesInARow=2;
             } else if (e.getSource().equals(button4)||e.getSource().equals(button7)||e.getSource().equals(button11)) {
                 row =3;
+                howManyTilesInARow=3;
             } else if (e.getSource().equals(button14)||e.getSource().equals(button12) ||e.getSource().equals(button8)|| e.getSource().equals(button3)) {
                 row =4;
+                howManyTilesInARow=4;
             }else {
                 row =5;
+                howManyTilesInARow=5;
             }
+            int k = 0;
+            int floorindex=0;
+            int addtiles=0;
+            try {
+                if(GUIGAME.getGame().isMoveValid(Workshop.getWorkshopInstance().getWorkshopid(),row,GUI.currentPlayerIndex,Workshop.getWorkshopInstance().takenTile));
+                else return;
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+            while ( 0 < Workshop.howmanytiles) {
+                if(addtiles<howManyTilesInARow) {
+                    try {
+                        ImageIcon essa = new ImageIcon("img/notile.png");
+                        String xd = essa.getDescription();
+                            HelpfulMethodsGuiJava.createButton(Workshop.getWorkshopInstance().takenTile.getImageName(), 60, 60, buttonsArray.get(index + k));
+                            buttonsArray.get(index + k).setEnabled(false);
+                            k++;
+                            Workshop.howmanytiles--;
+
+                        addtiles++;
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                else {
+                    try {
+                        HelpfulMethodsGuiJava.createButton(Workshop.getWorkshopInstance().takenTile.getImageName(), 60, 60, floorArray.get(floorindex));
+                        floorindex++;
+                        Workshop.howmanytiles--;
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            }
+
 
 
             try {

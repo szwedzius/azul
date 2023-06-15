@@ -3,7 +3,6 @@ package GUIForms;
 import Mechanics.Table;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 
@@ -85,10 +84,14 @@ public class Workshop {
     }
     public ActionListener getToBoard(){
         return e -> {
+            System.out.println("essa");
             workshop.setVisible(false);
-            FactoriesCenter center = new FactoriesCenter();
-            GUI.frame.add(center.getFactoryCenterPanel());
-            center.getFactoryCenterPanel().setVisible(true);
+            Board board = new Board();
+            GUI.frame.add(board.getBoard());
+            board.getBoard().setVisible(true);
+//            Pattern pattern = new Pattern();
+//            GUI.frame.add(pattern.getWall());
+//            pattern.getWall().setVisible(true);
         };
     }
     Workshop() throws Exception {

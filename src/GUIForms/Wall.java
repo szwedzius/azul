@@ -33,6 +33,9 @@ public class Wall {
     private JLabel tile24;
     private JLabel tile25;
     private JLabel[] tiles = new JLabel[25];
+    public JPanel getWallPanel(){
+        return wall;
+    }
     public Wall(){
         tiles[0] = tile1;
         tiles[1] = tile2;

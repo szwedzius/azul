@@ -70,15 +70,17 @@ public class ChoosePlayerNames {
 
                 if (numberOfNames == NumberOfPlayers.getClickedNumberOfPlayers()) {
                     System.out.println("wchodzi");
-                    Workshop workshop = new Workshop();
-                    GUI.frame.add(workshop.getWorkshopPanel());
+                    //Workshop workshop = new Workshop();
+                    //GUI.frame.add(workshop.getWorkshopPanel());
+                    Wall wall = new Wall();
+                    GUI.frame.add(wall.getWallPanel());
                     panel1.setVisible(false);
                     try {
                         GUIGAME.localGameStart();
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
-                    workshop.getWorkshopPanel().setVisible(true);
+                    wall.getWallPanel().setVisible(true);
                 }
             });
         if(MainFrame.getIsGameOnline()==1) {
@@ -87,7 +89,7 @@ public class ChoosePlayerNames {
             }
         }
         else if (numberOfNames == NumberOfPlayers.getClickedNumberOfPlayers()) {
-            Workshop workshop = new Workshop();
+            workshop workshop = new workshop();
             GUI.frame.add(workshop.getWorkshopPanel());
             panel1.setVisible(false);
         }

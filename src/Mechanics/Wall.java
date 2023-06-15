@@ -13,10 +13,18 @@ public class Wall implements Serializable {
      */
     private final boolean[][] filled;
 
+    public boolean[][] getFilled() {
+        return filled;
+    }
+
     /**
      * Matrix of tiles on the wall creating the pattern
      */
     private final Tile[][] pattern;
+
+    public Tile[][] getPattern() {
+        return pattern;
+    }
 
     /**
      * Default constructor
@@ -170,7 +178,6 @@ public class Wall implements Serializable {
     /**
      * Method for printing contents of the wall
      */
-
     public void printWall(){
         System.out.println();
         System.out.println("Mechanics.Wall:");

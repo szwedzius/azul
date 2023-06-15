@@ -79,6 +79,7 @@ public class Workshop {
     private boolean isTileTaken = false;
     public int workshopid = 0;
     public Tile takenTile;
+    public static int howmanytiles;
 
     public int getWorkshopid() {
         return workshopid;
@@ -135,6 +136,7 @@ public class Workshop {
                 System.out.println(name);
                 isTileTaken = true;
                 addToPlayersPocketFromWorkshop(howManydeleted[0], name);
+                howmanytiles = howManydeleted[0];
             }
             JButton currentPressed = (JButton) e.getSource();
             workshopid = buttons.indexOf(currentPressed)/4;

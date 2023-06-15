@@ -324,6 +324,71 @@ public class GUIGAME implements Serializable {
         playersTables[indexOfPlayer].clearFloor();
     }
 
+
+
+    private static final Color highlightColor = new Color(32, 255, 70);
+    private static final Color basicColor = new Color(255, 255, 255);
+    public static void highlightLabel(int player) throws Exception {
+        bord Board = GUIGAME.getGame().getPlayersTables()[GUI.currentPlayerIndex].getPlayersBoard();
+        for(int i = 0; i < NumberOfPlayers.getClickedNumberOfPlayers(); i++) {
+
+            System.out.println();
+            if(i  == player) {
+                if(i == 0) {
+                    Workshop.getWorkshopInstance().getPlayerName1().setForeground(highlightColor);
+                    Board.getPlayerName1().setForeground(highlightColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName1().setForeground(highlightColor);
+                }
+                if(i == 1) {
+                    Workshop.getWorkshopInstance().getPlayerName2().setForeground(highlightColor);
+                    Board.getPlayerName2().setForeground(highlightColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName2().setForeground(highlightColor);
+                }
+                if(i == 2) {
+                    Workshop.getWorkshopInstance().getPlayerName3().setForeground(highlightColor);
+                    Board.getPlayerName3().setForeground(highlightColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName3().setForeground(highlightColor);
+                }
+                if(i == 3) {
+                    Workshop.getWorkshopInstance().getPlayerName4().setForeground(highlightColor);
+                    Board.getPlayerName4().setForeground(highlightColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName4().setForeground(highlightColor);
+                }
+            }
+            else {
+                if(i == 0) {
+                    Workshop.getWorkshopInstance().getPlayerName1().setForeground(basicColor);
+                    Board.getPlayerName1().setForeground(basicColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName1().setForeground(basicColor);
+                }
+                if(i == 1) {
+                    Workshop.getWorkshopInstance().getPlayerName2().setForeground(basicColor);
+                    Board.getPlayerName2().setForeground(basicColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName2().setForeground(basicColor);
+                }
+                if(i == 2) {
+                    Workshop.getWorkshopInstance().getPlayerName3().setForeground(basicColor);
+                    Board.getPlayerName3().setForeground(basicColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName3().setForeground(basicColor);
+                }
+                if(i == 3) {
+                    Workshop.getWorkshopInstance().getPlayerName4().setForeground(basicColor);
+                    Board.getPlayerName4().setForeground(basicColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName4().setForeground(basicColor);
+                }
+            }
+        }
+
+    }
+
+
+
+
+
+
+
+
+
     public static void localGameStart() throws Exception {
         numberOfPlayers = NumberOfPlayers.getClickedNumberOfPlayers();
         game = new GUIGAME(numberOfPlayers, 1);
@@ -347,6 +412,8 @@ public class GUIGAME implements Serializable {
     public static void localGameNextTurn(int index) throws Exception {
         if(!isEnd){
             GUI.currentPlayerIndex = index;
+
+            highlightLabel(index);
 
             Workshop workshop = Workshop.getWorkshopInstance();
             bord bord = GUIGAME.game.playersTables[(GUI.currentPlayerIndex + numberOfPlayers -1) % numberOfPlayers].getPlayersBoard();

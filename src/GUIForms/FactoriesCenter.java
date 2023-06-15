@@ -3,6 +3,7 @@ package GUIForms;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class FactoriesCenter {
     private static FactoriesCenter INSTANCE;
@@ -59,6 +60,21 @@ public class FactoriesCenter {
         return yellowQuantity;
     }
 
+    public JLabel getPlayerName1() {
+        return playerName1;
+    }
+
+    public JLabel getPlayerName4() {
+        return playerName4;
+    }
+
+    public JLabel getPlayerName3() {
+        return playerName3;
+    }
+
+    public JLabel getPlayerName2() {
+        return playerName2;
+    }
 
     public JPanel getFactoryCenterPanel(){
         return factoryCenter;

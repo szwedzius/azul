@@ -80,7 +80,23 @@ public class bord {
     ArrayList<JButton> buttonsArray = new ArrayList<>();
     ArrayList<JButton> floorArray = new ArrayList<>();
 
-   public bord() {
+    public JLabel getPlayerName1() {
+        return playerName1;
+    }
+
+    public JLabel getPlayerName4() {
+        return playerName4;
+    }
+
+    public JLabel getPlayerName3() {
+        return playerName3;
+    }
+
+    public JLabel getPlayerName2() {
+        return playerName2;
+    }
+
+    public bord() {
 
 
         floorArray.add(button22);

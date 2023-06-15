@@ -430,8 +430,11 @@ public class GUIGAME implements Serializable {
                 // END
 
                 game.addTilesToPatternLines(order, tileToAdd, number, whereToPlaceTiles);
+
                 game.playersTables[order].pattern.printPatternLine();
                 game.playersTables[order].printFloor();
+
+
                 isEnd = game.isFirstStageFinished();
     }
 

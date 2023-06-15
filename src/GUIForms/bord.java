@@ -107,29 +107,7 @@ public class bord {
         score3.setFont(new Font("Georgia", Font.PLAIN, 28));
         score4.setForeground(Color.WHITE);
         score4.setFont(new Font("Georgia", Font.PLAIN, 28));
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button2);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button3);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button5);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button6);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button7);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button8);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button9);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button10);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button11);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button12);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button13);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button14);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button15);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button16);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button17);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button18);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button19);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button20);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button21);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button4);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 80, 80, button1);
-        HelpfulMethodsGuiJava.createButton("img/notile.png", 80, 80, button22);
-    bord() {
+
         HelpfulMethodsGuiJava.createButton("img/notile.png",90,90,button2);
         HelpfulMethodsGuiJava.createButton("img/notile.png",90,90,button3);
         HelpfulMethodsGuiJava.createButton("img/notile.png",90,90,button5);
@@ -291,7 +269,7 @@ public class bord {
                     try {
                         ImageIcon essa = new ImageIcon("img/notile.png");
                         String xd = essa.getDescription();
-                            HelpfulMethodsGuiJava.createButton(Workshop.getWorkshopInstance().takenTile.getImageName(), 60, 60, buttonsArray.get(index + k));
+                            HelpfulMethodsGuiJava.createButton(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90, buttonsArray.get(index + k));
                             buttonsArray.get(index + k).setEnabled(false);
                             k++;
                             Workshop.howmanytiles--;
@@ -303,7 +281,7 @@ public class bord {
                 }
                 else {
                     try {
-                        HelpfulMethodsGuiJava.createButton(Workshop.getWorkshopInstance().takenTile.getImageName(), 60, 60, floorArray.get(floorindex));
+                        HelpfulMethodsGuiJava.createButton(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90, floorArray.get(floorindex));
                         floorindex++;
                         Workshop.howmanytiles--;
                     } catch (Exception ex) {
@@ -318,6 +296,7 @@ public class bord {
                 //TODO error handling
                 localGamePhase1(que.get(GUI.currentPlayerIndex));
                 GUI.currentPlayerIndex++;
+                GUI.currentPlayerIndex=GUI.currentPlayerIndex%GUIGAME.getGame().getNumberOfPlayers();
                 localGameNextTurn(GUI.currentPlayerIndex);
             } catch (Exception ex) {
                 throw new RuntimeException(ex);

@@ -31,6 +31,7 @@ public class ChoosePlayerNames {
 
     public void setTextField1(JTextField textField1) {
         this.textField1 = textField1;
+        textField1.setFont((new Font("Georgia", Font.PLAIN, 18)));
     }
 
     public ChoosePlayerNames() throws Exception {
@@ -38,10 +39,18 @@ public class ChoosePlayerNames {
         playerName3.setForeground(Color.WHITE);
         playerName2.setForeground(Color.WHITE);
         playerName1.setForeground(Color.WHITE);
+        playerName1.setFont(new Font("Georgia", Font.PLAIN, 28));
+        playerName2.setFont(new Font("Georgia", Font.PLAIN, 28));
+        playerName3.setFont(new Font("Georgia", Font.PLAIN, 28));
+        playerName4.setFont(new Font("Georgia", Font.PLAIN, 28));
         score1.setForeground(Color.WHITE);
+        score1.setFont(new Font("Georgia", Font.PLAIN, 28));
         score2.setForeground(Color.WHITE);
+        score2.setFont(new Font("Georgia", Font.PLAIN, 28));
         score3.setForeground(Color.WHITE);
+        score3.setFont(new Font("Georgia", Font.PLAIN, 28));
         score4.setForeground(Color.WHITE);
+        score4.setFont(new Font("Georgia", Font.PLAIN, 28));
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
         HelpfulMethodsGuiJava.createButton("img/confirm.png",291,150,confirmButton);
         panel1.setVisible(true);
@@ -50,7 +59,7 @@ public class ChoosePlayerNames {
                 textField1.getText();
                 System.out.println(textField1.getText());
                 String name = (textField1.getText());
-                Player player = new Player(name);
+
                 textField1.setText(null);
                 if(numberOfNames==0){
                     playerName1.setText(name);
@@ -70,7 +79,7 @@ public class ChoosePlayerNames {
 
                 if (numberOfNames == NumberOfPlayers.getClickedNumberOfPlayers()) {
                     System.out.println("wchodzi");
-                    Workshop workshop = null;
+                    Workshop workshop;
                     try {
                         workshop = Workshop.getWorkshopInstance();
                     } catch (Exception ex) {
@@ -84,7 +93,7 @@ public class ChoosePlayerNames {
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
-                    workshop.getWorkshopPanel().setVisible(true);
+
                 }
             });
         if(MainFrame.getIsGameOnline()==1) {

@@ -2,6 +2,7 @@ package Mechanics;
 
 import GUIForms.GUI;
 import GUIForms.NumberOfPlayers;
+import GUIForms.Workshop;
 
 import javax.swing.*;
 import java.io.*;
@@ -17,6 +18,7 @@ public class GUIGAME implements Serializable {
      * Number of players playing
      */
     public final int players;
+    public static int first;
     static int numberOfPlayers;
     static boolean isEnd = false;
     static boolean isGameFinished = false;
@@ -27,6 +29,7 @@ public class GUIGAME implements Serializable {
     public static JPanel currentPanel;
     public static String rec1;
 
+    public static ArrayList<Integer> que = new ArrayList<>();
 
     /**
      * Mechanics.Game mode
@@ -57,11 +60,12 @@ public class GUIGAME implements Serializable {
 
     /**
      * Checking whether the conditions for ending the first stage of the game are met
+     *
      * @return true if first stage of game is finished
      */
     public boolean isFirstStageFinished() {
         int i;
-        for (i = 0; i < table.factories.length; i++){
+        for (i = 0; i < table.factories.length; i++) {
             if (!table.factories[i].isEmpty())
                 return false;
         }
@@ -71,11 +75,12 @@ public class GUIGAME implements Serializable {
 
     /**
      * Checking whether the conditions for ending the game are met
+     *
      * @return true if game is finished
      */
     public boolean isGameFinished(int indexOfPlayer) {
-        for(int i = 0; i < 5; i++){
-            if(playersTables[indexOfPlayer].wall.IsRowFull(i)){
+        for (int i = 0; i < 5; i++) {
+            if (playersTables[indexOfPlayer].wall.IsRowFull(i)) {
                 return true;
             }
         }
@@ -86,7 +91,7 @@ public class GUIGAME implements Serializable {
      * Method responsible for saving the current game
      */
     public void save(String path) {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(path+".bin"))) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(path + ".bin"))) {
             outputStream.writeObject(this);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -98,7 +103,7 @@ public class GUIGAME implements Serializable {
      */
     public static GUIGAME load(String path) {
         GUIGAME game;
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(path+".bin"))) {
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(path + ".bin"))) {
             game = (GUIGAME) inputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -108,11 +113,12 @@ public class GUIGAME implements Serializable {
 
     /**
      * Method for pointing out the winner
+     *
      * @return The player who has won
      */
     public Player returnWinner() {
         Player temp = playersTables[0];
-        for (Player player : playersTables){
+        for (Player player : playersTables) {
             if (temp.getPoints() < player.getPoints()) {
                 temp = player;
             }
@@ -122,6 +128,7 @@ public class GUIGAME implements Serializable {
 
     /**
      * Method for getting the number of players
+     *
      * @return Number of players
      */
     public int getNumberOfPlayers() {
@@ -130,6 +137,7 @@ public class GUIGAME implements Serializable {
 
     /**
      * Method to return the table of players
+     *
      * @return Mechanics.Table of Mechanics.Player objects representing the players
      */
     public Player[] getPlayersTables() {
@@ -159,92 +167,94 @@ public class GUIGAME implements Serializable {
     /**
      * Method for checking if move is valid
      *
-     * @param number index of factory or center
-     * @param row index of row in pattern lines to which we want to add tile
+     * @param number       index of factory or center
+     * @param row          index of row in pattern lines to which we want to add tile
      * @param playerNumber players number
-     * @param tile the colour of the tiles which we want to add
+     * @param tile         the colour of the tiles which we want to add
      * @return true if move is valid
      */
     public boolean isMoveValid(int number, int row, int playerNumber, Tile tile) {
-        if(row == 5) {
+        if (row == 5) {
             return true;
         }
-        if (number == 9){
+        if (number == 9) {
             return (table.center.contains(tile) && ((playersTables[playerNumber].pattern.colours[row] == tile &&
                     playersTables[playerNumber].pattern.amounts[row] < (row + 1)) ||
                     playersTables[playerNumber].pattern.colours[row] == null));
         }
         return (playersTables[playerNumber].pattern.colours[row] == tile &&
-                playersTables[playerNumber].pattern.amounts[row] < (row + 1) ) ||
+                playersTables[playerNumber].pattern.amounts[row] < (row + 1)) ||
                 playersTables[playerNumber].pattern.colours[row] == null;
     }
+
     /**
      * Method for finding the first player
+     *
      * @return index of player who has the First tile or -1 if players do not have the First tile
      */
-    public int findFirstPlayer(){
-        for (int i = 0; i < players; i++){
-            if(playersTables[i].getFirst())
+    public int findFirstPlayer() {
+        for (int i = 0; i < players; i++) {
+            if (playersTables[i].getFirst())
                 return i;
         }
         return -1;
     }
+
     /**
      * Method for adding tiles to pattern line
-     * @param indexOfPlayer index of current player
-     * @param number index of factory or center
-     * @param tileToAdd the colour of the tiles which we want to add
+     *
+     * @param indexOfPlayer     index of current player
+     * @param number            index of factory or center
+     * @param tileToAdd         the colour of the tiles which we want to add
      * @param whereToPlaceTiles index of row in pattern lines to which we want to add tile
      */
-    public void addTilesToPatternLines (int indexOfPlayer, Tile tileToAdd, int number, int whereToPlaceTiles) {
+    public void addTilesToPatternLines(int indexOfPlayer, Tile tileToAdd, int number, int whereToPlaceTiles) {
         if (whereToPlaceTiles == 5 && number != 9) {
-            for (int i =0; i < 4; i++) {
-                if (table.factories[number].getContents()[i] == tileToAdd){
+            for (int i = 0; i < 4; i++) {
+                if (table.factories[number].getContents()[i] == tileToAdd) {
                     if (playersTables[indexOfPlayer].floor.size() < 7)
                         playersTables[indexOfPlayer].floor.add(tileToAdd);
                     else
                         table.box.add(tileToAdd);
-                }
-                else
+                } else
                     table.center.add(table.factories[number].getContents()[i]);
                 table.factories[number].getContents()[i] = null;
             }
-        } else if (whereToPlaceTiles == 5){
-            if (table.isPriorityTileInCenter()){
+        } else if (whereToPlaceTiles == 5) {
+            if (table.isPriorityTileInCenter()) {
                 playersTables[indexOfPlayer].setFirst();
                 playersTables[indexOfPlayer].floor.add(Tile.FIRSTTILE);
                 table.center.remove(Tile.FIRSTTILE);
             }
 
-            for (int i = 0; i < table.center.size(); i++){
-                if (table.center.get(i) == tileToAdd){
+            for (int i = 0; i < table.center.size(); i++) {
+                if (table.center.get(i) == tileToAdd) {
                     if (playersTables[indexOfPlayer].floor.size() < 7)
                         playersTables[indexOfPlayer].floor.add(tileToAdd);
                     else
                         table.box.add(tileToAdd);
                 }
             }
-            while(table.center.contains(tileToAdd))
+            while (table.center.contains(tileToAdd))
                 table.center.remove(tileToAdd);
-        }else if (whereToPlaceTiles < 5 && number != 9) {
+        } else if (whereToPlaceTiles < 5 && number != 9) {
             for (int i = 0; i < 4; i++) {
                 if (table.factories[number].getContents()[i] == tileToAdd &&
                         !playersTables[indexOfPlayer].pattern.isRowFull(whereToPlaceTiles))
                     playersTables[indexOfPlayer].pattern.addToRow(whereToPlaceTiles, tileToAdd, 1);
                 else if (table.factories[number].getContents()[i] == tileToAdd &&
-                        playersTables[indexOfPlayer].pattern.isRowFull(whereToPlaceTiles)){
+                        playersTables[indexOfPlayer].pattern.isRowFull(whereToPlaceTiles)) {
                     if (playersTables[indexOfPlayer].floor.size() < 7)
                         playersTables[indexOfPlayer].floor.add(tileToAdd);
                     else
                         table.box.add(tileToAdd);
-                }
-                else
+                } else
                     table.center.add(table.factories[number].getContents()[i]);
                 table.factories[number].getContents()[i] = null;
             }
-        } else if (whereToPlaceTiles < 5){
-            for (int i = 0; i < table.center.size(); i++){
-                if (table.isPriorityTileInCenter()){
+        } else if (whereToPlaceTiles < 5) {
+            for (int i = 0; i < table.center.size(); i++) {
+                if (table.isPriorityTileInCenter()) {
                     playersTables[indexOfPlayer].setFirst();
                     playersTables[indexOfPlayer].floor.add(Tile.FIRSTTILE);
                     table.center.remove(Tile.FIRSTTILE);
@@ -253,50 +263,52 @@ public class GUIGAME implements Serializable {
                 if (table.center.get(i) == tileToAdd &&
                         !playersTables[indexOfPlayer].pattern.isRowFull(whereToPlaceTiles)) {
                     playersTables[indexOfPlayer].pattern.addToRow(whereToPlaceTiles, tileToAdd, 1);
-                }
-                else if (table.center.get(i) == tileToAdd &&
-                        playersTables[indexOfPlayer].pattern.isRowFull(whereToPlaceTiles)){
+                } else if (table.center.get(i) == tileToAdd &&
+                        playersTables[indexOfPlayer].pattern.isRowFull(whereToPlaceTiles)) {
                     if (playersTables[indexOfPlayer].floor.size() < 7)
                         playersTables[indexOfPlayer].floor.add(tileToAdd);
                     else
                         table.box.add(tileToAdd);
                 }
             }
-            while(table.center.contains(tileToAdd))
+            while (table.center.contains(tileToAdd))
                 table.center.remove(tileToAdd);
         }
     }
+
     /**
      * Method for adding tiles from pattern lines to wall
+     *
      * @param indexOfPlayer index of current player
      */
-    public void addToWall(int indexOfPlayer){
-        for (int i = 0; i < 5; i++){
-            if (playersTables[indexOfPlayer].pattern.isRowFull(i)){
-                playersTables[indexOfPlayer].sumPoints(playersTables[indexOfPlayer].wall.addTile(playersTables[indexOfPlayer].pattern.colours[i],i));
-                for (int j = 1; j < playersTables[indexOfPlayer].pattern.amounts[i]; j++){
+    public void addToWall(int indexOfPlayer) {
+        for (int i = 0; i < 5; i++) {
+            if (playersTables[indexOfPlayer].pattern.isRowFull(i)) {
+                playersTables[indexOfPlayer].sumPoints(playersTables[indexOfPlayer].wall.addTile(playersTables[indexOfPlayer].pattern.colours[i], i));
+                for (int j = 1; j < playersTables[indexOfPlayer].pattern.amounts[i]; j++) {
                     table.box.add(playersTables[indexOfPlayer].pattern.colours[i]);
                 }
                 playersTables[indexOfPlayer].pattern.clearRow(i);
             }
         }
     }
+
     /**
      * Method for subtracting points for the tiles on the floor and clearing floor
+     *
      * @param indexOfPlayer index of current player
      */
-    public void subtractPointsFromFloor (int indexOfPlayer) {
+    public void subtractPointsFromFloor(int indexOfPlayer) {
         for (int i = 0; i < playersTables[indexOfPlayer].floor.size(); i++) {
-            if (playersTables[indexOfPlayer].floor.get(i) != null ){
-                if ( i == 0 || i == 1)
+            if (playersTables[indexOfPlayer].floor.get(i) != null) {
+                if (i == 0 || i == 1)
                     playersTables[indexOfPlayer].sumPoints(-1);
                 else if (i < 5) {
                     playersTables[indexOfPlayer].sumPoints(-2);
                 } else {
                     playersTables[indexOfPlayer].sumPoints(-3);
                 }
-            }
-            else
+            } else
                 break;
         }
         playersTables[indexOfPlayer].clearFloor();
@@ -306,56 +318,101 @@ public class GUIGAME implements Serializable {
         numberOfPlayers = NumberOfPlayers.getClickedNumberOfPlayers();
         game = new GUIGAME(numberOfPlayers, 1);
         int index = 0;
-        for(String x: GUI.nameList){
+        for (String x : GUI.nameList) {
             game.playersTables[index] = new Player(x);
+            index++;
         }
 
         ArrayList<Integer> que = new ArrayList<>();
         // First starting player is chosen randomly
         Random rand = new Random();
-        int first = rand.nextInt(numberOfPlayers);
+
+        first = rand.nextInt(numberOfPlayers);
+
+
+        localGameMainLoop();
     }
 
-    public static void localGamePhase1(){
-        /*do{
-            game.printFactory();
-            System.out.println();
-            System.out.println();
-
-            System.out.println("Choose factory or center from which you want to take tiles");
-            number = reader.nextInt() - 1;
-
-            System.out.println("Choose tile which you want to take from the factory");
-            tiles = reader.next();
-
-            System.out.println("Choose where you want to add the tiles, 1-5 for pattern lines, 6 for floor");
-            whereToPlaceTiles = reader.nextInt() - 1;
-
-            tileToAdd = switch (tiles.toUpperCase()) {
-                case "BLACK" -> Tile.BLACK;
-                case "WHITE" -> Tile.WHITE;
-                case "BLUE" -> Tile.BLUE;
-                case "YELLOW" -> Tile.YELLOW;
-                case "RED" -> Tile.RED;
-                default -> null;
-            };
-            if(!game.table.isColourInFactory(tileToAdd, number) || !game.isMoveValid(number, whereToPlaceTiles, order, tileToAdd))
-                System.out.println("Chosen tile doesn't exist in this factory, please choose again");
-        } while (!game.table.isColourInFactory(tileToAdd, number) || !game.isMoveValid(number, whereToPlaceTiles, order, tileToAdd));
-
-             */
+    public static void localGameNextTurn(int index) throws Exception {
+        if(!isEnd){
+            GUI.currentPlayerIndex = index;
+        }
+        if(isEnd) {
+            first = game.findFirstPlayer();
+            que.clear();
+            localGameEmptyFactory();
+        }
     }
 
-    private static void localGamePhase2(){
-        /*
-                    game.addTilesToPatternLines(order, tileToAdd, number, whereToPlaceTiles);
-                    game.playersTables[order].pattern.printPatternLine();
-                    game.playersTables[order].printFloor();
-                    for(int i=0; i<numberOfPlayers; i++){
-                        game.addToWall(i);
-                        game.subtractPointsFromFloor(i);
-                    }
-         */
+
+    public static void localGameMainLoop() throws Exception {
+        if (!isGameFinished) {
+            for (int i = 0; i < numberOfPlayers; i++)
+                que.add((first + i) % numberOfPlayers);
+            isEnd = false;
+            localGameNextTurn(0);
+        }
+    }
+
+    public static void localGameEmptyFactory() throws Exception {
+        for (int i = 0; i < numberOfPlayers; i++) {
+            game.addToWall(i);
+            game.subtractPointsFromFloor(i);
+        }
+
+        game.table.refillFactories();
+
+        for (int i = 0; i < numberOfPlayers; i++)
+            if (game.isGameFinished(i))
+                isGameFinished = true;
+
+        localGameMainLoop();
+    }
+
+
+    public static void localGamePhase1(int order) throws Exception {
+                //System.out.println(game.table.bag.size());
+                System.out.println("Mechanics.Player : " + (order+1));
+                int number;
+                String tiles;
+                int whereToPlaceTiles;
+                Tile tileToAdd;
+
+                // READING FROM KEYBOARD
+                do{
+                    game.printFactory();
+                    System.out.println();
+                    System.out.println();
+
+                    //TODO Tura gracza wewnątrz GUI
+
+                    System.out.println("Choose factory or center from which you want to take tiles");
+                    //WorkshopID
+                    //number = reader.nextInt() - 1;
+                    Workshop workshop = new Workshop();
+                    number = workshop.getWorkshopid();
+
+                    System.out.println("Choose tile which you want to take from the factory");
+                    //tile button -> który przycisk
+                    //tiles = reader.next();
+
+                    System.out.println("Choose where you want to add the tiles, 1-5 for pattern lines, 6 for floor");
+                    //Sprytna metoda na rząd linii
+                    //whereToPlaceTiles = reader.nextInt() - 1;
+                    whereToPlaceTiles = 3 - 1;
+
+                    tileToAdd = workshop.takenTile;
+
+
+                    if(!game.table.isColourInFactory(tileToAdd, number) || !game.isMoveValid(number, whereToPlaceTiles, order, tileToAdd))
+                        System.out.println("Chosen tile doesn't exist in this factory, please choose again");
+                } while (!game.table.isColourInFactory(tileToAdd, number) || !game.isMoveValid(number, whereToPlaceTiles, order, tileToAdd));
+                // END
+
+                game.addTilesToPatternLines(order, tileToAdd, number, whereToPlaceTiles);
+                game.playersTables[order].pattern.printPatternLine();
+                game.playersTables[order].printFloor();
+                isEnd = game.isFirstStageFinished();
     }
 
     private static void localGame() throws Exception {

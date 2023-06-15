@@ -75,10 +75,17 @@ public class Workshop {
     private ArrayList<JButton> buttons = new ArrayList<>();
     private Table table;
     private boolean isTileTaken = false;
+    public int workshopid = 0;
+    public Tile takenTile;
+
+    public int getWorkshopid() {
+        return workshopid;
+    }
 
     public JPanel getWorkshopPanel() {
         return workshop;
     }
+
     public ActionListener getToCenter(){
         return e -> {
           FactoriesCenter center = FactoriesCenter.getFactoriesCenterINSTANCE();
@@ -91,9 +98,9 @@ public class Workshop {
         return e -> {
             System.out.println("essa");
             workshop.setVisible(false);
-            Board board = new Board();
-            GUI.frame.add(board.getBoard());
-            board.getBoard().setVisible(true);
+            bord bord = new bord();
+            GUI.frame.add(bord.getFullbord());
+            bord.getFullbord().setVisible(true);
 //            Pattern pattern = new Pattern();
 //            GUI.frame.add(pattern.getWall());
 //            pattern.getWall().setVisible(true);
@@ -125,6 +132,37 @@ public class Workshop {
                 addToPlayersPocketFromWorkshop(howManydeleted[0], name);
                 isTileTaken = true;
             }
+            JButton currentPressed = (JButton) e.getSource();
+            workshopid = buttons.indexOf(currentPressed)/4;
+            String currentIcon = currentPressed.getIcon().toString();
+            switch (currentIcon){
+                case "img/red.png" -> takenTile = Tile.RED;
+                case "img/black.png" -> takenTile = Tile.BLACK;
+                case "img/white.png" -> takenTile = Tile.WHITE;
+                case "img/yellow.png" -> takenTile = Tile.YELLOW;
+                case "img/blue.png" -> takenTile = Tile.BLUE;
+            }
+            workshop.setVisible(false);
+            bord board = new bord();
+            GUI.frame.add(board.getFullbord());
+            board.getFullbord().setVisible(true);
+        };
+    }
+    public ActionListener chosenTile(){
+        return e ->{
+            JButton currentPressed = (JButton) e.getSource();
+            workshopid = buttons.indexOf(currentPressed)/4;
+            String currentIcon = currentPressed.getIcon().toString();
+            switch (currentIcon){
+                case "img/red.png" -> takenTile = Tile.RED;
+                case "img/black.png" -> takenTile = Tile.BLACK;
+                case "img/white.png" -> takenTile = Tile.WHITE;
+                case "img/yellow.png" -> takenTile = Tile.YELLOW;
+                case "img/blue.png" -> takenTile = Tile.BLUE;
+            }
+            workshop.setVisible(false);
+            bord board = new bord();
+            board.getFullbord().setVisible(true);
         };
     }
 

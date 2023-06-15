@@ -19,6 +19,8 @@ public class GUI {
 
     public static WindowSize windowSize;
 
+    public static int currentPlayerIndex;
+
     public static ArrayList<String> nameList = new ArrayList<>();
 
     public static final JFrame frame = new JFrame("azul");

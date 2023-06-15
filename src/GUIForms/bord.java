@@ -61,6 +61,8 @@ public class bord {
     private JLabel l23;
     private JLabel l24;
     private JLabel l25;
+    private JButton button21;
+    private JButton button22;
     private JLabel[] tiles = new JLabel[25];
 
     bord() {
@@ -84,6 +86,8 @@ public class bord {
         HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button20);
         HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button1);
         HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button4);
+        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button21);
+        HelpfulMethodsGuiJava.createButton("img/notile.png", 60, 60, button22);
 
         tiles[0] = l1;
         tiles[1] = l2;

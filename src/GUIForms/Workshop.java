@@ -100,7 +100,7 @@ public class Workshop {
         return e -> {
             System.out.println("essa");
             workshop.setVisible(false);
-            bord bord = new bord();
+            bord bord = GUIGAME.getGame().getPlayersTables()[GUI.currentPlayerIndex].getPlayersBoard();
             GUI.frame.add(bord.getFullbord());
             bord.getFullbord().setVisible(true);
 //            Pattern pattern = new Pattern();
@@ -388,5 +388,13 @@ public class Workshop {
 
     public void setIfTileIsTaken(){
         isTileTaken = false;
+    }
+
+    public void setWorkshopid(int workshopid) {
+        this.workshopid = workshopid;
+    }
+
+    public void setTakenTile(Tile takenTile) {
+        this.takenTile = takenTile;
     }
 }

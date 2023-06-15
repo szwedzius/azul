@@ -1,5 +1,8 @@
 package GUIForms;
 
+import Mechanics.GUIGAME;
+import Mechanics.Tile;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -92,6 +95,10 @@ public class FactoriesCenter {
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
+            factoryCenter.setVisible(false);
+            bord board = GUIGAME.getGame().getPlayersTables()[GUI.currentPlayerIndex].getPlayersBoard();
+            GUI.frame.add(board.getFullbord());
+            board.getFullbord().setVisible(true);
         };
     }
 
@@ -160,8 +167,9 @@ public class FactoriesCenter {
         blueNumber.setText(String.valueOf(blueQuantity));
         yellowNumber.setText(String.valueOf(yellowQuantity));
     }
-    private void addTileToPlayersPocketFromCenter( String tileName){
+    private void addTileToPlayersPocketFromCenter( String tileName) throws Exception {
         int quantity;
+        Workshop.getWorkshopInstance().setWorkshopid(9);
             switch (tileName) {
                 case ("WHITE"):
                     if(whiteQuantity!=0) {
@@ -169,6 +177,7 @@ public class FactoriesCenter {
                         System.out.println(quantity);
                         setWhiteQuantity(0);
                         updateTileQuantities();
+                        Workshop.getWorkshopInstance().setTakenTile(Tile.WHITE);
                     }
                     break;
                 case ("BLACK"):
@@ -176,6 +185,7 @@ public class FactoriesCenter {
                         quantity = blackQuantity;
                         setBlackQuantity(0);
                         updateTileQuantities();
+                        Workshop.getWorkshopInstance().setTakenTile(Tile.BLACK);
                     }
                     break;
                 case ("RED"):
@@ -183,6 +193,7 @@ public class FactoriesCenter {
                         quantity = redQuantity;
                         setRedQuantity(0);
                         updateTileQuantities();
+                        Workshop.getWorkshopInstance().setTakenTile(Tile.RED);
                     }
                     break;
                 case ("BLUE"):
@@ -190,6 +201,7 @@ public class FactoriesCenter {
                         quantity = blueQuantity;
                         setBlueQuantity(0);
                         updateTileQuantities();
+                        Workshop.getWorkshopInstance().setTakenTile(Tile.BLUE);
                     }
                     break;
                 case ("YELLOW"):
@@ -197,6 +209,7 @@ public class FactoriesCenter {
                         quantity = yellowQuantity;
                         setYellowQuantity(0);
                         updateTileQuantities();
+                        Workshop.getWorkshopInstance().setTakenTile(Tile.YELLOW);
                     }
                     break;
 

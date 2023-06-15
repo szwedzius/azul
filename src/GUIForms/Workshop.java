@@ -1,11 +1,11 @@
 package GUIForms;
 
 import Mechanics.Table;
-import Mechanics.Tile;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.awt.event.ActionListener;
 
 public class Workshop {
     private JPanel workshop;
@@ -75,8 +75,17 @@ public class Workshop {
         return workshop;
     }
 
+    public ActionListener getToCenter(){
+        return e -> {
+          workshop.setVisible(false);
+          FactoriesCenter center = new FactoriesCenter();
+          GUI.frame.add(center.getFactoryCenterPanel());
+          center.getFactoryCenterPanel().setVisible(true);
+        };
+    }
     Workshop() throws Exception {
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
+        centerButton.addActionListener(getToCenter());
         HelpfulMethodsGuiJava.createButton("img/confirm.png",291,150,boardButton);
         Table table = new Table(NumberOfPlayers.getClickedNumberOfPlayers());
         table.refillFactories();
@@ -117,9 +126,11 @@ public class Workshop {
         buttons.add(factory9Tile3);
         buttons.add(factory9Tile4);
         int button = 0;
+
+        
         for (int i = 0; i < table.factories.length; i++) {
             for (int j = 0; j < 4; j++) {
-                HelpfulMethodsGuiJava.createButton(table.factories[i].getContents()[j].getImageName(),150,150,buttons.get(button));
+                HelpfulMethodsGuiJava.createButton(table.factories[i].getContents()[j].getImageName(),80,80,buttons.get(button));
                 button++;
             }
         }
@@ -130,27 +141,68 @@ public class Workshop {
         switch (NumberOfPlayers.getClickedNumberOfPlayers()){
             case 1:
                 playerName1.setText(GUI.nameList.get(0));
+                factoriesFor1Players();
                 break;
             case 2:
                 playerName1.setText(GUI.nameList.get(0));
                 playerName2.setText(GUI.nameList.get(1));
+                factoriesFor2Players();
                 break;
             case 3:
                 playerName1.setText(GUI.nameList.get(0));
                 playerName2.setText(GUI.nameList.get(1));
                 playerName3.setText(GUI.nameList.get(2));
+                factoriesFor3Players();
                 break;
             case 4:
                 playerName1.setText(GUI.nameList.get(0));
                 playerName2.setText(GUI.nameList.get(1));
                 playerName3.setText(GUI.nameList.get(2));
                 playerName4.setText(GUI.nameList.get(3));
+                factoriesFor4Players();
             default:
                 playerName1.setText(GUI.nameList.get(0));
+                factoriesVisibleBase();
         }
 
     }
 
+    private void factoriesVisibleBase() {
+        factory1.setVisible(true);
+        factory2.setVisible(true);
+        factory3.setVisible(true);
+        factory4.setVisible(true);
+        factory5.setVisible(true);
+        center.setVisible(true);
+    }
+    private void factoriesFor1Players(){
+        factoriesVisibleBase();
+        factory6.setVisible(false);
+        factory7.setVisible(false);
+        factory8.setVisible(false);
+        factory9.setVisible(false);
+    }
+    private void factoriesFor2Players(){
+        factoriesVisibleBase();
+        factory6.setVisible(false);
+        factory7.setVisible(false);
+        factory8.setVisible(false);
+        factory9.setVisible(false);
+    }
+    private void factoriesFor3Players(){
+        factoriesVisibleBase();
+        factory6.setVisible(true);
+        factory7.setVisible(true);
+        factory8.setVisible(false);
+        factory9.setVisible(false);
+    }
+    private void factoriesFor4Players(){
+        factoriesVisibleBase();
+        factory6.setVisible(true);
+        factory7.setVisible(true);
+        factory8.setVisible(true);
+        factory9.setVisible(true);
+    }
 
 
 

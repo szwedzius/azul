@@ -275,21 +275,19 @@ public class bord {
             int floorindex=0;
             int addtiles=0;
             try {
-                if(GUIGAME.getGame().isMoveValid(Workshop.getWorkshopInstance().getWorkshopid(),row,GUI.currentPlayerIndex,Workshop.getWorkshopInstance().takenTile));
-                else return;
+                if(!GUIGAME.getGame().isMoveValid(Workshop.getWorkshopInstance().getWorkshopid(),row-1,GUI.currentPlayerIndex,Workshop.getWorkshopInstance().takenTile))
+                    return;
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
             while ( 0 < Workshop.howmanytiles) {
                 if(addtiles<howManyTilesInARow) {
                     try {
-                        ImageIcon essa = new ImageIcon("img/notile.png");
-                        String xd = essa.getDescription();
-                            HelpfulMethodsGuiJava.createButton(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90, buttonsArray.get(index + k));
-                            buttonsArray.get(index + k).setEnabled(false);
-                            k++;
-                            Workshop.howmanytiles--;
-
+                        buttonsArray.get(index + k).setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
+                        buttonsArray.get(index + k).setDisabledIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
+                        buttonsArray.get(index + k).setEnabled(false);
+                        k++;
+                        Workshop.howmanytiles--;
                         addtiles++;
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
@@ -297,7 +295,8 @@ public class bord {
                 }
                 else {
                     try {
-                        HelpfulMethodsGuiJava.createButton(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90, floorArray.get(floorindex));
+                        buttonsArray.get(floorindex).setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
+                        buttonsArray.get(floorindex).setDisabledIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
                         floorindex++;
                         Workshop.howmanytiles--;
                     } catch (Exception ex) {

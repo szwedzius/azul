@@ -1,6 +1,10 @@
 package GUIForms;
 
+import Mechanics.GUIGAME;
+import Mechanics.Tile;
+
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class bord {
     private JPanel fullbord;
@@ -119,5 +123,10 @@ public class bord {
 
     public JPanel getFullbord() {
         return fullbord;
+    }
+
+    public ActionListener whereToPutTheTile(Tile tile){
+        return e->{
+        };
     }
 }

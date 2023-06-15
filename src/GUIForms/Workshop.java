@@ -1,6 +1,7 @@
 package GUIForms;
 
 import Mechanics.Table;
+import Mechanics.Tile;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -69,6 +70,12 @@ public class Workshop {
     private JButton factory9Tile4;
     private JTextField textField1;
     private ArrayList<JButton> buttons = new ArrayList<>();
+    public int workshopid = 0;
+    public Tile takenTile;
+
+    public int getWorkshopid() {
+        return workshopid;
+    }
 
     public JPanel getWorkshopPanel() {
         return workshop;
@@ -104,8 +111,22 @@ public class Workshop {
             }
         };
     }
+    public ActionListener chosenTile(){
+        return e ->{
+            JButton currentPressed = (JButton) e.getSource();
+            workshopid = buttons.indexOf(currentPressed)/4;
+            String currentIcon = currentPressed.getIcon().toString();
+            switch (currentIcon){
+                case "img/red.png" -> takenTile = Tile.RED;
+                case "img/black.png" -> takenTile = Tile.BLACK;
+                case "img/white.png" -> takenTile = Tile.WHITE;
+                case "img/yellow.png" -> takenTile = Tile.YELLOW;
+                case "img/blue.png" -> takenTile = Tile.BLUE;
+            }
+        };
+    }
 
-    Workshop() throws Exception {
+    public Workshop() throws Exception {
         boardButton.addActionListener(getToBoard());
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
         centerButton.addActionListener(getToCenter());
@@ -157,6 +178,10 @@ public class Workshop {
                 button++;
             }
         }
+        for (int i = 0; i < buttons.size(); i++) {
+            buttons.get(i).addActionListener(chosenTile());
+        }
+
 
 
 

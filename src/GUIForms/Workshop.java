@@ -5,6 +5,7 @@ import Mechanics.Table;
 import Mechanics.Tile;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 
@@ -176,6 +177,22 @@ public class Workshop {
         return INSTANCE;
     }
     private Workshop() throws Exception {
+        playerName4.setForeground(Color.WHITE);
+        playerName3.setForeground(Color.WHITE);
+        playerName2.setForeground(Color.WHITE);
+        playerName1.setForeground(Color.WHITE);
+        playerName1.setFont(new Font("Georgia", Font.PLAIN, 28));
+        playerName2.setFont(new Font("Georgia", Font.PLAIN, 28));
+        playerName3.setFont(new Font("Georgia", Font.PLAIN, 28));
+        playerName4.setFont(new Font("Georgia", Font.PLAIN, 28));
+        score1.setForeground(Color.WHITE);
+        score1.setFont(new Font("Georgia", Font.PLAIN, 28));
+        score2.setForeground(Color.WHITE);
+        score2.setFont(new Font("Georgia", Font.PLAIN, 28));
+        score3.setForeground(Color.WHITE);
+        score3.setFont(new Font("Georgia", Font.PLAIN, 28));
+        score4.setForeground(Color.WHITE);
+        score4.setFont(new Font("Georgia", Font.PLAIN, 28));
         isTileTaken = false;
         boardButton.addActionListener(getToBoard());
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));

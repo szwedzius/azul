@@ -148,11 +148,11 @@ public class bord {
             row = 0;
             if(e.getSource().equals(button1))
                 row =1;
-            else if (e.getSource().equals(button2)||e.getSource().equals(button3)) {
+            else if (e.getSource().equals(button5)||e.getSource().equals(button6)) {
                 row =2;
-            } else if (e.getSource().equals(button4)||e.getSource().equals(button5)||e.getSource().equals(button6)) {
+            } else if (e.getSource().equals(button4)||e.getSource().equals(button7)||e.getSource().equals(button11)) {
                 row =3;
-            } else if (e.getSource().equals(button7)||e.getSource().equals(button8) ||e.getSource().equals(button9)|| e.getSource().equals(button10)) {
+            } else if (e.getSource().equals(button14)||e.getSource().equals(button12) ||e.getSource().equals(button8)|| e.getSource().equals(button3)) {
                 row =4;
             }else {
                 row =5;

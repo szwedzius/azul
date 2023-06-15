@@ -20,7 +20,6 @@ public class FactoriesCenter {
     private JLabel score3;
     private JLabel score2;
     private JLabel score1;
-    private JButton boardButton;
     private JButton factoriesButton;
     private JButton whiteTile;
     private JButton blackTile;
@@ -111,6 +110,12 @@ public class FactoriesCenter {
         playerName2.setFont(new Font("Georgia", Font.PLAIN, 28));
         playerName3.setFont(new Font("Georgia", Font.PLAIN, 28));
         playerName4.setFont(new Font("Georgia", Font.PLAIN, 28));
+        whiteNumber.setFont(new Font("Georgia", Font.PLAIN, 28));
+        blackNumber.setFont(new Font("Georgia", Font.PLAIN, 28));
+        blueNumber.setFont(new Font("Georgia", Font.PLAIN, 28));
+        redNumber.setFont(new Font("Georgia", Font.PLAIN, 28));
+        yellowNumber.setFont(new Font("Georgia", Font.PLAIN, 28));
+        scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
         score1.setForeground(Color.WHITE);
         score1.setFont(new Font("Georgia", Font.PLAIN, 28));
         score2.setForeground(Color.WHITE);
@@ -152,6 +157,7 @@ public class FactoriesCenter {
         HelpfulMethodsGuiJava.createButton("img/yellow.png",100,100,yellowTile);
         updateTileQuantities();
         factoriesButton.addActionListener(getToWorkshop());
+        HelpfulMethodsGuiJava.createButton("img/factories.png", 300,150,factoriesButton);
         whiteTile.addActionListener(tilePicked("WHITE"));
         blackTile.addActionListener(tilePicked("BLACK"));
         blueTile.addActionListener(tilePicked("BLUE"));

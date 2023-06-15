@@ -172,8 +172,12 @@
                 <preferred-size width="600" height="150"/>
               </grid>
             </constraints>
-            <properties/>
-            <border type="none"/>
+            <properties>
+              <background color="-12228725"/>
+            </properties>
+            <border type="line">
+              <color color="-15454126"/>
+            </border>
             <children>
               <component id="f15f" class="javax.swing.JButton" binding="factory1Tile1">
                 <constraints>
@@ -216,7 +220,9 @@
                 <preferred-size width="600" height="150"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <background color="-12228725"/>
+            </properties>
             <border type="none"/>
             <children>
               <component id="e5209" class="javax.swing.JButton" binding="centerButton">
@@ -224,7 +230,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Center"/>
+                  <text value=""/>
                 </properties>
               </component>
             </children>
@@ -236,8 +242,12 @@
                 <preferred-size width="600" height="150"/>
               </grid>
             </constraints>
-            <properties/>
-            <border type="none"/>
+            <properties>
+              <background color="-12228725"/>
+            </properties>
+            <border type="line">
+              <color color="-15454126"/>
+            </border>
             <children>
               <component id="28418" class="javax.swing.JButton" binding="factory2Tile1">
                 <constraints>
@@ -280,8 +290,12 @@
                 <preferred-size width="600" height="150"/>
               </grid>
             </constraints>
-            <properties/>
-            <border type="none"/>
+            <properties>
+              <background color="-12228725"/>
+            </properties>
+            <border type="line">
+              <color color="-15454126"/>
+            </border>
             <children>
               <component id="59bd2" class="javax.swing.JButton" binding="factory3Tile1">
                 <constraints>
@@ -324,8 +338,12 @@
                 <preferred-size width="600" height="150"/>
               </grid>
             </constraints>
-            <properties/>
-            <border type="none"/>
+            <properties>
+              <background color="-12228725"/>
+            </properties>
+            <border type="line">
+              <color color="-15454126"/>
+            </border>
             <children>
               <component id="7cd54" class="javax.swing.JButton" binding="factory4Tile1">
                 <constraints>
@@ -374,8 +392,12 @@
                 <preferred-size width="600" height="150"/>
               </grid>
             </constraints>
-            <properties/>
-            <border type="none"/>
+            <properties>
+              <background color="-12228725"/>
+            </properties>
+            <border type="line">
+              <color color="-15454126"/>
+            </border>
             <children>
               <component id="ce8d4" class="javax.swing.JButton" binding="factory5Tile1">
                 <constraints>
@@ -418,8 +440,12 @@
                 <preferred-size width="600" height="150"/>
               </grid>
             </constraints>
-            <properties/>
-            <border type="none"/>
+            <properties>
+              <background color="-12228725"/>
+            </properties>
+            <border type="line">
+              <color color="-15454126"/>
+            </border>
             <children>
               <component id="1a65b" class="javax.swing.JButton" binding="factory6Tile1">
                 <constraints>
@@ -462,8 +488,12 @@
                 <preferred-size width="600" height="150"/>
               </grid>
             </constraints>
-            <properties/>
-            <border type="none"/>
+            <properties>
+              <background color="-12228725"/>
+            </properties>
+            <border type="line">
+              <color color="-15454126"/>
+            </border>
             <children>
               <component id="b4939" class="javax.swing.JButton" binding="factory7Tile1">
                 <constraints>
@@ -506,8 +536,12 @@
                 <preferred-size width="600" height="150"/>
               </grid>
             </constraints>
-            <properties/>
-            <border type="none"/>
+            <properties>
+              <background color="-12228725"/>
+            </properties>
+            <border type="line">
+              <color color="-15454126"/>
+            </border>
             <children>
               <component id="3a98d" class="javax.swing.JButton" binding="factory8Tile1">
                 <constraints>
@@ -550,8 +584,12 @@
                 <preferred-size width="600" height="150"/>
               </grid>
             </constraints>
-            <properties/>
-            <border type="none"/>
+            <properties>
+              <background color="-12228725"/>
+            </properties>
+            <border type="line">
+              <color color="-15454126"/>
+            </border>
             <children>
               <component id="9b0db" class="javax.swing.JButton" binding="factory9Tile1">
                 <constraints>

@@ -199,6 +199,7 @@ public class Workshop {
         boardButton.addActionListener(getToBoard());
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
         centerButton.addActionListener(getToCenter());
+        HelpfulMethodsGuiJava.createButton("img/center.png", 300, 150, centerButton);
         HelpfulMethodsGuiJava.createButton("img/confirm.png",291,150,boardButton);
         //table = new Table(NumberOfPlayers.getClickedNumberOfPlayers());
         table = GUIGAME.getGame().table;

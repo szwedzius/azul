@@ -6,12 +6,12 @@ import java.io.Serializable;
  * The Colour enum determines the type of tile
  */
 public enum Tile implements Serializable {
-    BLACK("black.png"),
-    RED("red.png"),
-    WHITE("white.png"),
-    YELLOW("yellow.png"),
-    BLUE("blue.png"),
-    FIRSTTILE("firsttile.png");
+    BLACK("img/black.png"),
+    RED("img/red.png"),
+    WHITE("img/white.png"),
+    YELLOW("img/yellow.png"),
+    BLUE("img/blue.png"),
+    FIRSTTILE("img/notile.png");
 
     private String imageName;
 

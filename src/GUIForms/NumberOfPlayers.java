@@ -37,7 +37,12 @@ public class NumberOfPlayers {
         a1Button.addActionListener(e -> {//GUIGAME.choosePlayerNumber(1);
             ClickedNumberOfPlayers=1;
             PLAYERS.setVisible(false);
-            ChoosePlayerNames names = new ChoosePlayerNames();
+            ChoosePlayerNames names = null;
+            try {
+                names = new ChoosePlayerNames();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
             GUI.frame.add(names.getPanel1());
             names.getPanel1().setVisible(true);
 
@@ -45,21 +50,36 @@ public class NumberOfPlayers {
         a2Button.addActionListener(e -> {//GUIGAME.choosePlayerNumber(2);
             ClickedNumberOfPlayers=2;
             PLAYERS.setVisible(false);
-            ChoosePlayerNames names = new ChoosePlayerNames();
+            ChoosePlayerNames names = null;
+            try {
+                names = new ChoosePlayerNames();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
             GUI.frame.add(names.getPanel1());
             names.getPanel1().setVisible(true);
         });
         a3Button.addActionListener(e -> {//GUIGAME.choosePlayerNumber(3);
             ClickedNumberOfPlayers=3;
             PLAYERS.setVisible(false);
-            ChoosePlayerNames names = new ChoosePlayerNames();
+            ChoosePlayerNames names = null;
+            try {
+                names = new ChoosePlayerNames();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
             GUI.frame.add(names.getPanel1());
             names.getPanel1().setVisible(true);
         });
         a4Button.addActionListener(e -> {//GUIGAME.choosePlayerNumber(4);
             PLAYERS.setVisible(false);
             ClickedNumberOfPlayers=4;
-            ChoosePlayerNames names = new ChoosePlayerNames();
+            ChoosePlayerNames names = null;
+            try {
+                names = new ChoosePlayerNames();
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
             GUI.frame.add(names.getPanel1());
             names.getPanel1().setVisible(true);
         });

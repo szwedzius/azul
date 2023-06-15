@@ -1,9 +1,11 @@
 package GUIForms;
 
 import Mechanics.Table;
+import Mechanics.Tile;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Workshop {
     private JPanel workshop;
@@ -67,6 +69,7 @@ public class Workshop {
     private JButton factory9Tile3;
     private JButton factory9Tile4;
     private JTextField textField1;
+    private ArrayList<JButton> buttons = new ArrayList<>();
 
     public JPanel getWorkshopPanel() {
         return workshop;
@@ -77,8 +80,48 @@ public class Workshop {
         HelpfulMethodsGuiJava.createButton("img/confirm.png",291,150,boardButton);
         Table table = new Table(NumberOfPlayers.getClickedNumberOfPlayers());
         table.refillFactories();
+        buttons.add(factory1Tile1);
+        buttons.add(factory1Tile2);
+        buttons.add(factory1Tile3);
+        buttons.add(factory1Tile4);
+        buttons.add(factory2Tile1);
+        buttons.add(factory2Tile2);
+        buttons.add(factory2Tile3);
+        buttons.add(factory2Tile4);
+        buttons.add(factory3Tile1);
+        buttons.add(factory3Tile2);
+        buttons.add(factory3Tile3);
+        buttons.add(factory3Tile4);
+        buttons.add(factory4Tile1);
+        buttons.add(factory4Tile2);
+        buttons.add(factory4Tile3);
+        buttons.add(factory4Tile4);
+        buttons.add(factory5Tile1);
+        buttons.add(factory5Tile2);
+        buttons.add(factory5Tile3);
+        buttons.add(factory5Tile4);
+        buttons.add(factory6Tile1);
+        buttons.add(factory6Tile2);
+        buttons.add(factory6Tile3);
+        buttons.add(factory6Tile4);
+        buttons.add(factory7Tile1);
+        buttons.add(factory7Tile2);
+        buttons.add(factory7Tile3);
+        buttons.add(factory7Tile4);
+        buttons.add(factory8Tile1);
+        buttons.add(factory8Tile2);
+        buttons.add(factory8Tile3);
+        buttons.add(factory8Tile4);
+        buttons.add(factory9Tile1);
+        buttons.add(factory9Tile2);
+        buttons.add(factory9Tile3);
+        buttons.add(factory9Tile4);
+        int button = 0;
         for (int i = 0; i < table.factories.length; i++) {
-
+            for (int j = 0; j < 4; j++) {
+                HelpfulMethodsGuiJava.createButton(table.factories[i].getContents()[j].getImageName(),150,150,buttons.get(button));
+                button++;
+            }
         }
 
 

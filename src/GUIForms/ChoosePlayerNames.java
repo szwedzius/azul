@@ -33,7 +33,7 @@ public class ChoosePlayerNames {
         this.textField1 = textField1;
     }
 
-    public ChoosePlayerNames() throws HeadlessException {
+    public ChoosePlayerNames() throws Exception {
         playerName4.setForeground(Color.WHITE);
         playerName3.setForeground(Color.WHITE);
         playerName2.setForeground(Color.WHITE);
@@ -70,7 +70,12 @@ public class ChoosePlayerNames {
 
                 if (numberOfNames == NumberOfPlayers.getClickedNumberOfPlayers()) {
                     System.out.println("wchodzi");
-                    Workshop workshop = new Workshop();
+                    Workshop workshop = null;
+                    try {
+                        workshop = new Workshop();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                     GUI.frame.add(workshop.getWorkshopPanel());
                     panel1.setVisible(false);
                     try {

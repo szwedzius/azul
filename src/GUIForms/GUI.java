@@ -23,6 +23,16 @@ public class GUI {
 
     public static final JFrame frame = new JFrame("azul");
 
+    private static Workshop workshop;
+
+
+    public static void setWorkshop(Workshop workshop){
+        GUI.workshop = workshop;
+    }
+    public static Workshop getWorkshop(){
+        return  GUI.workshop;
+    }
+
     public static void mainSetUp() {
         frame.setSize(1600, 900);
         frame.setLocationRelativeTo(null);

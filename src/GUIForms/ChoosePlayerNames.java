@@ -77,6 +77,7 @@ public class ChoosePlayerNames {
                         throw new RuntimeException(ex);
                     }
                     GUI.frame.add(workshop.getWorkshopPanel());
+                    GUI.setWorkshop(workshop);
                     panel1.setVisible(false);
                     try {
                         GUIGAME.localGameStart();

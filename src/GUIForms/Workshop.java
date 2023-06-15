@@ -3,6 +3,7 @@ package GUIForms;
 import Mechanics.Table;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 
@@ -69,7 +70,8 @@ public class Workshop {
     private JButton factory9Tile4;
     private JTextField textField1;
     private ArrayList<JButton> buttons = new ArrayList<>();
-
+    private Table table;
+    private boolean isRoundFinished;
     public JPanel getWorkshopPanel() {
         return workshop;
     }
@@ -95,22 +97,28 @@ public class Workshop {
         };
     }
 
-    public ActionListener collectTiles(int numberOfFactory, int numberOfTile, Table table){
+    public ActionListener  collectTiles(int numberOfFactory, int numberOfTile, Table table){
+        final int[] howManydeleted = {0};
         return e -> {
             table.factories[numberOfFactory-1].remove(table.factories[numberOfFactory-1].getContents()[numberOfTile-1]);
             for(int i = 0; i < 4 ; i++) {
-                if(table.factories[numberOfFactory-1].getContents()[i] == table.factories[numberOfFactory-1].getContents()[numberOfTile-1])
-                    buttons.get((numberOfFactory-1)*4 + i).setVisible(false);
+                if(table.factories[numberOfFactory-1].getContents()[i] == table.factories[numberOfFactory-1].getContents()[numberOfTile-1]) {
+                    buttons.get((numberOfFactory - 1) * 4 + i).setVisible(false);
+                    howManydeleted[0]++;
+                }
             }
+            addToCenter(howManydeleted[0],numberOfFactory,numberOfTile);
+            isRoundFinished = true;
         };
     }
 
     Workshop() throws Exception {
+        isRoundFinished = false;
         boardButton.addActionListener(getToBoard());
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
         centerButton.addActionListener(getToCenter());
         HelpfulMethodsGuiJava.createButton("img/confirm.png",291,150,boardButton);
-        Table table = new Table(NumberOfPlayers.getClickedNumberOfPlayers());
+        table = new Table(NumberOfPlayers.getClickedNumberOfPlayers());
         table.refillFactories();
         buttons.add(factory1Tile1);
         buttons.add(factory1Tile2);
@@ -224,6 +232,22 @@ public class Workshop {
         factory9Tile3.addActionListener(collectTiles(9,3, table));
         factory9Tile4.addActionListener(collectTiles(9,4, table));
 
+    }
+    private void addToCenter(int quantity,int factory,int tile){
+        String tileName = table.factories[factory].getContents()[tile].getImageName();
+        switch (tileName){
+            case ("WHITE"):
+
+                break;
+            case ("BLACK"):
+                break;
+            case ("RED"):
+                break;
+            case ("BLUE"):
+                break;
+            case ("YELLOW"):
+                break;
+        }
     }
 
     private void factoriesVisibleBase() {

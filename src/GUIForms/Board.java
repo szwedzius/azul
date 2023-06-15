@@ -4,8 +4,6 @@ import javax.swing.*;
 
 public class Board {
 
-
-
     private JButton button2;
     private JButton button3;
     private JButton button4;
@@ -65,55 +63,54 @@ public class Board {
     private JLabel score1;
 
     Board(){
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button2);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button3);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button5);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button6);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button7);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button8);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button9);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button10);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button11);
-        HelpfulMethodsGuiJava.createButton("img/black.png",60,60,button12);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button13);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button14);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button15);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button16);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button17);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button18);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button19);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button20);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button21);
-        HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button4);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button2);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button3);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button5);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button6);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button7);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button8);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button9);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button10);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button11);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button12);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button13);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button14);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button15);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button16);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button17);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button18);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button19);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button20);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button21);
+        HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button4);
 
-        tiles[0] = l1;
-        tiles[1] = l21;
-        tiles[2] = l31;
-        tiles[3] = l41;
-        tiles[4] = l51;
-        tiles[5] = l2;
-        tiles[6] = l22;
-        tiles[7] = l23;
-        tiles[8] = l24;
-        tiles[9] = l25;
-        tiles[10] = l3;
-        tiles[11] = l32;
-        tiles[12] = l33;
-        tiles[13] = l34;
-        tiles[14] = l35;
-        tiles[15] = l4;
-        tiles[16] = l42;
-        tiles[17] = l43;
-        tiles[18] = l44;
-        tiles[19] = l45;
-        tiles[20] = l5;
-        tiles[21] = l52;
-        tiles[22] = l53;
-        tiles[23] = l54;
-        tiles[24] = l55;
-        for(JLabel tile: tiles){
-            HelpfulMethodsGuiJava.createLabel("img/notile.png", 50,50, tile);
-        }
+        HelpfulMethodsGuiJava.createLabel("img/blue_notile.png", 80,80, l1);
+        HelpfulMethodsGuiJava.createLabel("img/yellow_notile.png", 80,80, l21);
+        HelpfulMethodsGuiJava.createLabel("img/red_notile.png", 80,80, l31);
+        HelpfulMethodsGuiJava.createLabel("img/black_notile.png", 80,80, l41);
+        HelpfulMethodsGuiJava.createLabel("img/white_notile.png", 80,80, l51);
+        HelpfulMethodsGuiJava.createLabel("img/white_notile.png", 80,80, l2);
+        HelpfulMethodsGuiJava.createLabel("img/blue_notile.png", 80,80, l22);
+        HelpfulMethodsGuiJava.createLabel("img/yellow_notile.png", 80,80, l32);
+        HelpfulMethodsGuiJava.createLabel("img/red_notile.png", 80,80, l42);
+        HelpfulMethodsGuiJava.createLabel("img/black_notile.png", 80,80, l52);
+        HelpfulMethodsGuiJava.createLabel("img/black_notile.png", 80,80, l3);
+        HelpfulMethodsGuiJava.createLabel("img/white_notile.png", 80,80, l23);
+        HelpfulMethodsGuiJava.createLabel("img/blue_notile.png", 80,80, l33);
+        HelpfulMethodsGuiJava.createLabel("img/yellow_notile.png", 80,80, l43);
+        HelpfulMethodsGuiJava.createLabel("img/red_notile.png", 80,80, l53);
+        HelpfulMethodsGuiJava.createLabel("img/red_notile.png", 80,80, l4);
+        HelpfulMethodsGuiJava.createLabel("img/black_notile.png", 80,80, l24);
+        HelpfulMethodsGuiJava.createLabel("img/white_notile.png", 80,80, l34);
+        HelpfulMethodsGuiJava.createLabel("img/blue_notile.png", 80,80, l44);
+        HelpfulMethodsGuiJava.createLabel("img/yellow_notile.png", 80,80, l54);
+        HelpfulMethodsGuiJava.createLabel("img/yellow_notile.png", 80,80, l5);
+        HelpfulMethodsGuiJava.createLabel("img/red_notile.png", 80,80, l25);
+        HelpfulMethodsGuiJava.createLabel("img/black_notile.png", 80,80, l35);
+        HelpfulMethodsGuiJava.createLabel("img/white_notile.png", 80,80, l43);
+        HelpfulMethodsGuiJava.createLabel("img/blue_notile.png", 80,80, l55);
+
+
     }
 
     public JPanel getBoard() {

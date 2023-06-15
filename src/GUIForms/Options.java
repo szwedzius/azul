@@ -21,7 +21,7 @@ public class Options {
             HelpfulMethodsGuiJava.createButton("img/small.png", 291,150, smallButton);
             HelpfulMethodsGuiJava.createButton("img/medium.png", 291,150, mediumButton);
             HelpfulMethodsGuiJava.createButton("img/big.png", 291,150, bigButton);
-            HelpfulMethodsGuiJava.createButton("img/medium.png", 291,150, returnButton);
+            HelpfulMethodsGuiJava.createButton("img/return.png", 291,150, returnButton);
         };
     }
     public ActionListener getBackToMenu(){

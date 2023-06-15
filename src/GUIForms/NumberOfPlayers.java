@@ -26,6 +26,7 @@ public class NumberOfPlayers {
     public NumberOfPlayers() {
         chosenumberofplayers.setForeground(Color.WHITE);
         chosenumberofplayers.setBackground(Color.decode("#45678B"));
+        chosenumberofplayers.setFont(new Font("Georgia", Font.PLAIN, 40));
         //GUI.frame.add(PLAYERS);
         //PLAYERS.setVisible(true);
 

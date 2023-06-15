@@ -1,7 +1,6 @@
 package GUIForms;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Board {
 
@@ -27,31 +26,32 @@ public class Board {
     private JButton button20;
     private JButton button5;
     private JButton button21;
-    private JLabel l2;
-    private JLabel l3;
-    private JLabel l4;
     private JLabel l1;
-    private JLabel l5;
-    private JLabel l31;
-    private JLabel l22;
-    private JLabel l32;
-    private JLabel l23;
-    private JLabel l33;
-    private JLabel l24;
-    private JLabel l34;
-    private JLabel l25;
-    private JLabel l35;
-    private JLabel l43;
-    private JLabel l53;
-    private JLabel l42;
-    private JLabel l41;
     private JLabel l21;
+    private JLabel l31;
+    private JLabel l41;
     private JLabel l51;
-    private JLabel l52;
+    private JLabel l2;
+    private JLabel l22;
+    private JLabel l23;
+    private JLabel l24;
+    private JLabel l25;
+    private JLabel l3;
+    private JLabel l32;
+    private JLabel l33;
+    private JLabel l34;
+    private JLabel l35;
+    private JLabel l4;
+    private JLabel l42;
+    private JLabel l43;
     private JLabel l44;
-    private JLabel l54;
     private JLabel l45;
+    private JLabel l5;
+    private JLabel l52;
+    private JLabel l53;
+    private JLabel l54;
     private JLabel l55;
+    private JLabel[] tiles = new JLabel[25];
     private JPanel Board;
     private JPanel scoreBoard;
     private JLabel playerName1;
@@ -85,6 +85,35 @@ public class Board {
         HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button20);
         HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button21);
         HelpfulMethodsGuiJava.createButton("img/notile.png",60,60,button4);
+
+        tiles[0] = l1;
+        tiles[1] = l21;
+        tiles[2] = l31;
+        tiles[3] = l41;
+        tiles[4] = l51;
+        tiles[5] = l2;
+        tiles[6] = l22;
+        tiles[7] = l23;
+        tiles[8] = l24;
+        tiles[9] = l25;
+        tiles[10] = l3;
+        tiles[11] = l32;
+        tiles[12] = l33;
+        tiles[13] = l34;
+        tiles[14] = l35;
+        tiles[15] = l4;
+        tiles[16] = l42;
+        tiles[17] = l43;
+        tiles[18] = l44;
+        tiles[19] = l45;
+        tiles[20] = l5;
+        tiles[21] = l52;
+        tiles[22] = l53;
+        tiles[23] = l54;
+        tiles[24] = l55;
+        for(JLabel tile: tiles){
+            HelpfulMethodsGuiJava.createLabel("img/notile.png", 50,50, tile);
+        }
     }
 
     public JPanel getBoard() {

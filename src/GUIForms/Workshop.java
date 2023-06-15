@@ -1,5 +1,7 @@
 package GUIForms;
 
+import Mechanics.Table;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -70,10 +72,14 @@ public class Workshop {
         return workshop;
     }
 
-    Workshop() throws HeadlessException  {
+    Workshop() throws Exception {
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
         HelpfulMethodsGuiJava.createButton("img/confirm.png",291,150,boardButton);
+        Table table = new Table(NumberOfPlayers.getClickedNumberOfPlayers());
+        table.refillFactories();
+        for (int i = 0; i < table.factories.length; i++) {
 
+        }
 
 
 

@@ -94,6 +94,17 @@ public class Workshop {
 //            pattern.getWall().setVisible(true);
         };
     }
+
+    public ActionListener collectTiles(int numberOfFactory, int numberOfTile, Table table){
+        return e -> {
+            table.factories[numberOfFactory-1].remove(table.factories[numberOfFactory-1].getContents()[numberOfTile-1]);
+            for(int i = 0; i < 4 ; i++) {
+                if(table.factories[numberOfFactory-1].getContents()[i] == table.factories[numberOfFactory-1].getContents()[numberOfTile-1])
+                    buttons.get((numberOfFactory-1)*4 + i).setVisible(false);
+            }
+        };
+    }
+
     Workshop() throws Exception {
         boardButton.addActionListener(getToBoard());
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
@@ -176,6 +187,42 @@ public class Workshop {
                 playerName1.setText(GUI.nameList.get(0));
                 factoriesVisibleBase();
         }
+        factory1Tile1.addActionListener(collectTiles(1,1, table));
+        factory1Tile2.addActionListener(collectTiles(1,2, table));
+        factory1Tile3.addActionListener(collectTiles(1,3, table));
+        factory1Tile4.addActionListener(collectTiles(1,4, table));
+        factory2Tile1.addActionListener(collectTiles(2,1, table));
+        factory2Tile2.addActionListener(collectTiles(2,2, table));
+        factory2Tile3.addActionListener(collectTiles(2,3, table));
+        factory2Tile4.addActionListener(collectTiles(2,4, table));
+        factory3Tile1.addActionListener(collectTiles(3,1, table));
+        factory3Tile2.addActionListener(collectTiles(3,2, table));
+        factory3Tile3.addActionListener(collectTiles(3,3, table));
+        factory3Tile4.addActionListener(collectTiles(3,4, table));
+        factory4Tile1.addActionListener(collectTiles(4,1, table));
+        factory4Tile2.addActionListener(collectTiles(4,2, table));
+        factory4Tile3.addActionListener(collectTiles(4,3, table));
+        factory4Tile4.addActionListener(collectTiles(4,4, table));
+        factory5Tile1.addActionListener(collectTiles(5,1, table));
+        factory5Tile2.addActionListener(collectTiles(5,2, table));
+        factory5Tile3.addActionListener(collectTiles(5,3, table));
+        factory5Tile4.addActionListener(collectTiles(5,4, table));
+        factory6Tile1.addActionListener(collectTiles(6,1, table));
+        factory6Tile2.addActionListener(collectTiles(6,2, table));
+        factory6Tile3.addActionListener(collectTiles(6,3, table));
+        factory6Tile4.addActionListener(collectTiles(6,4, table));
+        factory7Tile1.addActionListener(collectTiles(7,1, table));
+        factory7Tile2.addActionListener(collectTiles(7,2, table));
+        factory7Tile3.addActionListener(collectTiles(7,3, table));
+        factory7Tile4.addActionListener(collectTiles(7,4, table));
+        factory8Tile1.addActionListener(collectTiles(8,1, table));
+        factory8Tile2.addActionListener(collectTiles(8,2, table));
+        factory8Tile3.addActionListener(collectTiles(8,3, table));
+        factory8Tile4.addActionListener(collectTiles(8,4, table));
+        factory9Tile1.addActionListener(collectTiles(9,1, table));
+        factory9Tile2.addActionListener(collectTiles(9,2, table));
+        factory9Tile3.addActionListener(collectTiles(9,3, table));
+        factory9Tile4.addActionListener(collectTiles(9,4, table));
 
     }
 

@@ -261,12 +261,18 @@ public class Workshop {
                 playerName1.setText(GUI.nameList.get(0));
                 playerName2.setText(GUI.nameList.get(1));
                 factoriesFor2Players();
+                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
                 break;
             case 3:
                 playerName1.setText(GUI.nameList.get(0));
                 playerName2.setText(GUI.nameList.get(1));
                 playerName3.setText(GUI.nameList.get(2));
                 factoriesFor3Players();
+                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
+                score3.setText(GUIGAME.getGame().playersTables[2].getPointsString());
+
                 break;
             case 4:
                 playerName1.setText(GUI.nameList.get(0));
@@ -274,6 +280,10 @@ public class Workshop {
                 playerName3.setText(GUI.nameList.get(2));
                 playerName4.setText(GUI.nameList.get(3));
                 factoriesFor4Players();
+                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
+                score3.setText(GUIGAME.getGame().playersTables[2].getPointsString());
+                score4.setText(GUIGAME.getGame().playersTables[0].getPointsString());
             default:
                 playerName1.setText(GUI.nameList.get(0));
                 factoriesVisibleBase();
@@ -382,6 +392,19 @@ public class Workshop {
         factory7.setVisible(true);
         factory8.setVisible(true);
         factory9.setVisible(true);
+    }
+
+    public  void updateScoreFor2Players(){
+       score1.setText((GUIGAME.getGame().playersTables[0].getPointsString()));
+       score2.setText((GUIGAME.getGame().playersTables[1].getPointsString()));
+    }
+    public void updateScoreFor3Players(){
+        updateScoreFor2Players();
+        score3.setText((GUIGAME.getGame().playersTables[2].getPointsString()));
+    }
+    public void updateScoreFor4Players(){
+        updateScoreFor3Players();
+        score4.setText((GUIGAME.getGame().playersTables[3].getPointsString()));
     }
 
 

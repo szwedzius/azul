@@ -330,6 +330,7 @@ public class GUIGAME implements Serializable {
         int index = 0;
         for (String x : GUI.nameList) {
             game.playersTables[index] = new Player(x);
+            game.playersTables[index].getPlayersBoard().updateScore1(index);
             index++;
         }
 
@@ -377,8 +378,42 @@ public class GUIGAME implements Serializable {
             game.addToWall(i);
             game.subtractPointsFromFloor(i);
         }
-        for (int i = 0; i<game.playersTables.length; i++){
+//        for (int i = 0; i<game.playersTables.length; i++){
+//            bord Board = game.playersTables[i].getPlayersBoard();
+//            Board.getButton1().
+//        }
 
+        for (int i = 0; i<game.playersTables.length; i++){
+            bord Board = game.playersTables[i].getPlayersBoard();
+            switch (game.getNumberOfPlayers()){
+                case 1:
+                    break;
+                case 2:
+                    Board.updateScoreFor2Players();
+                    break;
+                case 3:
+                    Board.updateScoreFor3Players();
+                    break;
+                case 4:
+                    Board.updateScoreFor4Players();
+                    break;
+            }
+        }
+        switch (game.getNumberOfPlayers()){
+            case 1:
+                break;
+            case 2:
+                Workshop.getWorkshopInstance().updateScoreFor2Players();
+                FactoriesCenter.getFactoriesCenterINSTANCE().updateScoreFor2Players();
+                break;
+            case 3:
+                Workshop.getWorkshopInstance().updateScoreFor3Players();
+                FactoriesCenter.getFactoriesCenterINSTANCE().updateScoreFor3Players();
+                break;
+            case 4:
+                Workshop.getWorkshopInstance().updateScoreFor4Players();
+                FactoriesCenter.getFactoriesCenterINSTANCE().updateScoreFor4Players();
+                break;
         }
 
         game.table.refillFactories();
@@ -390,6 +425,9 @@ public class GUIGAME implements Serializable {
         localGameMainLoop();
     }
 
+    private void rowFill(int row){
+
+    }
 
     public static void localGamePhase1(int order) throws Exception {
                 //System.out.println(game.table.bag.size());

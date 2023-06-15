@@ -192,12 +192,16 @@ public class bord {
             case 2:
                 playerName1.setText(GUI.nameList.get(0));
                 playerName2.setText(GUI.nameList.get(1));
-
+//                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+//                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
                 break;
             case 3:
                 playerName1.setText(GUI.nameList.get(0));
                 playerName2.setText(GUI.nameList.get(1));
                 playerName3.setText(GUI.nameList.get(2));
+//                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+//                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
+//                score3.setText(GUIGAME.getGame().playersTables[2].getPointsString());
 
                 break;
             case 4:
@@ -205,7 +209,10 @@ public class bord {
                 playerName2.setText(GUI.nameList.get(1));
                 playerName3.setText(GUI.nameList.get(2));
                 playerName4.setText(GUI.nameList.get(3));
-
+//                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+//                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
+//                score3.setText(GUIGAME.getGame().playersTables[2].getPointsString());
+//                score4.setText(GUIGAME.getGame().playersTables[0].getPointsString());
             default:
                 playerName1.setText(GUI.nameList.get(0));
 
@@ -310,5 +317,116 @@ public class bord {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+    }
+
+    public  void updateScoreFor2Players(){
+        score1.setText((GUIGAME.getGame().playersTables[0].getPointsString()));
+        score2.setText((GUIGAME.getGame().playersTables[1].getPointsString()));
+    }
+    public void updateScoreFor3Players(){
+        updateScoreFor2Players();
+        score3.setText((GUIGAME.getGame().playersTables[2].getPointsString()));
+    }
+    public void updateScoreFor4Players(){
+        updateScoreFor3Players();
+        score4.setText((GUIGAME.getGame().playersTables[3].getPointsString()));
+    }
+    public void updateScore1(int x){
+       switch (x){
+           case 2:
+               score1.setText((GUIGAME.getGame().playersTables[0].getPointsString()));
+               score2.setText((GUIGAME.getGame().playersTables[x].getPointsString()));
+               break;
+           case 3:
+               score1.setText((GUIGAME.getGame().playersTables[0].getPointsString()));
+               score2.setText((GUIGAME.getGame().playersTables[1].getPointsString()));
+               score3.setText((GUIGAME.getGame().playersTables[x].getPointsString()));
+               break;
+           case 4:
+               score1.setText((GUIGAME.getGame().playersTables[0].getPointsString()));
+               score2.setText((GUIGAME.getGame().playersTables[1].getPointsString()));
+               score3.setText((GUIGAME.getGame().playersTables[2].getPointsString()));
+               score4.setText((GUIGAME.getGame().playersTables[x].getPointsString()));
+
+       }
+    }
+    public JButton getButton1() {
+        return button1;
+    }
+
+    public JButton getButton2() {
+        return button2;
+    }
+
+    public JButton getButton3() {
+        return button3;
+    }
+
+    public JButton getButton4() {
+        return button4;
+    }
+
+    public JButton getButton5() {
+        return button5;
+    }
+
+    public JButton getButton6() {
+        return button6;
+    }
+
+    public JButton getButton7() {
+        return button7;
+    }
+
+    public JButton getButton8() {
+        return button8;
+    }
+
+    public JButton getButton9() {
+        return button9;
+    }
+
+    public JButton getButton11() {
+        return button11;
+    }
+
+    public JButton getButton12() {
+        return button12;
+    }
+
+    public JButton getButton13() {
+        return button13;
+    }
+
+    public JButton getButton14() {
+        return button14;
+    }
+
+    public JButton getButton10() {
+        return button10;
+    }
+
+    public JButton getButton15() {
+        return button15;
+    }
+
+    public JButton getButton16() {
+        return button16;
+    }
+
+    public JButton getButton17() {
+        return button17;
+    }
+
+    public JButton getButton18() {
+        return button18;
+    }
+
+    public JButton getButton19() {
+        return button19;
+    }
+
+    public JButton getButton20() {
+        return button20;
     }
 }

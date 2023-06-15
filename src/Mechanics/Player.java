@@ -35,6 +35,7 @@ public class Player implements Serializable {
         pattern = new PatternLines();
         wall = new Wall();
         playersBoard = new bord();
+
     }
 
     public String getName() {
@@ -47,6 +48,10 @@ public class Player implements Serializable {
      */
     public int getPoints() {
         return points;
+    }
+    public String getPointsString() {
+        String pts = points + "";
+        return pts;
     }
 
     /**

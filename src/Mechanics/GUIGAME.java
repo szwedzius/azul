@@ -6,6 +6,7 @@ import GUIForms.Workshop;
 import GUIForms.bord;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -349,6 +350,11 @@ public class GUIGAME implements Serializable {
     public static void localGameNextTurn(int index) throws Exception {
         if(!isEnd){
             GUI.currentPlayerIndex = index;
+
+            Workshop workshop = Workshop.getWorkshopInstance();
+            bord bord = GUIGAME.game.playersTables[(GUI.currentPlayerIndex + numberOfPlayers -1) % numberOfPlayers].getPlayersBoard();
+            bord.getFullbord().setVisible(false);
+            workshop.getWorkshopPanel().setVisible(true);
         }
         if(isEnd) {
             first = game.findFirstPlayer();

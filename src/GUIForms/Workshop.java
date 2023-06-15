@@ -130,6 +130,7 @@ public class Workshop {
                         addToCenter(1, t.getImageName());
                     }
                 }
+
                 System.out.println(name);
                 isTileTaken = true;
                 addToPlayersPocketFromWorkshop(howManydeleted[0], name);
@@ -145,7 +146,7 @@ public class Workshop {
                 default -> takenTile = null;
             }
             workshop.setVisible(false);
-            bord board = new bord();
+            bord board = GUIGAME.getGame().getPlayersTables()[GUI.currentPlayerIndex].getPlayersBoard();
             GUI.frame.add(board.getFullbord());
             board.getFullbord().setVisible(true);
         };
@@ -162,9 +163,7 @@ public class Workshop {
                 case "img/yellow.png" -> takenTile = Tile.YELLOW;
                 case "img/blue.png" -> takenTile = Tile.BLUE;
             }
-            workshop.setVisible(false);
-            bord board = new bord();
-            board.getFullbord().setVisible(true);
+
         };
     }
 

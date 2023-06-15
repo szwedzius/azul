@@ -1,6 +1,5 @@
 package GUIForms;
 
-import Mechanics.GUIGAME;
 import Mechanics.Tile;
 
 import javax.swing.*;
@@ -73,7 +72,7 @@ public class bord {
     private JLabel[] tiles = new JLabel[25];
     private static int row;
 
-    bord() {
+    public bord() {
         HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button2);
         HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button3);
         HelpfulMethodsGuiJava.createButton("img/notile.png",80,80,button5);

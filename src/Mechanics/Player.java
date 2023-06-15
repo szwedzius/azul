@@ -1,5 +1,7 @@
 package Mechanics;
 
+import GUIForms.bord;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -21,6 +23,7 @@ public class Player implements Serializable {
     /** List containing the current state of player's floor line */
     public ArrayList<Tile> floor;
 
+    private bord playersBoard;
 
     /**
      * Default constructor
@@ -31,6 +34,7 @@ public class Player implements Serializable {
         floor = new ArrayList<>();
         pattern = new PatternLines();
         wall = new Wall();
+        playersBoard = new bord();
     }
 
     public String getName() {
@@ -86,4 +90,11 @@ public class Player implements Serializable {
         System.out.println();
     }
 
+    public bord getPlayersBoard() {
+        return playersBoard;
+    }
+
+    public void setPlayersBoard(bord playersBoard) {
+        this.playersBoard = playersBoard;
+    }
 }

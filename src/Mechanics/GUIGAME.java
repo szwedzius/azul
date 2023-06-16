@@ -38,6 +38,8 @@ public class GUIGAME implements Serializable {
      */
     public final int mode;
 
+    private static Player winnerPlayer;
+
     /**
      * Mechanics.Table - one instance per game
      */
@@ -449,8 +451,9 @@ public class GUIGAME implements Serializable {
         }
         else {
             Winner winner = new Winner();
+            GUI.frame.add(winner.getWinner());
             winner.getWinner().setVisible(true);
-            winner.getWinnername().setText("Congratulations to player"+GUIGAME.getGame().playersTables[que.get(GUI.currentPlayerIndex)].getName());
+            winner.getWinnername().setText("Congratulations to player"+winnerPlayer.getName());
         }
     }
 
@@ -529,8 +532,12 @@ public class GUIGAME implements Serializable {
         game.table.refillFactories();
 
         for (int i = 0; i < numberOfPlayers; i++)
-            if (game.isGameFinished(i))
+            if (game.isGameFinished(i)){
                 isGameFinished = true;
+                winnerPlayer = game.playersTables[i];
+            }
+
+
 
         localGameMainLoop();
     }

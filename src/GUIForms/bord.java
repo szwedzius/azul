@@ -178,6 +178,7 @@ public class bord {
         HelpfulMethodsGuiJava.createLabel("img/blue_notile.png", 90,90, l25);
 
         HelpfulMethodsGuiJava.createButton("img/workshop.png", 250,100, button23);
+        button23.addActionListener(getToWorkhop());
 
         buttonsArray.add(button1);
         buttonsArray.add(button5);
@@ -288,6 +289,16 @@ public class bord {
 
     public ActionListener whereToPutTheTile(Tile tile){
         return e->{
+        };
+    }
+    public ActionListener getToWorkhop(){
+        return e->{
+            try {
+                Workshop.getWorkshopInstance().getWorkshopPanel().setVisible(true);
+                getFullbord().setVisible(false);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
         };
     }
 

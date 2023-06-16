@@ -178,20 +178,20 @@ public class bord {
         HelpfulMethodsGuiJava.createButton("img/workshop.png", 250,100, button23);
 
         buttonsArray.add(button1);
-        buttonsArray.add(button6);
         buttonsArray.add(button5);
-        buttonsArray.add(button11);
-        buttonsArray.add(button7);
+        buttonsArray.add(button6);
         buttonsArray.add(button4);
-        buttonsArray.add(button14);
-        buttonsArray.add(button12);
-        buttonsArray.add(button8);
+        buttonsArray.add(button7);
+        buttonsArray.add(button11);
         buttonsArray.add(button3);
-        buttonsArray.add(button15);
-        buttonsArray.add(button10);
-        buttonsArray.add(button13);
-        buttonsArray.add(button9);
+        buttonsArray.add(button8);
+        buttonsArray.add(button12);
+        buttonsArray.add(button14);
         buttonsArray.add(button2);
+        buttonsArray.add(button9);
+        buttonsArray.add(button13);
+        buttonsArray.add(button10);
+        buttonsArray.add(button15);
 
         int index = 0;
 

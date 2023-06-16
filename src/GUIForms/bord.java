@@ -196,8 +196,15 @@ public class bord {
         int index = 0;
 
         for (Component component : this.stairs.getComponents()) {
-            if (component instanceof JButton && index < 22) {
+            if (component instanceof JButton && index < 16) {
                 ((JButton) component).addActionListener(makeTurn());
+                index++;
+            }
+        }
+
+        for (Component component : this.stairs.getComponents()) {
+            if (component instanceof JButton && index < 16) {
+                ((JButton) component).addActionListener(makeTurnFloor());
                 index++;
             }
         }
@@ -238,6 +245,12 @@ public class bord {
 
     }
 
+    private ActionListener makeTurnFloor() {
+        return e -> {
+
+        };
+    }
+
     public JPanel getFullbord() {
         return fullbord;
     }
@@ -253,11 +266,6 @@ public class bord {
             for (int i = 0; i < buttonsArray.size(); i++) {
                 if (e.getSource()==buttonsArray.get(i)){
                     index = i;
-//                    if(i<16&&i>9) index=10;
-//                    if(i<10&&i>5) index = 6;
-//                    if(i<6&&i>2) index = 3;
-//                    if(i<3&&i>0) index =1;
-//                    if(i==0) index =0;
                 }
             }
 
@@ -289,32 +297,6 @@ public class bord {
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
-//            while ( 0 < Workshop.howmanytiles) {
-//                if(addtiles<howManyTilesInARow) {
-//                    try {
-//                        buttonsArray.get(index + k).setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
-//                        buttonsArray.get(index + k).setDisabledIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
-//                        buttonsArray.get(index + k).setEnabled(false);
-//                        k++;
-//                        Workshop.howmanytiles--;
-//                        addtiles++;
-//                    } catch (Exception ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-//                }
-//                else {
-//                    try {
-//                        buttonsArray.get(floorindex).setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
-//                        buttonsArray.get(floorindex).setDisabledIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
-//                        floorindex++;
-//                        Workshop.howmanytiles--;
-//                    } catch (Exception ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-//                }
-//            }
-
-
 
             try {
                 //TODO error handling

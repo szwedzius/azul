@@ -458,9 +458,19 @@ public class GUIGAME implements Serializable {
 //            bord Board = game.playersTables[i].getPlayersBoard();
 //            Board.getButton1().
 //        }
-
-        for (int i = 0; i<game.playersTables.length; i++){
-            bord Board = game.playersTables[i].getPlayersBoard();
+        int[] tab = {0,1,3,6,10};
+        int[] tab2 = {1,2,3,4,5};
+        for (int a = 0; a<game.playersTables.length; a++){
+            bord Board = game.playersTables[a].getPlayersBoard();
+            for (int i = 0; i < 5; i++){
+                for(int j = game.playersTables[a].pattern.amounts[i]; j<tab2[i] ;j++){
+                    game.playersTables[a].playersBoard.buttonsArray.get(tab[i]+j)
+                            .setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/notile.png",90,90));
+                }
+                for (JButton x : game.playersTables[a].playersBoard.floorArray) {
+                    x.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/notile.png",90,90));
+                }
+            }
             switch (game.getNumberOfPlayers()){
                 case 1:
                     break;

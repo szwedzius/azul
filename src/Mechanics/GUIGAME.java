@@ -448,7 +448,9 @@ public class GUIGAME implements Serializable {
             localGameNextTurn(0);
         }
         else {
-
+            Winner winner = new Winner();
+            winner.getWinner().setVisible(true);
+            winner.getWinnername().setText("Congratulations to player"+GUIGAME.getGame().playersTables[que.get(GUI.currentPlayerIndex)].getName());
         }
     }
 

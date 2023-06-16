@@ -27,11 +27,11 @@ public class Wall implements Serializable {
                                  {false, false, false, false, false},
                                  {false, false, false, false, false},
                                  {false, false, false, false, false}};
-        pattern = new Tile[][]{{Tile.BLUE, Tile.YELLOW, Tile.RED, Tile.BLACK, Tile.WHITE},
-                               {Tile.WHITE, Tile.BLUE, Tile.YELLOW, Tile.RED, Tile.BLACK},
-                               {Tile.BLACK, Tile.WHITE, Tile.BLUE, Tile.YELLOW, Tile.RED},
-                               {Tile.RED, Tile.BLACK, Tile.WHITE, Tile.BLUE, Tile.YELLOW},
-                               {Tile.YELLOW, Tile.RED, Tile.BLACK, Tile.WHITE, Tile.BLUE}};
+        pattern = new Tile[][]{{Tile.BLUE, Tile.WHITE, Tile.BLACK, Tile.RED, Tile.YELLOW},
+                               {Tile.YELLOW, Tile.BLUE, Tile.WHITE, Tile.BLACK, Tile.RED},
+                               {Tile.RED, Tile.YELLOW, Tile.BLUE, Tile.WHITE, Tile.BLACK},
+                               {Tile.BLACK, Tile.RED, Tile.YELLOW, Tile.BLUE, Tile.WHITE},
+                               {Tile.WHITE, Tile.BLACK, Tile.RED, Tile.YELLOW, Tile.BLUE}};
     }
 
     /**

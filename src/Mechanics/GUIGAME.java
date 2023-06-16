@@ -453,7 +453,7 @@ public class GUIGAME implements Serializable {
             Winner winner = new Winner();
             GUI.frame.add(winner.getWinner());
             winner.getWinner().setVisible(true);
-            winner.getWinnername().setText("Congratulations to player"+winnerPlayer.getName());
+            winner.getWinnername().setText("Congratulations to player"+ "" +winnerPlayer.getName());
         }
     }
 
@@ -533,8 +533,14 @@ public class GUIGAME implements Serializable {
 
         for (int i = 0; i < numberOfPlayers; i++)
             if (game.isGameFinished(i)){
+                int temp = 0;
+                for (int j = 0; j < numberOfPlayers; j++) {
+                    if(temp < game.playersTables[j].getPoints()){
+                        winnerPlayer =  game.playersTables[j];
+                        temp = game.playersTables[j].getPoints();
+                    }
+                }
                 isGameFinished = true;
-                winnerPlayer = game.playersTables[i];
             }
 
 

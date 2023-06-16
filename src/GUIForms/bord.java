@@ -101,12 +101,12 @@ public class bord {
     public bord() {
 
 
+        floorArray.add(button17);
+        floorArray.add(button18);
+        floorArray.add(button19);
+        floorArray.add(button20);
         floorArray.add(button22);
         floorArray.add(button21);
-        floorArray.add(button20);
-        floorArray.add(button19);
-        floorArray.add(button18);
-        floorArray.add(button17);
         floorArray.add(button16);
 
         playerName4.setForeground(Color.WHITE);

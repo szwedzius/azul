@@ -574,6 +574,7 @@ public class GUIGAME implements Serializable {
                 for(Tile x: game.playersTables[que.get(GUI.currentPlayerIndex)].floor){
                     game.playersTables[que.get(GUI.currentPlayerIndex)].playersBoard.floorArray.get(index)
                             .setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(x.getImageName(),90,90));
+                    index++;
                 }
 
                 game.playersTables[que.get(GUI.currentPlayerIndex)].printFloor();

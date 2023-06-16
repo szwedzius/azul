@@ -293,54 +293,62 @@ public class bord {
 
     public ActionListener makeTurn(){
         return e -> {
-            int index=100;
-            for (int i = 0; i < buttonsArray.size(); i++) {
-                if (e.getSource()==buttonsArray.get(i)){
-                    index = i;
+            boolean workshopInfo;
+            try {
+                workshopInfo = Workshop.getWorkshopInstance().isTileTaken();
+            }catch (Exception ex){
+                throw new RuntimeException(ex);
+            }
+            if(workshopInfo || FactoriesCenter.getFactoriesCenterINSTANCE().isTilePicked()) {
+                int index = 100;
+                for (int i = 0; i < buttonsArray.size(); i++) {
+                    if (e.getSource() == buttonsArray.get(i)) {
+                        index = i;
+                    }
+                }
+
+                row = 0;
+                int howManyTilesInARow;
+                if (e.getSource().equals(button1)) {
+                    row = 1;
+                    howManyTilesInARow = 1;
+                } else if (e.getSource().equals(button5) || e.getSource().equals(button6)) {
+                    row = 2;
+                    howManyTilesInARow = 2;
+                } else if (e.getSource().equals(button4) || e.getSource().equals(button7) || e.getSource().equals(button11)) {
+                    row = 3;
+                    howManyTilesInARow = 3;
+                } else if (e.getSource().equals(button14) || e.getSource().equals(button12) || e.getSource().equals(button8) || e.getSource().equals(button3)) {
+                    row = 4;
+                    howManyTilesInARow = 4;
+                } else if (e.getSource().equals(button15) || e.getSource().equals(button10) || e.getSource().equals(button13) || e.getSource().equals(button9) || e.getSource().equals(button2)) {
+                    row = 5;
+                    howManyTilesInARow = 5;
+                } else {
+                    row = 6;
+                }
+                int k = 0;
+                int floorindex = 0;
+                int addtiles = 0;
+                try {
+                    if (!GUIGAME.getGame().isMoveValid(Workshop.getWorkshopInstance().getWorkshopid(), row - 1, que.get(GUI.currentPlayerIndex), Workshop.getWorkshopInstance().takenTile))
+                        return;
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                try {
+                    //TODO error handling
+                    localGamePhase1(que.get(GUI.currentPlayerIndex));
+                    GUI.currentPlayerIndex++;
+                    GUI.currentPlayerIndex = GUI.currentPlayerIndex % GUIGAME.getGame().getNumberOfPlayers();
+                    localGameNextTurn(GUI.currentPlayerIndex);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
                 }
             }
-
-            row = 0;
-            int howManyTilesInARow;
-            if(e.getSource().equals(button1)) {
-                row = 1;
-                howManyTilesInARow = 1;
-            }
-            else if (e.getSource().equals(button5)||e.getSource().equals(button6)) {
-                row =2;
-                howManyTilesInARow=2;
-            } else if (e.getSource().equals(button4)||e.getSource().equals(button7)||e.getSource().equals(button11)) {
-                row =3;
-                howManyTilesInARow=3;
-            } else if (e.getSource().equals(button14)||e.getSource().equals(button12) ||e.getSource().equals(button8)|| e.getSource().equals(button3)) {
-                row =4;
-                howManyTilesInARow=4;
-            }else if(e.getSource().equals(button15)||e.getSource().equals(button10) ||e.getSource().equals(button13)|| e.getSource().equals(button9) || e.getSource().equals(button2)) {
-                row =5;
-                howManyTilesInARow=5;
-            }
-            else {
-                row = 6;
-            }
-            int k = 0;
-            int floorindex=0;
-            int addtiles=0;
-            try {
-                if(!GUIGAME.getGame().isMoveValid(Workshop.getWorkshopInstance().getWorkshopid(),row-1,que.get(GUI.currentPlayerIndex),Workshop.getWorkshopInstance().takenTile))
-                    return;
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
-
-            try {
-                //TODO error handling
-                localGamePhase1(que.get(GUI.currentPlayerIndex));
-                GUI.currentPlayerIndex++;
-                GUI.currentPlayerIndex=GUI.currentPlayerIndex%GUIGAME.getGame().getNumberOfPlayers();
-                localGameNextTurn(GUI.currentPlayerIndex);
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
+            else
+                System.out.println("What are u doing?");
         };
     }
 

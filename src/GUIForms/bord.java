@@ -75,10 +75,12 @@ public class bord {
     private JLabel turnInfo;
     private JPanel TurnInfo;
     private JButton button23;
+
     private JLabel[] tiles = new JLabel[25];
     private static int row;
-    ArrayList<JButton> buttonsArray = new ArrayList<>();
-    ArrayList<JButton> floorArray = new ArrayList<>();
+    public ArrayList<JButton> buttonsArray = new ArrayList<>();
+
+    public ArrayList<JButton> floorArray = new ArrayList<>();
 
     public JLabel getPlayerName1() {
         return playerName1;
@@ -287,30 +289,30 @@ public class bord {
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
-            while ( 0 < Workshop.howmanytiles) {
-                if(addtiles<howManyTilesInARow) {
-                    try {
-                        buttonsArray.get(index + k).setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
-                        buttonsArray.get(index + k).setDisabledIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
-                        buttonsArray.get(index + k).setEnabled(false);
-                        k++;
-                        Workshop.howmanytiles--;
-                        addtiles++;
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
-                else {
-                    try {
-                        buttonsArray.get(floorindex).setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
-                        buttonsArray.get(floorindex).setDisabledIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
-                        floorindex++;
-                        Workshop.howmanytiles--;
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
-            }
+//            while ( 0 < Workshop.howmanytiles) {
+//                if(addtiles<howManyTilesInARow) {
+//                    try {
+//                        buttonsArray.get(index + k).setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
+//                        buttonsArray.get(index + k).setDisabledIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
+//                        buttonsArray.get(index + k).setEnabled(false);
+//                        k++;
+//                        Workshop.howmanytiles--;
+//                        addtiles++;
+//                    } catch (Exception ex) {
+//                        throw new RuntimeException(ex);
+//                    }
+//                }
+//                else {
+//                    try {
+//                        buttonsArray.get(floorindex).setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
+//                        buttonsArray.get(floorindex).setDisabledIcon(HelpfulMethodsGuiJava.getImageIconWithSize(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90));
+//                        floorindex++;
+//                        Workshop.howmanytiles--;
+//                    } catch (Exception ex) {
+//                        throw new RuntimeException(ex);
+//                    }
+//                }
+//            }
 
 
 

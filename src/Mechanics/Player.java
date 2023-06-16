@@ -23,7 +23,7 @@ public class Player implements Serializable {
     /** List containing the current state of player's floor line */
     public ArrayList<Tile> floor;
 
-    private bord playersBoard;
+    public bord playersBoard;
 
     /**
      * Default constructor

@@ -539,8 +539,27 @@ public class GUIGAME implements Serializable {
 
                 game.addTilesToPatternLines(order, tileToAdd, number, whereToPlaceTiles);
 
+                int[] tab = {0,1,3,6,10};
+
+
+                for (int i = 0; i < 5; i++){
+                    for(int j = 0; j < game.playersTables[(order + 1) % numberOfPlayers].pattern.amounts[i]; j++){
+                        game.playersTables[(order + 1) % numberOfPlayers].playersBoard.buttonsArray.get(tab[i]+j)
+                                .setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(game.playersTables[(order + 1) % numberOfPlayers].pattern.colours[i].getImageName(),90,90));
+                    }
+                }
+
                 game.playersTables[order].pattern.printPatternLine();
-                game.playersTables[order].printFloor();
+                System.out.println(numberOfPlayers);
+
+                int index = 0;
+                for(Tile x: game.playersTables[(order + 1) % numberOfPlayers].floor){
+                    game.playersTables[(order + 1) % numberOfPlayers].playersBoard.floorArray.get(index)
+                            .setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(x.getImageName(),90,90));
+                }
+
+                game.playersTables[(order + 1) % numberOfPlayers].printFloor();
+
 
 
                 isEnd = game.isFirstStageFinished();

@@ -399,11 +399,13 @@
         <children>
           <component id="d76f6" class="javax.swing.JLabel" binding="turnInfo">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Georgia Pro" size="28"/>
-              <text value="                                                  Your Turn!"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="Your Turn!"/>
             </properties>
           </component>
         </children>

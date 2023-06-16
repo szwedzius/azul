@@ -47,7 +47,7 @@
             <properties>
               <enabled value="true"/>
               <font size="36"/>
-              <text value="Options"/>
+              <text value="Window size"/>
             </properties>
           </component>
           <component id="74e7d" class="javax.swing.JButton" binding="returnButton" default-binding="true">

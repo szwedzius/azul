@@ -133,6 +133,11 @@ public class FactoriesCenter {
         blueNumber.setFont(new Font("Georgia", Font.PLAIN, 28));
         redNumber.setFont(new Font("Georgia", Font.PLAIN, 28));
         yellowNumber.setFont(new Font("Georgia", Font.PLAIN, 28));
+        whiteNumber.setForeground(new Color(245,255,255));
+        blackNumber.setForeground(new Color(245,255,255));
+        blueNumber.setForeground(new Color(245,255,255));
+        redNumber.setForeground(new Color(245,255,255));
+        yellowNumber.setForeground(new Color(245,255,255));
         scoreboard.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/scoreboard.png",339,90));
         score1.setForeground(Color.WHITE);
         score1.setFont(new Font("Georgia", Font.PLAIN, 28));

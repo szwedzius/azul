@@ -127,6 +127,7 @@ public class bord {
         score3.setFont(new Font("Georgia", Font.PLAIN, 28));
         score4.setForeground(Color.WHITE);
         score4.setFont(new Font("Georgia", Font.PLAIN, 28));
+        turnInfo.setForeground(new Color(245,255,255));
 
         HelpfulMethodsGuiJava.createButton("img/notile.png",90,90,button2);
         HelpfulMethodsGuiJava.createButton("img/notile.png",90,90,button3);
@@ -286,7 +287,10 @@ public class bord {
     public JPanel getFullbord() {
         return fullbord;
     }
-
+    public JLabel setTurnInfo(){
+        turnInfo.setText(getGame().playersTables[que.get(GUI.currentPlayerIndex)].getName()+"'s turn!");
+        return turnInfo;
+    }
     public ActionListener whereToPutTheTile(Tile tile){
         return e->{
         };

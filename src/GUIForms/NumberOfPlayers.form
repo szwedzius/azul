@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="PLAYERS" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="846" height="400"/>
+      <xy x="20" y="20" width="875" height="400"/>
     </constraints>
     <properties>
       <foreground color="-12228725"/>
@@ -42,8 +42,8 @@
             </constraints>
             <properties>
               <background color="-12228725"/>
-              <font name="JetBrains Mono" size="48"/>
-              <text value="Chose number of players"/>
+              <font name="Georgia Pro" size="48"/>
+              <text value="Choose number of players"/>
             </properties>
           </component>
           <component id="a1bc2" class="javax.swing.JButton" binding="a2Button" default-binding="true">

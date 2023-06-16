@@ -95,7 +95,6 @@ public class ChoosePlayerNames {
             });
         if(MainFrame.getIsGameOnline()==1) {
             if (numberOfNames==1){
-                //TODO należy utworzyć sesje gry, tzn jakiś panel
             }
         }
         else if (numberOfNames == NumberOfPlayers.getClickedNumberOfPlayers()) {

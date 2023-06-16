@@ -120,7 +120,7 @@ public class Workshop {
         return e -> {
             System.out.println("essa");
             workshop.setVisible(false);
-            bord bord = GUIGAME.getGame().getPlayersTables()[GUI.currentPlayerIndex].getPlayersBoard();
+            bord bord = GUIGAME.getGame().getPlayersTables()[que.get(GUI.currentPlayerIndex)].getPlayersBoard();
             GUI.frame.add(bord.getFullbord());
             bord.getFullbord().setVisible(true);
 //            Pattern pattern = new Pattern();

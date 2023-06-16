@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import static Mechanics.GUIGAME.que;
+
 public class FactoriesCenter {
     private static FactoriesCenter INSTANCE;
     private JPanel factoryCenter;
@@ -111,7 +113,7 @@ public class FactoriesCenter {
                 throw new RuntimeException(ex);
             }
             factoryCenter.setVisible(false);
-            bord board = GUIGAME.getGame().getPlayersTables()[GUI.currentPlayerIndex].getPlayersBoard();
+            bord board = GUIGAME.getGame().getPlayersTables()[que.get(GUI.currentPlayerIndex)].getPlayersBoard();
             GUI.frame.add(board.getFullbord());
             board.getFullbord().setVisible(true);
         };

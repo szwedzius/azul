@@ -411,6 +411,7 @@ public class GUIGAME implements Serializable {
     }
 
     public static void localGameNextTurn(int index) throws Exception {
+
         if(!isEnd){
             GUI.currentPlayerIndex = index;
 
@@ -423,6 +424,7 @@ public class GUIGAME implements Serializable {
             for (Integer integer : que) {
                 bord bord = GUIGAME.game.playersTables[integer].getPlayersBoard();
                 bord.getFullbord().setVisible(false);
+                bord.setTurnInfo();
             }
 
         }
@@ -431,6 +433,7 @@ public class GUIGAME implements Serializable {
             for (Integer integer : que) {
                 bord bord = GUIGAME.game.playersTables[integer].getPlayersBoard();
                 bord.getFullbord().setVisible(false);
+                bord.setTurnInfo();
             }
             que.clear();
             localGameEmptyFactory();

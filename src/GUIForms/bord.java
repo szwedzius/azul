@@ -259,6 +259,10 @@ public class bord {
         return e->{
         };
     }
+    public JLabel setTurnInfo(){
+        turnInfo.setText(GUIGAME.getGame().playersTables[que.get(GUI.currentPlayerIndex)].getName() +"'s turn!");
+        return turnInfo;
+    }
 
     public ActionListener makeTurn(){
         return e -> {

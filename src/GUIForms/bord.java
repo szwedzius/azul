@@ -75,6 +75,7 @@ public class bord {
     private JLabel turnInfo;
     private JPanel TurnInfo;
     private JButton button23;
+    private JPanel floor;
 
     private JLabel[] tiles = new JLabel[25];
     private static int row;
@@ -97,6 +98,7 @@ public class bord {
     public JLabel getPlayerName2() {
         return playerName2;
     }
+    public JLabel[][] wallmatrix = new JLabel[5][5];
 
     public bord() {
 
@@ -201,13 +203,42 @@ public class bord {
                 index++;
             }
         }
-
-        for (Component component : this.stairs.getComponents()) {
-            if (component instanceof JButton && index < 16) {
-                ((JButton) component).addActionListener(makeTurnFloor());
-                index++;
-            }
+        for (Component component  : this.floor.getComponents()){
+            ((JButton) component).addActionListener(makeTurn());
         }
+
+//        for (Component component : this.stairs.getComponents()) {
+//            if (component instanceof JButton && index < 16) {
+//                ((JButton) component).addActionListener(makeTurnFloor());
+//                index++;
+//            }
+//        }
+
+       wallmatrix[0][0] = l1;
+       wallmatrix[0][1] = l6;
+       wallmatrix[0][2] = l11;
+       wallmatrix[0][3] = l16;
+       wallmatrix[0][4] = l21;
+        wallmatrix[1][0] = l2;
+        wallmatrix[1][1] = l7;
+        wallmatrix[1][2] = l12;
+        wallmatrix[1][3] = l17;
+        wallmatrix[1][4] = l22;
+        wallmatrix[2][0] = l3;
+        wallmatrix[2][1] = l8;
+        wallmatrix[2][2] = l13;
+        wallmatrix[2][3] = l18;
+        wallmatrix[2][4] = l23;
+        wallmatrix[3][0] = l4;
+        wallmatrix[3][1] = l9;
+        wallmatrix[3][2] = l14;
+        wallmatrix[3][3] = l19;
+        wallmatrix[3][4] = l24;
+        wallmatrix[4][0] = l5;
+        wallmatrix[4][1] = l10;
+        wallmatrix[4][2] = l15;
+        wallmatrix[4][3] = l20;
+        wallmatrix[4][4] = l25;
 
         switch (NumberOfPlayers.getClickedNumberOfPlayers()){
             case 1:
@@ -284,9 +315,12 @@ public class bord {
             } else if (e.getSource().equals(button14)||e.getSource().equals(button12) ||e.getSource().equals(button8)|| e.getSource().equals(button3)) {
                 row =4;
                 howManyTilesInARow=4;
-            }else {
+            }else if(e.getSource().equals(button15)||e.getSource().equals(button10) ||e.getSource().equals(button13)|| e.getSource().equals(button9) || e.getSource().equals(button2)) {
                 row =5;
                 howManyTilesInARow=5;
+            }
+            else {
+                row = 6;
             }
             int k = 0;
             int floorindex=0;

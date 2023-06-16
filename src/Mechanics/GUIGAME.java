@@ -447,6 +447,9 @@ public class GUIGAME implements Serializable {
             isEnd = false;
             localGameNextTurn(0);
         }
+        else {
+
+        }
     }
 
     public static void localGameEmptyFactory() throws Exception {
@@ -454,6 +457,25 @@ public class GUIGAME implements Serializable {
             game.addToWall(i);
             game.subtractPointsFromFloor(i);
         }
+
+        for(int i=0;i<game.playersTables.length;i++){
+            Player current =  game.playersTables[i];
+            bord BoardCurrent = current.getPlayersBoard();
+            Wall currentWall = current.wall;
+            boolean[][] filledArray = currentWall.filled;
+            for (int j = 0; j < 5; j++) {
+                for (int k = 0; k < 5; k++) {
+                    if(filledArray[j][k]){
+                        BoardCurrent.wallmatrix[j][k].setIcon(HelpfulMethodsGuiJava
+                                .getImageIconWithSize(currentWall.pattern[j][k].getImageName(),90,90));
+                    }
+
+                }
+            }
+        }
+
+
+
 //        for (int i = 0; i<game.playersTables.length; i++){
 //            bord Board = game.playersTables[i].getPlayersBoard();
 //            Board.getButton1().

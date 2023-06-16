@@ -11,12 +11,12 @@ public class Wall implements Serializable {
     /**
      * Matrix indicating which of the places on player's wall are filled
      */
-    private final boolean[][] filled;
+    public final boolean[][] filled;
 
     /**
      * Matrix of tiles on the wall creating the pattern
      */
-    private final Tile[][] pattern;
+    public final Tile[][] pattern;
 
     /**
      * Default constructor
@@ -186,5 +186,9 @@ public class Wall implements Serializable {
             System.out.println();
         }
         System.out.println();
+    }
+
+    public boolean[][] getFilled() {
+        return filled;
     }
 }

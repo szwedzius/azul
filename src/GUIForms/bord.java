@@ -284,7 +284,7 @@ public class bord {
             int floorindex=0;
             int addtiles=0;
             try {
-                if(!GUIGAME.getGame().isMoveValid(Workshop.getWorkshopInstance().getWorkshopid(),row-1,GUI.currentPlayerIndex,Workshop.getWorkshopInstance().takenTile))
+                if(!GUIGAME.getGame().isMoveValid(Workshop.getWorkshopInstance().getWorkshopid(),row-1,que.get(GUI.currentPlayerIndex),Workshop.getWorkshopInstance().takenTile))
                     return;
             } catch (Exception ex) {
                 throw new RuntimeException(ex);

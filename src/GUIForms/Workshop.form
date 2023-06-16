@@ -129,7 +129,7 @@
             </constraints>
             <properties>
               <font size="28"/>
-              <text value="214"/>
+              <text value=""/>
             </properties>
           </component>
           <component id="10b57" class="javax.swing.JLabel" binding="score1">
@@ -138,7 +138,7 @@
             </constraints>
             <properties>
               <font size="28"/>
-              <text value="1"/>
+              <text value=""/>
             </properties>
           </component>
           <vspacer id="8f343">

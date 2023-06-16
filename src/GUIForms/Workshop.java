@@ -9,6 +9,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 
+import static Mechanics.GUIGAME.que;
+
 public class Workshop {
 
     private static Workshop INSTANCE;
@@ -166,7 +168,7 @@ public class Workshop {
                 default -> takenTile = null;
             }
             workshop.setVisible(false);
-            bord board = GUIGAME.getGame().getPlayersTables()[GUI.currentPlayerIndex].getPlayersBoard();
+            bord board = GUIGAME.getGame().getPlayersTables()[que.get(GUI.currentPlayerIndex)].getPlayersBoard();
             GUI.frame.add(board.getFullbord());
             board.getFullbord().setVisible(true);
         };
@@ -195,9 +197,20 @@ public class Workshop {
         }
         return INSTANCE;
     }
+
+    public void refillWorkshop(){
+        table = GUIGAME.getGame().table;
+        int button = 0;
+        for (int i = 0; i < table.factories.length; i++) {
+            for (int j = 0; j < 4; j++) {
+                HelpfulMethodsGuiJava.createButton(table.factories[i].getContents()[j].getImageName(),80,80,buttons.get(button));
+                buttons.get(button).setVisible(true);
+                button++;
+            }
+        }
+    }
+
     private Workshop() throws Exception {
-
-
         playerName4.setForeground(Color.WHITE);
         playerName3.setForeground(Color.WHITE);
         playerName2.setForeground(Color.WHITE);

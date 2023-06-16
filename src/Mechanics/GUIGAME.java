@@ -417,22 +417,31 @@ public class GUIGAME implements Serializable {
             highlightLabel(index);
 
             Workshop workshop = Workshop.getWorkshopInstance();
-            bord bord = GUIGAME.game.playersTables[(GUI.currentPlayerIndex + numberOfPlayers -1) % numberOfPlayers].getPlayersBoard();
-            bord.getFullbord().setVisible(false);
             Workshop.getWorkshopInstance().setIfTileIsTaken();
             FactoriesCenter.getFactoriesCenterINSTANCE().setIfTileIsPicked();
             workshop.getWorkshopPanel().setVisible(true);
+            for (Integer integer : que) {
+                bord bord = GUIGAME.game.playersTables[integer].getPlayersBoard();
+                bord.getFullbord().setVisible(false);
+            }
+
         }
         if(isEnd) {
             first = game.findFirstPlayer();
+            for (Integer integer : que) {
+                bord bord = GUIGAME.game.playersTables[integer].getPlayersBoard();
+                bord.getFullbord().setVisible(false);
+            }
             que.clear();
             localGameEmptyFactory();
         }
+
     }
 
 
     public static void localGameMainLoop() throws Exception {
         if (!isGameFinished) {
+            Workshop.getWorkshopInstance().refillWorkshop();
             for (int i = 0; i < numberOfPlayers; i++)
                 que.add((first + i) % numberOfPlayers);
             isEnd = false;
@@ -543,22 +552,21 @@ public class GUIGAME implements Serializable {
 
 
                 for (int i = 0; i < 5; i++){
-                    for(int j = 0; j < game.playersTables[(order + 1) % numberOfPlayers].pattern.amounts[i]; j++){
-                        game.playersTables[(order + 1) % numberOfPlayers].playersBoard.buttonsArray.get(tab[i]+j)
-                                .setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(game.playersTables[(order + 1) % numberOfPlayers].pattern.colours[i].getImageName(),90,90));
+                    for(int j = 0; j < game.playersTables[que.get(GUI.currentPlayerIndex)].pattern.amounts[i]; j++){
+                        game.playersTables[que.get(GUI.currentPlayerIndex)].playersBoard.buttonsArray.get(tab[i]+j)
+                                .setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(game.playersTables[que.get(GUI.currentPlayerIndex)].pattern.colours[i].getImageName(),90,90));
                     }
                 }
 
                 game.playersTables[order].pattern.printPatternLine();
                 System.out.println(numberOfPlayers);
-
                 int index = 0;
-                for(Tile x: game.playersTables[(order + 1) % numberOfPlayers].floor){
-                    game.playersTables[(order + 1) % numberOfPlayers].playersBoard.floorArray.get(index)
+                for(Tile x: game.playersTables[que.get(GUI.currentPlayerIndex)].floor){
+                    game.playersTables[que.get(GUI.currentPlayerIndex)].playersBoard.floorArray.get(index)
                             .setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(x.getImageName(),90,90));
                 }
 
-                game.playersTables[(order + 1) % numberOfPlayers].printFloor();
+                game.playersTables[que.get(GUI.currentPlayerIndex)].printFloor();
 
 
 

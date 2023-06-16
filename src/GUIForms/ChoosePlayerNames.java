@@ -79,7 +79,7 @@ public class ChoosePlayerNames {
 
                 if (numberOfNames == NumberOfPlayers.getClickedNumberOfPlayers()) {
                     System.out.println("wchodzi");
-                    //Workshop workshop;
+                    Workshop workshop;
                     try {
                         GUIGAME.localGameStart();
                         //workshop = Workshop.getWorkshopInstance();

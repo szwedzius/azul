@@ -324,12 +324,78 @@ public class GUIGAME implements Serializable {
         playersTables[indexOfPlayer].clearFloor();
     }
 
+
+
+    private static final Color highlightColor = new Color(32, 255, 70);
+    private static final Color basicColor = new Color(255, 255, 255);
+    public static void highlightLabel(int player) throws Exception {
+        bord Board = GUIGAME.getGame().getPlayersTables()[GUI.currentPlayerIndex].getPlayersBoard();
+        for(int i = 0; i < NumberOfPlayers.getClickedNumberOfPlayers(); i++) {
+
+            System.out.println();
+            if(i  == player) {
+                if(i == 0) {
+                    Workshop.getWorkshopInstance().getPlayerName1().setForeground(highlightColor);
+                    Board.getPlayerName1().setForeground(highlightColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName1().setForeground(highlightColor);
+                }
+                if(i == 1) {
+                    Workshop.getWorkshopInstance().getPlayerName2().setForeground(highlightColor);
+                    Board.getPlayerName2().setForeground(highlightColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName2().setForeground(highlightColor);
+                }
+                if(i == 2) {
+                    Workshop.getWorkshopInstance().getPlayerName3().setForeground(highlightColor);
+                    Board.getPlayerName3().setForeground(highlightColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName3().setForeground(highlightColor);
+                }
+                if(i == 3) {
+                    Workshop.getWorkshopInstance().getPlayerName4().setForeground(highlightColor);
+                    Board.getPlayerName4().setForeground(highlightColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName4().setForeground(highlightColor);
+                }
+            }
+            else {
+                if(i == 0) {
+                    Workshop.getWorkshopInstance().getPlayerName1().setForeground(basicColor);
+                    Board.getPlayerName1().setForeground(basicColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName1().setForeground(basicColor);
+                }
+                if(i == 1) {
+                    Workshop.getWorkshopInstance().getPlayerName2().setForeground(basicColor);
+                    Board.getPlayerName2().setForeground(basicColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName2().setForeground(basicColor);
+                }
+                if(i == 2) {
+                    Workshop.getWorkshopInstance().getPlayerName3().setForeground(basicColor);
+                    Board.getPlayerName3().setForeground(basicColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName3().setForeground(basicColor);
+                }
+                if(i == 3) {
+                    Workshop.getWorkshopInstance().getPlayerName4().setForeground(basicColor);
+                    Board.getPlayerName4().setForeground(basicColor);
+                    FactoriesCenter.getFactoriesCenterINSTANCE().getPlayerName4().setForeground(basicColor);
+                }
+            }
+        }
+
+    }
+
+
+
+
+
+
+
+
+
     public static void localGameStart() throws Exception {
         numberOfPlayers = NumberOfPlayers.getClickedNumberOfPlayers();
         game = new GUIGAME(numberOfPlayers, 1);
         int index = 0;
         for (String x : GUI.nameList) {
             game.playersTables[index] = new Player(x);
+            game.playersTables[index].getPlayersBoard().updateScore1(index);
             index++;
         }
 
@@ -348,23 +414,34 @@ public class GUIGAME implements Serializable {
         if(!isEnd){
             GUI.currentPlayerIndex = index;
 
+            highlightLabel(index);
+
             Workshop workshop = Workshop.getWorkshopInstance();
-            bord bord = GUIGAME.game.playersTables[(GUI.currentPlayerIndex + numberOfPlayers -1) % numberOfPlayers].getPlayersBoard();
-            bord.getFullbord().setVisible(false);
             Workshop.getWorkshopInstance().setIfTileIsTaken();
             FactoriesCenter.getFactoriesCenterINSTANCE().setIfTileIsPicked();
             workshop.getWorkshopPanel().setVisible(true);
+            for (Integer integer : que) {
+                bord bord = GUIGAME.game.playersTables[integer].getPlayersBoard();
+                bord.getFullbord().setVisible(false);
+            }
+
         }
         if(isEnd) {
             first = game.findFirstPlayer();
+            for (Integer integer : que) {
+                bord bord = GUIGAME.game.playersTables[integer].getPlayersBoard();
+                bord.getFullbord().setVisible(false);
+            }
             que.clear();
             localGameEmptyFactory();
         }
+
     }
 
 
     public static void localGameMainLoop() throws Exception {
         if (!isGameFinished) {
+            Workshop.getWorkshopInstance().refillWorkshop();
             for (int i = 0; i < numberOfPlayers; i++)
                 que.add((first + i) % numberOfPlayers);
             isEnd = false;
@@ -377,6 +454,53 @@ public class GUIGAME implements Serializable {
             game.addToWall(i);
             game.subtractPointsFromFloor(i);
         }
+//        for (int i = 0; i<game.playersTables.length; i++){
+//            bord Board = game.playersTables[i].getPlayersBoard();
+//            Board.getButton1().
+//        }
+        int[] tab = {0,1,3,6,10};
+        int[] tab2 = {1,2,3,4,5};
+        for (int a = 0; a<game.playersTables.length; a++){
+            bord Board = game.playersTables[a].getPlayersBoard();
+            for (int i = 0; i < 5; i++){
+                for(int j = game.playersTables[a].pattern.amounts[i]; j<tab2[i] ;j++){
+                    game.playersTables[a].playersBoard.buttonsArray.get(tab[i]+j)
+                            .setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/notile.png",90,90));
+                }
+                for (JButton x : game.playersTables[a].playersBoard.floorArray) {
+                    x.setIcon(HelpfulMethodsGuiJava.getImageIconWithSize("img/notile.png",90,90));
+                }
+            }
+            switch (game.getNumberOfPlayers()){
+                case 1:
+                    break;
+                case 2:
+                    Board.updateScoreFor2Players();
+                    break;
+                case 3:
+                    Board.updateScoreFor3Players();
+                    break;
+                case 4:
+                    Board.updateScoreFor4Players();
+                    break;
+            }
+        }
+        switch (game.getNumberOfPlayers()){
+            case 1:
+                break;
+            case 2:
+                Workshop.getWorkshopInstance().updateScoreFor2Players();
+                FactoriesCenter.getFactoriesCenterINSTANCE().updateScoreFor2Players();
+                break;
+            case 3:
+                Workshop.getWorkshopInstance().updateScoreFor3Players();
+                FactoriesCenter.getFactoriesCenterINSTANCE().updateScoreFor3Players();
+                break;
+            case 4:
+                Workshop.getWorkshopInstance().updateScoreFor4Players();
+                FactoriesCenter.getFactoriesCenterINSTANCE().updateScoreFor4Players();
+                break;
+        }
 
         game.table.refillFactories();
 
@@ -387,6 +511,9 @@ public class GUIGAME implements Serializable {
         localGameMainLoop();
     }
 
+    private void rowFill(int row){
+
+    }
 
     public static void localGamePhase1(int order) throws Exception {
                 //System.out.println(game.table.bag.size());
@@ -431,8 +558,27 @@ public class GUIGAME implements Serializable {
 
                 game.addTilesToPatternLines(order, tileToAdd, number, whereToPlaceTiles);
 
+                int[] tab = {0,1,3,6,10};
+
+
+                for (int i = 0; i < 5; i++){
+                    for(int j = 0; j < game.playersTables[que.get(GUI.currentPlayerIndex)].pattern.amounts[i]; j++){
+                        game.playersTables[que.get(GUI.currentPlayerIndex)].playersBoard.buttonsArray.get(tab[i]+j)
+                                .setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(game.playersTables[que.get(GUI.currentPlayerIndex)].pattern.colours[i].getImageName(),90,90));
+                    }
+                }
+
                 game.playersTables[order].pattern.printPatternLine();
-                game.playersTables[order].printFloor();
+                System.out.println(numberOfPlayers);
+                int index = 0;
+                for(Tile x: game.playersTables[que.get(GUI.currentPlayerIndex)].floor){
+                    game.playersTables[que.get(GUI.currentPlayerIndex)].playersBoard.floorArray.get(index)
+                            .setIcon(HelpfulMethodsGuiJava.getImageIconWithSize(x.getImageName(),90,90));
+                    index++;
+                }
+
+                game.playersTables[que.get(GUI.currentPlayerIndex)].printFloor();
+
 
 
                 isEnd = game.isFirstStageFinished();

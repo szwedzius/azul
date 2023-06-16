@@ -9,6 +9,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
 
+import static Mechanics.GUIGAME.que;
+
 public class Workshop {
 
     private static Workshop INSTANCE;
@@ -75,6 +77,23 @@ public class Workshop {
     private JButton factory9Tile4;
     private JTextField textField1;
     private ArrayList<JButton> buttons = new ArrayList<>();
+
+    public JLabel getPlayerName1() {
+        return playerName1;
+    }
+
+    public JLabel getPlayerName4() {
+        return playerName4;
+    }
+
+    public JLabel getPlayerName3() {
+        return playerName3;
+    }
+
+    public JLabel getPlayerName2() {
+        return playerName2;
+    }
+
     private Table table;
     private boolean isTileTaken = false;
     public int workshopid = 0;
@@ -101,7 +120,7 @@ public class Workshop {
         return e -> {
             System.out.println("essa");
             workshop.setVisible(false);
-            bord bord = new bord();
+            bord bord = GUIGAME.getGame().getPlayersTables()[que.get(GUI.currentPlayerIndex)].getPlayersBoard();
             GUI.frame.add(bord.getFullbord());
             bord.getFullbord().setVisible(true);
 //            Pattern pattern = new Pattern();
@@ -149,7 +168,7 @@ public class Workshop {
                 default -> takenTile = null;
             }
             workshop.setVisible(false);
-            bord board = GUIGAME.getGame().getPlayersTables()[GUI.currentPlayerIndex].getPlayersBoard();
+            bord board = GUIGAME.getGame().getPlayersTables()[que.get(GUI.currentPlayerIndex)].getPlayersBoard();
             GUI.frame.add(board.getFullbord());
             board.getFullbord().setVisible(true);
         };
@@ -178,6 +197,19 @@ public class Workshop {
         }
         return INSTANCE;
     }
+
+    public void refillWorkshop(){
+        table = GUIGAME.getGame().table;
+        int button = 0;
+        for (int i = 0; i < table.factories.length; i++) {
+            for (int j = 0; j < 4; j++) {
+                HelpfulMethodsGuiJava.createButton(table.factories[i].getContents()[j].getImageName(),80,80,buttons.get(button));
+                buttons.get(button).setVisible(true);
+                button++;
+            }
+        }
+    }
+
     private Workshop() throws Exception {
         playerName4.setForeground(Color.WHITE);
         playerName3.setForeground(Color.WHITE);
@@ -261,12 +293,18 @@ public class Workshop {
                 playerName1.setText(GUI.nameList.get(0));
                 playerName2.setText(GUI.nameList.get(1));
                 factoriesFor2Players();
+                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
                 break;
             case 3:
                 playerName1.setText(GUI.nameList.get(0));
                 playerName2.setText(GUI.nameList.get(1));
                 playerName3.setText(GUI.nameList.get(2));
                 factoriesFor3Players();
+                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
+                score3.setText(GUIGAME.getGame().playersTables[2].getPointsString());
+
                 break;
             case 4:
                 playerName1.setText(GUI.nameList.get(0));
@@ -274,6 +312,10 @@ public class Workshop {
                 playerName3.setText(GUI.nameList.get(2));
                 playerName4.setText(GUI.nameList.get(3));
                 factoriesFor4Players();
+                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
+                score3.setText(GUIGAME.getGame().playersTables[2].getPointsString());
+                score4.setText(GUIGAME.getGame().playersTables[0].getPointsString());
             default:
                 playerName1.setText(GUI.nameList.get(0));
                 factoriesVisibleBase();
@@ -384,6 +426,19 @@ public class Workshop {
         factory9.setVisible(true);
     }
 
+    public  void updateScoreFor2Players(){
+       score1.setText((GUIGAME.getGame().playersTables[0].getPointsString()));
+       score2.setText((GUIGAME.getGame().playersTables[1].getPointsString()));
+    }
+    public void updateScoreFor3Players(){
+        updateScoreFor2Players();
+        score3.setText((GUIGAME.getGame().playersTables[2].getPointsString()));
+    }
+    public void updateScoreFor4Players(){
+        updateScoreFor3Players();
+        score4.setText((GUIGAME.getGame().playersTables[3].getPointsString()));
+    }
+
 
     public boolean isTileTaken() {
         return isTileTaken;
@@ -391,5 +446,13 @@ public class Workshop {
 
     public void setIfTileIsTaken(){
         isTileTaken = false;
+    }
+
+    public void setWorkshopid(int workshopid) {
+        this.workshopid = workshopid;
+    }
+
+    public void setTakenTile(Tile takenTile) {
+        this.takenTile = takenTile;
     }
 }

@@ -75,20 +75,38 @@ public class bord {
     private JLabel turnInfo;
     private JPanel TurnInfo;
     private JButton button23;
+
     private JLabel[] tiles = new JLabel[25];
     private static int row;
-    ArrayList<JButton> buttonsArray = new ArrayList<>();
-    ArrayList<JButton> floorArray = new ArrayList<>();
+    public ArrayList<JButton> buttonsArray = new ArrayList<>();
 
-   public bord() {
+    public ArrayList<JButton> floorArray = new ArrayList<>();
+
+    public JLabel getPlayerName1() {
+        return playerName1;
+    }
+
+    public JLabel getPlayerName4() {
+        return playerName4;
+    }
+
+    public JLabel getPlayerName3() {
+        return playerName3;
+    }
+
+    public JLabel getPlayerName2() {
+        return playerName2;
+    }
+
+    public bord() {
 
 
+        floorArray.add(button17);
+        floorArray.add(button18);
+        floorArray.add(button19);
+        floorArray.add(button20);
         floorArray.add(button22);
         floorArray.add(button21);
-        floorArray.add(button20);
-        floorArray.add(button19);
-        floorArray.add(button18);
-        floorArray.add(button17);
         floorArray.add(button16);
 
         playerName4.setForeground(Color.WHITE);
@@ -160,26 +178,33 @@ public class bord {
         HelpfulMethodsGuiJava.createButton("img/workshop.png", 250,100, button23);
 
         buttonsArray.add(button1);
-        buttonsArray.add(button6);
         buttonsArray.add(button5);
-        buttonsArray.add(button11);
-        buttonsArray.add(button7);
+        buttonsArray.add(button6);
         buttonsArray.add(button4);
-        buttonsArray.add(button14);
-        buttonsArray.add(button12);
-        buttonsArray.add(button8);
+        buttonsArray.add(button7);
+        buttonsArray.add(button11);
         buttonsArray.add(button3);
-        buttonsArray.add(button15);
-        buttonsArray.add(button10);
-        buttonsArray.add(button13);
-        buttonsArray.add(button9);
+        buttonsArray.add(button8);
+        buttonsArray.add(button12);
+        buttonsArray.add(button14);
         buttonsArray.add(button2);
+        buttonsArray.add(button9);
+        buttonsArray.add(button13);
+        buttonsArray.add(button10);
+        buttonsArray.add(button15);
 
         int index = 0;
 
         for (Component component : this.stairs.getComponents()) {
-            if (component instanceof JButton && index < 22) {
+            if (component instanceof JButton && index < 16) {
                 ((JButton) component).addActionListener(makeTurn());
+                index++;
+            }
+        }
+
+        for (Component component : this.stairs.getComponents()) {
+            if (component instanceof JButton && index < 16) {
+                ((JButton) component).addActionListener(makeTurnFloor());
                 index++;
             }
         }
@@ -192,12 +217,16 @@ public class bord {
             case 2:
                 playerName1.setText(GUI.nameList.get(0));
                 playerName2.setText(GUI.nameList.get(1));
-
+//                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+//                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
                 break;
             case 3:
                 playerName1.setText(GUI.nameList.get(0));
                 playerName2.setText(GUI.nameList.get(1));
                 playerName3.setText(GUI.nameList.get(2));
+//                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+//                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
+//                score3.setText(GUIGAME.getGame().playersTables[2].getPointsString());
 
                 break;
             case 4:
@@ -205,12 +234,21 @@ public class bord {
                 playerName2.setText(GUI.nameList.get(1));
                 playerName3.setText(GUI.nameList.get(2));
                 playerName4.setText(GUI.nameList.get(3));
-
+//                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+//                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
+//                score3.setText(GUIGAME.getGame().playersTables[2].getPointsString());
+//                score4.setText(GUIGAME.getGame().playersTables[0].getPointsString());
             default:
                 playerName1.setText(GUI.nameList.get(0));
 
         }
 
+    }
+
+    private ActionListener makeTurnFloor() {
+        return e -> {
+
+        };
     }
 
     public JPanel getFullbord() {
@@ -228,11 +266,6 @@ public class bord {
             for (int i = 0; i < buttonsArray.size(); i++) {
                 if (e.getSource()==buttonsArray.get(i)){
                     index = i;
-//                    if(i<16&&i>9) index=10;
-//                    if(i<10&&i>5) index = 6;
-//                    if(i<6&&i>2) index = 3;
-//                    if(i<3&&i>0) index =1;
-//                    if(i==0) index =0;
                 }
             }
 
@@ -259,38 +292,11 @@ public class bord {
             int floorindex=0;
             int addtiles=0;
             try {
-                if(GUIGAME.getGame().isMoveValid(Workshop.getWorkshopInstance().getWorkshopid(),row,GUI.currentPlayerIndex,Workshop.getWorkshopInstance().takenTile));
-                else return;
+                if(!GUIGAME.getGame().isMoveValid(Workshop.getWorkshopInstance().getWorkshopid(),row-1,que.get(GUI.currentPlayerIndex),Workshop.getWorkshopInstance().takenTile))
+                    return;
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
-            while ( 0 < Workshop.howmanytiles) {
-                if(addtiles<howManyTilesInARow) {
-                    try {
-                        ImageIcon essa = new ImageIcon("img/notile.png");
-                        String xd = essa.getDescription();
-                            HelpfulMethodsGuiJava.createButton(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90, buttonsArray.get(index + k));
-                            buttonsArray.get(index + k).setEnabled(false);
-                            k++;
-                            Workshop.howmanytiles--;
-
-                        addtiles++;
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
-                else {
-                    try {
-                        HelpfulMethodsGuiJava.createButton(Workshop.getWorkshopInstance().takenTile.getImageName(), 90, 90, floorArray.get(floorindex));
-                        floorindex++;
-                        Workshop.howmanytiles--;
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
-            }
-
-
 
             try {
                 //TODO error handling
@@ -310,5 +316,116 @@ public class bord {
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+    }
+
+    public  void updateScoreFor2Players(){
+        score1.setText((GUIGAME.getGame().playersTables[0].getPointsString()));
+        score2.setText((GUIGAME.getGame().playersTables[1].getPointsString()));
+    }
+    public void updateScoreFor3Players(){
+        updateScoreFor2Players();
+        score3.setText((GUIGAME.getGame().playersTables[2].getPointsString()));
+    }
+    public void updateScoreFor4Players(){
+        updateScoreFor3Players();
+        score4.setText((GUIGAME.getGame().playersTables[3].getPointsString()));
+    }
+    public void updateScore1(int x){
+       switch (x){
+           case 2:
+               score1.setText((GUIGAME.getGame().playersTables[0].getPointsString()));
+               score2.setText((GUIGAME.getGame().playersTables[x].getPointsString()));
+               break;
+           case 3:
+               score1.setText((GUIGAME.getGame().playersTables[0].getPointsString()));
+               score2.setText((GUIGAME.getGame().playersTables[1].getPointsString()));
+               score3.setText((GUIGAME.getGame().playersTables[x].getPointsString()));
+               break;
+           case 4:
+               score1.setText((GUIGAME.getGame().playersTables[0].getPointsString()));
+               score2.setText((GUIGAME.getGame().playersTables[1].getPointsString()));
+               score3.setText((GUIGAME.getGame().playersTables[2].getPointsString()));
+               score4.setText((GUIGAME.getGame().playersTables[x].getPointsString()));
+
+       }
+    }
+    public JButton getButton1() {
+        return button1;
+    }
+
+    public JButton getButton2() {
+        return button2;
+    }
+
+    public JButton getButton3() {
+        return button3;
+    }
+
+    public JButton getButton4() {
+        return button4;
+    }
+
+    public JButton getButton5() {
+        return button5;
+    }
+
+    public JButton getButton6() {
+        return button6;
+    }
+
+    public JButton getButton7() {
+        return button7;
+    }
+
+    public JButton getButton8() {
+        return button8;
+    }
+
+    public JButton getButton9() {
+        return button9;
+    }
+
+    public JButton getButton11() {
+        return button11;
+    }
+
+    public JButton getButton12() {
+        return button12;
+    }
+
+    public JButton getButton13() {
+        return button13;
+    }
+
+    public JButton getButton14() {
+        return button14;
+    }
+
+    public JButton getButton10() {
+        return button10;
+    }
+
+    public JButton getButton15() {
+        return button15;
+    }
+
+    public JButton getButton16() {
+        return button16;
+    }
+
+    public JButton getButton17() {
+        return button17;
+    }
+
+    public JButton getButton18() {
+        return button18;
+    }
+
+    public JButton getButton19() {
+        return button19;
+    }
+
+    public JButton getButton20() {
+        return button20;
     }
 }

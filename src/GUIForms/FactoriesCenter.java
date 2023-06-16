@@ -1,8 +1,14 @@
 package GUIForms;
 
+import Mechanics.GUIGAME;
+import Mechanics.Tile;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import static Mechanics.GUIGAME.que;
 
 public class FactoriesCenter {
     private static FactoriesCenter INSTANCE;
@@ -58,6 +64,21 @@ public class FactoriesCenter {
         return yellowQuantity;
     }
 
+    public JLabel getPlayerName1() {
+        return playerName1;
+    }
+
+    public JLabel getPlayerName4() {
+        return playerName4;
+    }
+
+    public JLabel getPlayerName3() {
+        return playerName3;
+    }
+
+    public JLabel getPlayerName2() {
+        return playerName2;
+    }
 
     public JPanel getFactoryCenterPanel(){
         return factoryCenter;
@@ -91,6 +112,10 @@ public class FactoriesCenter {
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
             }
+            factoryCenter.setVisible(false);
+            bord board = GUIGAME.getGame().getPlayersTables()[que.get(GUI.currentPlayerIndex)].getPlayersBoard();
+            GUI.frame.add(board.getFullbord());
+            board.getFullbord().setVisible(true);
         };
     }
 
@@ -125,12 +150,16 @@ public class FactoriesCenter {
             case 2:
                 playerName1.setText(GUI.nameList.get(0));
                 playerName2.setText(GUI.nameList.get(1));
-
+                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
                 break;
             case 3:
                 playerName1.setText(GUI.nameList.get(0));
                 playerName2.setText(GUI.nameList.get(1));
                 playerName3.setText(GUI.nameList.get(2));
+                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
+                score3.setText(GUIGAME.getGame().playersTables[2].getPointsString());
 
                 break;
             case 4:
@@ -138,6 +167,10 @@ public class FactoriesCenter {
                 playerName2.setText(GUI.nameList.get(1));
                 playerName3.setText(GUI.nameList.get(2));
                 playerName4.setText(GUI.nameList.get(3));
+                score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+                score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
+                score3.setText(GUIGAME.getGame().playersTables[2].getPointsString());
+                score4.setText(GUIGAME.getGame().playersTables[0].getPointsString());
 
             default:
                 playerName1.setText(GUI.nameList.get(0));
@@ -158,6 +191,18 @@ public class FactoriesCenter {
         yellowTile.addActionListener(tilePicked("YELLOW"));
 
     }
+    public  void updateScoreFor2Players(){
+        score1.setText((GUIGAME.getGame().playersTables[0].getPointsString()));
+        score2.setText((GUIGAME.getGame().playersTables[1].getPointsString()));
+    }
+    public void updateScoreFor3Players(){
+        updateScoreFor2Players();
+        score3.setText((GUIGAME.getGame().playersTables[2].getPointsString()));
+    }
+    public void updateScoreFor4Players(){
+        updateScoreFor3Players();
+        score4.setText((GUIGAME.getGame().playersTables[3].getPointsString()));
+    }
 
     public void updateTileQuantities() {
         whiteNumber.setText(String.valueOf(whiteQuantity));
@@ -166,8 +211,9 @@ public class FactoriesCenter {
         blueNumber.setText(String.valueOf(blueQuantity));
         yellowNumber.setText(String.valueOf(yellowQuantity));
     }
-    private void addTileToPlayersPocketFromCenter( String tileName){
+    private void addTileToPlayersPocketFromCenter( String tileName) throws Exception {
         int quantity;
+        Workshop.getWorkshopInstance().setWorkshopid(9);
             switch (tileName) {
                 case ("WHITE"):
                     if(whiteQuantity!=0) {
@@ -175,6 +221,7 @@ public class FactoriesCenter {
                         System.out.println(quantity);
                         setWhiteQuantity(0);
                         updateTileQuantities();
+                        Workshop.getWorkshopInstance().setTakenTile(Tile.WHITE);
                     }
                     break;
                 case ("BLACK"):
@@ -182,6 +229,7 @@ public class FactoriesCenter {
                         quantity = blackQuantity;
                         setBlackQuantity(0);
                         updateTileQuantities();
+                        Workshop.getWorkshopInstance().setTakenTile(Tile.BLACK);
                     }
                     break;
                 case ("RED"):
@@ -189,6 +237,7 @@ public class FactoriesCenter {
                         quantity = redQuantity;
                         setRedQuantity(0);
                         updateTileQuantities();
+                        Workshop.getWorkshopInstance().setTakenTile(Tile.RED);
                     }
                     break;
                 case ("BLUE"):
@@ -196,6 +245,7 @@ public class FactoriesCenter {
                         quantity = blueQuantity;
                         setBlueQuantity(0);
                         updateTileQuantities();
+                        Workshop.getWorkshopInstance().setTakenTile(Tile.BLUE);
                     }
                     break;
                 case ("YELLOW"):
@@ -203,6 +253,7 @@ public class FactoriesCenter {
                         quantity = yellowQuantity;
                         setYellowQuantity(0);
                         updateTileQuantities();
+                        Workshop.getWorkshopInstance().setTakenTile(Tile.YELLOW);
                     }
                     break;
 

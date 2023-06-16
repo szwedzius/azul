@@ -397,7 +397,7 @@ public class GUIGAME implements Serializable {
         int index = 0;
         for (String x : GUI.nameList) {
             game.playersTables[index] = new Player(x);
-            game.playersTables[index].getPlayersBoard().updateScore1(index);
+            game.playersTables[index].getPlayersBoard().updateScore1(index+1);
             index++;
         }
 

@@ -391,20 +391,34 @@ public class bord {
     public void updateScore1(int x){
        switch (x){
            case 2:
-               score1.setText((GUIGAME.getGame().playersTables[0].getPointsString()));
-               score2.setText((GUIGAME.getGame().playersTables[x].getPointsString()));
+               String scoreStr1 = (GUIGAME.getGame().playersTables[0].getPointsString());
+               String scoreStr2 = (GUIGAME.getGame().playersTables[x-1].getPointsString());
+               score1.setText(scoreStr1);
+               score2.setText(scoreStr2);
                break;
            case 3:
-               score1.setText((GUIGAME.getGame().playersTables[0].getPointsString()));
-               score2.setText((GUIGAME.getGame().playersTables[1].getPointsString()));
-               score3.setText((GUIGAME.getGame().playersTables[x].getPointsString()));
+               scoreStr1 = (GUIGAME.getGame().playersTables[0].getPointsString());
+               scoreStr2 = (GUIGAME.getGame().playersTables[1].getPointsString());
+               String scoreStr3 = (GUIGAME.getGame().playersTables[x-1].getPointsString());
+               score1.setText(scoreStr1);
+               score2.setText(scoreStr2);
+               score3.setText(scoreStr3);
+
+               GUIGAME.getGame().playersTables[0].getPlayersBoard().updateScoreFor3Players();
+               GUIGAME.getGame().playersTables[1].getPlayersBoard().updateScoreFor3Players();
                break;
            case 4:
-               score1.setText((GUIGAME.getGame().playersTables[0].getPointsString()));
-               score2.setText((GUIGAME.getGame().playersTables[1].getPointsString()));
-               score3.setText((GUIGAME.getGame().playersTables[2].getPointsString()));
-               score4.setText((GUIGAME.getGame().playersTables[x].getPointsString()));
-
+               scoreStr1 = (GUIGAME.getGame().playersTables[0].getPointsString());
+               scoreStr2 = (GUIGAME.getGame().playersTables[1].getPointsString());
+               scoreStr3 = (GUIGAME.getGame().playersTables[2].getPointsString());
+               String scoreStr4 = (GUIGAME.getGame().playersTables[x-1].getPointsString());
+               score1.setText(scoreStr1);
+               score2.setText(scoreStr2);
+               score3.setText(scoreStr3);
+               score4.setText(scoreStr4);
+               GUIGAME.getGame().playersTables[0].getPlayersBoard().updateScoreFor4Players();
+               GUIGAME.getGame().playersTables[1].getPlayersBoard().updateScoreFor4Players();
+               GUIGAME.getGame().playersTables[2].getPlayersBoard().updateScoreFor4Players();
        }
     }
     public JButton getButton1() {

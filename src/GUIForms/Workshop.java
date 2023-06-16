@@ -315,7 +315,7 @@ public class Workshop {
                 score1.setText(GUIGAME.getGame().playersTables[0].getPointsString());
                 score2.setText(GUIGAME.getGame().playersTables[1].getPointsString());
                 score3.setText(GUIGAME.getGame().playersTables[2].getPointsString());
-                score4.setText(GUIGAME.getGame().playersTables[0].getPointsString());
+                score4.setText(GUIGAME.getGame().playersTables[3].getPointsString());
             default:
                 playerName1.setText(GUI.nameList.get(0));
                 factoriesVisibleBase();

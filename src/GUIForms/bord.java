@@ -128,6 +128,7 @@ public class bord {
         score4.setForeground(Color.WHITE);
         score4.setFont(new Font("Georgia", Font.PLAIN, 28));
         turnInfo.setForeground(new Color(245,255,255));
+        scoreboard.setForeground(new Color(245,255,255));
 
         HelpfulMethodsGuiJava.createButton("img/notile.png",90,90,button2);
         HelpfulMethodsGuiJava.createButton("img/notile.png",90,90,button3);
